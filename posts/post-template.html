@@ -236,11 +236,12 @@ ORDER BY 1</code></pre>
       <p class="reactions-sub">React with an emoji or leave a comment — powered by GitHub Discussions. A free GitHub account is all you need.</p>
 
       <!-- GISCUS COMMENT + REACTION WIDGET
-           Replace the placeholder values below with your real ones from giscus.app
+           Replace the remaining placeholder value below after installing the
+           giscus GitHub app on the repository and fetching the category ID.
            Full setup instructions are in the DEPLOYING COMMENTS section at the bottom. -->
       <script src="https://giscus.app/client.js"
         data-repo="aosman101/aosman101.github.io"
-        data-repo-id="REPLACE_WITH_YOUR_REPO_ID"
+        data-repo-id="R_kgDORvxkjA"
         data-category="Announcements"
         data-category-id="REPLACE_WITH_YOUR_CATEGORY_ID"
         data-mapping="pathname"
@@ -294,15 +295,18 @@ ORDER BY 1</code></pre>
   ================================================================
   1. Go to your repo:  github.com/aosman101/aosman101.github.io
   2. Click Settings → Features → tick "Discussions" → Save
-  3. Go to https://giscus.app
-  4. Enter your repo:  aosman101/aosman101.github.io
-  5. Under "Discussion category" choose "Announcements"
-  6. Copy the two values it gives you:
-       - data-repo-id="R_..."
+  3. Install the giscus GitHub app on this repo:
+       https://github.com/apps/giscus
+  4. Go to https://giscus.app
+  5. Enter your repo:  aosman101/aosman101.github.io
+  6. Under "Discussion category" choose "Announcements"
+  7. Copy the value it gives you for:
        - data-category-id="DIC_..."
-  7. Replace REPLACE_WITH_YOUR_REPO_ID and REPLACE_WITH_YOUR_CATEGORY_ID
-     in the <script> block above (on this template AND on every post file)
-  8. Upload — comments and reactions will now work live!
+     (the repo ID is already set in this template:
+       data-repo-id="R_kgDORvxkjA")
+  8. Replace REPLACE_WITH_YOUR_CATEGORY_ID in the <script> block above
+     on this template AND on every post file
+  9. Upload — comments and reactions will now work live!
   ================================================================
 -->
 </body>
