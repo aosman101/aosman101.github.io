@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Adil Osman</title>
+  <meta name="description" content="Writing and technical notes by Adil Osman on data engineering, analytics engineering, and machine learning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* Filter tabs */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      font-family: var(--font-mono); font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-secondary); background: var(--bg-elevated);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 0.4rem 1rem; cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .filter-btn:hover { color: var(--text-primary); border-color: var(--border-hover); }
+    .filter-btn.active {
+      color: var(--accent); border-color: var(--accent-mid);
+      background: var(--accent-dim);
+    }
+
+    /* Article cards */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+    .article-card {
+      display: flex; flex-direction: column;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .article-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.2s ease;
+    }
+    .article-card:hover { border-color: var(--accent-mid); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+    .article-card:hover::before { opacity: 1; }
+
+    .article-meta {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    .article-date {
+      font-family: var(--font-mono); font-size: 0.62rem;
+      letter-spacing: 0.1em; color: var(--text-tertiary);
+      text-transform: uppercase;
+    }
+    .article-readtime {
+      font-family: var(--font-mono); font-size: 0.62rem;
+      letter-spacing: 0.08em; color: var(--text-tertiary);
+    }
+    .article-tag {
+      font-family: var(--font-mono); font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-dim);
+      padding: 0.18rem 0.6rem; border-radius: 100px;
+    }
+    .article-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 1.25rem; line-height: 1.3; letter-spacing: -0.015em;
+      color: var(--text-primary); margin-bottom: 0.75rem;
+    }
+    .article-excerpt {
+      font-size: 0.875rem; color: var(--text-secondary);
+      line-height: 1.65; flex: 1; margin-bottom: 1.25rem;
+    }
+    .article-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: auto;
+    }
+    .article-read-link {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); display: flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.15s ease;
+    }
+    .article-card:hover .article-read-link { gap: 0.7rem; }
+
+    /* Upcoming section */
+    .upcoming-label {
+      font-family: var(--font-mono); font-size: 0.68rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.625rem;
+    }
+    .upcoming-label::after {
+      content: ''; display: block; height: 1px; width: 40px;
+      background: var(--border);
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .topic-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s ease;
+      opacity: 0.7;
+    }
+    .topic-card:hover { border-color: var(--border-hover); opacity: 1; }
+    .topic-card-num {
+      font-family: var(--font-mono); font-size: 0.58rem;
+      letter-spacing: 0.15em; color: var(--text-tertiary);
+      text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .topic-card-title {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--text-secondary); margin-bottom: 0.4rem;
+    }
+    .topic-card-desc {
+      font-size: 0.78rem; color: var(--text-tertiary); line-height: 1.55;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center; padding: 4rem 2rem;
+      color: var(--text-tertiary); font-size: 0.9rem;
+      display: none;
+    }
+    .empty-state.visible { display: block; }
+
+    @media (max-width: 900px) {
+      .topics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .topics-grid { grid-template-columns: 1fr; }
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Stack</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero" style="background:var(--bg-surface); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="page-hero-label">Writing</div>
+    <h1 class="page-hero-title">Notes from <em>the work</em>.</h1>
+    <p class="page-hero-sub">Honest writing on data engineering, analytics, pipeline design, and lessons from building real systems. Leave a comment or reaction on any post.</p>
+  </div>
+</div>
+
+<section aria-labelledby="writing-heading">
+  <div class="wrap">
+    <h2 class="visually-hidden" id="writing-heading">Articles</h2>
+
+    <!-- Filter bar -->
+    <div class="filter-bar" role="group" aria-label="Filter articles by topic">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
+      <button class="filter-btn" data-filter="analytics-engineering">Analytics Engineering</button>
+      <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+      <button class="filter-btn" data-filter="data-quality">Data Quality</button>
+    </div>
+
+    <!-- Published articles -->
+    <!-- =====================================================================
+         TO ADD A NEW POST:
+         1. Duplicate one of the .article-card blocks below
+         2. Update: data-tags, href, article-date, article-tag, article-title, article-excerpt
+         3. Create the matching file inside the posts/ folder (copy post-template.html)
+         4. That's it — the filter system works automatically
+         ===================================================================== -->
+    <div class="articles-grid" id="articlesGrid">
+
+      <a class="article-card reveal" href="posts/building-a-tfl-realtime-lakehouse.html" data-tags="data-engineering">
+        <div class="article-meta">
+          <span class="article-date">24 Mar 2026</span>
+          <span class="article-readtime">· 8 min read</span>
+          <span class="article-tag">Data Engineering</span>
+        </div>
+        <h3 class="article-title">Building a Real-Time TfL Lakehouse from Scratch</h3>
+        <p class="article-excerpt">How I designed and built a production-style streaming data lakehouse using the TfL Unified API — covering Airflow orchestration, DuckDB, dbt transformations, Great Expectations validation, and OpenLineage lineage tracking.</p>
+        <div class="article-footer">
+          <span class="article-read-link">
+            Read post
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ADD MORE POSTS ABOVE THIS LINE -->
+
+    </div>
+
+    <div class="empty-state" id="emptyState" aria-live="polite">
+      No posts in this category yet — check back soon.
+    </div>
+
+    <!-- Upcoming topics -->
+    <div class="reveal" style="margin-top:1rem">
+      <div class="upcoming-label" aria-hidden="true">Coming up</div>
+      <div class="topics-grid" aria-label="Upcoming topics">
+
+        <div class="topic-card">
+          <div class="topic-card-num">Next up</div>
+          <div class="topic-card-title">dbt Patterns &amp; Analytics Engineering</div>
+          <div class="topic-card-desc">Model structure, data contracts, testing strategies, and tradeoffs in analytics engineering.</div>
+        </div>
+
+        <div class="topic-card">
+          <div class="topic-card-num">Coming soon</div>
+          <div class="topic-card-title">Honest ML Evaluation</div>
+          <div class="topic-card-desc">Why backtesting discipline matters more than in-sample metrics.</div>
+        </div>
+
+        <div class="topic-card">
+          <div class="topic-card-num">Coming soon</div>
+          <div class="topic-card-title">Lakehouse Design Decisions</div>
+          <div class="topic-card-desc">Bronze/silver/gold tradeoffs, DuckDB vs BigQuery, and local-first data platforms.</div>
+        </div>
+
+        <div class="topic-card">
+          <div class="topic-card-num">Coming soon</div>
+          <div class="topic-card-title">Data Quality as Engineering</div>
+          <div class="topic-card-desc">Schema tests, row-level validation, and why quality is never optional in production.</div>
+        </div>
+
+        <div class="topic-card">
+          <div class="topic-card-num">Coming soon</div>
+          <div class="topic-card-title">Pipeline Observability</div>
+          <div class="topic-card-desc">What good monitoring looks like and the difference between working and observable.</div>
+        </div>
+
+        <div class="topic-card">
+          <div class="topic-card-num">Coming soon</div>
+          <div class="topic-card-title">Domain Data: Finance &amp; Sport</div>
+          <div class="topic-card-desc">Domain-specific challenges in financial time-series and sports performance data.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="projects.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Stack</a>
+        <a href="writing.html">Writing</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+  // Writing page filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.article-card');
+  const emptyState = document.getElementById('emptyState');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      let visible = 0;
+      cards.forEach(card => {
+        const tags = card.dataset.tags || '';
+        const show = filter === 'all' || tags.split(',').map(t => t.trim()).includes(filter);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      emptyState.classList.toggle('visible', visible === 0);
+    });
+  });
+</script>
+</body>
+</html>

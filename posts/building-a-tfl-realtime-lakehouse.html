@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building a Real-Time TfL Lakehouse from Scratch — Adil Osman</title>
+  <meta name="description" content="How I designed and built a production-style streaming data lakehouse using the TfL Unified API — covering Airflow, DuckDB, dbt, Great Expectations, and OpenLineage." />
+  <meta property="og:title" content="Building a Real-Time TfL Lakehouse from Scratch" />
+  <meta property="og:description" content="How I designed and built a production-style data lakehouse using the TfL Unified API, Airflow, DuckDB, dbt, and OpenLineage." />
+  <meta property="og:type" content="article" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    .post-wrap { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+    .post-header { padding: calc(var(--nav-h) + 4rem) 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+    .post-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 2rem;
+      transition: color 0.15s ease;
+    }
+    .post-back:hover { color: var(--accent); }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .post-tag {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-dim); padding: 0.22rem 0.7rem; border-radius: 100px;
+    }
+    .post-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(1.875rem, 4vw, 2.75rem);
+      line-height: 1.1; letter-spacing: -0.025em;
+      color: var(--text-primary); margin-bottom: 1rem;
+    }
+    .post-title em { font-style: italic; color: var(--accent); }
+    .post-subtitle { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+    .post-byline {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.08em; color: var(--text-tertiary);
+    }
+    .post-byline-author { color: var(--text-secondary); }
+    .post-byline-sep { opacity: 0.4; }
+    .post-body { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.85; }
+    .post-body h2 {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 1.625rem; letter-spacing: -0.02em;
+      color: var(--text-primary); margin: 3rem 0 1rem;
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .post-body h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 2rem 0 0.75rem; }
+    .post-body p { margin-bottom: 1.4rem; }
+    .post-body strong { color: var(--text-primary); font-weight: 600; }
+    .post-body em { color: var(--accent); font-style: italic; }
+    .post-body a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent-mid); text-underline-offset: 3px; }
+    .post-body a:hover { text-decoration-color: var(--accent); }
+    .post-body ul, .post-body ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+    .post-body li { margin-bottom: 0.5rem; }
+    .post-body blockquote {
+      border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 2rem 0;
+      background: var(--accent-dim); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic; color: var(--text-secondary);
+    }
+    .post-body code {
+      font-family: var(--font-mono); font-size: 0.85em;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      padding: 0.15em 0.45em; border-radius: 4px; color: var(--accent);
+    }
+    .post-body pre {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 1.25rem 1.5rem;
+      overflow-x: auto; margin: 1.75rem 0;
+    }
+    .post-body pre code { background: none; border: none; padding: 0; font-size: 0.875rem; color: var(--text-primary); line-height: 1.7; }
+    .post-body hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+    .callout {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-md);
+      padding: 1.1rem 1.4rem; margin: 2rem 0;
+      font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7;
+    }
+    .callout strong { color: var(--accent); }
+    .post-reactions { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .reactions-label {
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.625rem;
+    }
+    .reactions-label::after { content: ''; display: block; height: 1px; width: 40px; background: var(--accent-mid); }
+    .reactions-heading { font-family: var(--font-display); font-weight: 300; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .reactions-heading em { font-style: italic; color: var(--accent); }
+    .reactions-sub { font-size: 0.875rem; color: var(--text-tertiary); margin-bottom: 2rem; line-height: 1.6; }
+    .giscus, .giscus-frame { width: 100%; }
+    @media (max-width: 640px) { .post-header { padding-top: calc(var(--nav-h) + 2.5rem); } .post-body { font-size: 1rem; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="../projects.html">Work</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../skills.html">Stack</a></li>
+      <li><a href="../writing.html">Writing</a></li>
+      <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<article>
+  <div class="post-wrap">
+    <header class="post-header">
+      <a href="../writing.html" class="post-back" aria-label="Back to all posts">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M12 6.5H1M6 1L0.5 6.5 6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All posts
+      </a>
+      <div class="post-tags">
+        <span class="post-tag">Data Engineering</span>
+        <span class="post-tag">dbt</span>
+        <span class="post-tag">Airflow</span>
+      </div>
+      <h1 class="post-title">Building a Real-Time TfL Lakehouse <em>from Scratch</em></h1>
+      <p class="post-subtitle">How I designed a production-style streaming data lakehouse using the TfL Unified API — and what I learned about pipeline reliability, data quality, and observability along the way.</p>
+      <div class="post-byline">
+        <span class="post-byline-author">Adil Osman</span>
+        <span class="post-byline-sep">·</span>
+        <time datetime="2026-03-24">24 Mar 2026</time>
+        <span class="post-byline-sep">·</span>
+        <span>8 min read</span>
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      <p>When I decided to build a real-time data lakehouse using TfL's Unified API, I wasn't trying to build something impressive for a portfolio. I wanted to answer a real question: <strong>can a single developer build a production-grade data platform — with orchestration, transformation, quality checks, and lineage — using only open-source tools?</strong></p>
+
+      <p>The answer is yes. But it requires making deliberate choices at every layer of the stack, and understanding why each tool earns its place.</p>
+
+      <h2>Why TfL data?</h2>
+
+      <p>Transport for London publishes a rich, free Unified API covering real-time arrivals, line statuses, stop points, journey planning, and more. It's a genuinely interesting dataset — high-frequency, multi-modal, and full of the kind of messiness you find in real operational systems. Delayed arrivals, missing stop data, edge cases around service disruptions. Good data engineering practice requires handling all of it.</p>
+
+      <p>More importantly, it's a live API. That means the pipeline has to actually run, on a schedule, in the real world. No synthetic datasets. No clean CSVs. Just raw API responses arriving every few minutes and a pipeline that has to deal with whatever comes back.</p>
+
+      <h2>The architecture</h2>
+
+      <p>The stack I settled on has four clear layers, each handled by a dedicated tool:</p>
+
+      <ul>
+        <li><strong>Orchestration:</strong> Apache Airflow — DAGs for scheduled ingestion, retry logic, SLA alerts</li>
+        <li><strong>Storage &amp; compute:</strong> DuckDB with Parquet files on the local filesystem (mimicking an S3 lakehouse pattern)</li>
+        <li><strong>Transformation:</strong> dbt Core — staging models, intermediate joins, mart-layer aggregations</li>
+        <li><strong>Quality &amp; lineage:</strong> Great Expectations for row-level validation, OpenLineage for dataset-level lineage tracking</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Design principle:</strong> Every layer should be independently testable and replaceable. Swapping DuckDB for BigQuery, or local Parquet for S3, should be a configuration change — not a rewrite.
+      </div>
+
+      <h2>Ingestion: Airflow DAGs and the raw layer</h2>
+
+      <p>The ingestion layer is handled by three Airflow DAGs — one each for arrivals data, line statuses, and stop points. Each DAG runs on a configurable schedule (arrivals every 3 minutes, statuses every 10, stop points daily) and writes raw API responses as Parquet files partitioned by date and hour.</p>
+
+      <p>The key design decision here was to <em>always write raw</em>. No transformation at ingestion time. The raw layer is append-only — a permanent record of exactly what the API returned, at what time. This makes debugging straightforward: if something looks wrong downstream, I can always trace it back to the exact raw payload.</p>
+
+      <pre><code># Simplified ingestion task
+def fetch_arrivals(stop_id: str, execution_date: str) -> None:
+    response = requests.get(
+        f"https://api.tfl.gov.uk/StopPoint/{stop_id}/Arrivals",
+        params={"app_key": TFL_API_KEY}
+    )
+    response.raise_for_status()
+    df = pd.DataFrame(response.json())
+    df["_ingested_at"] = datetime.utcnow()
+    df["_partition_date"] = execution_date
+
+    path = f"data/raw/arrivals/{execution_date}/{stop_id}.parquet"
+    df.to_parquet(path, index=False)</code></pre>
+
+      <h2>Transformation: dbt and the medallion architecture</h2>
+
+      <p>Once raw data lands, dbt takes over. I followed a strict three-layer model:</p>
+
+      <h3>Staging (<code>stg_</code>)</h3>
+      <p>One staging model per source table. Rename columns to snake_case, cast data types, drop duplicates, add a <code>_loaded_at</code> timestamp. No joins, no business logic — just clean, typed data that exactly mirrors the raw source.</p>
+
+      <h3>Intermediate (<code>int_</code>)</h3>
+      <p>Join staging models together, apply business logic, calculate derived fields (e.g. <code>expected_wait_seconds</code>, <code>is_disrupted</code>). These models are not exposed to end consumers — they exist to keep mart models clean.</p>
+
+      <h3>Marts (<code>mart_</code>)</h3>
+      <p>The final analytics-ready tables. <code>mart_line_performance</code>, <code>mart_stop_arrivals</code>, <code>mart_disruption_events</code>. Each mart has a clear owner (in this case, me) and a documented freshness SLA defined in <code>sources.yml</code>.</p>
+
+      <blockquote>
+        The goal of the mart layer isn't to be clever. It's to be boring — predictable, well-tested, and fast to query.
+      </blockquote>
+
+      <h2>Data quality: Great Expectations</h2>
+
+      <p>Every staging model has a corresponding Expectation Suite. The checks I run on every load include: not-null constraints on primary keys, accepted value sets for categorical fields like <code>line_id</code> and <code>vehicle_mode</code>, range checks on <code>time_to_station</code> (must be between 0 and 3600 seconds), and freshness checks that fail if data is more than 15 minutes stale.</p>
+
+      <p>When a check fails, the Airflow DAG marks the task as failed and sends an alert. No silent data corruption. No dashboards showing stale numbers without warning. This is what <em>treating data quality as engineering</em> actually looks like in practice.</p>
+
+      <h2>Lineage: OpenLineage</h2>
+
+      <p>OpenLineage tracks what data was read and written by each pipeline run. This sounds simple, but the value compounds over time. When something breaks downstream, lineage tells you exactly which upstream models were affected, which DAG run produced the bad data, and what the dataset looked like at that point in time.</p>
+
+      <p>Wiring OpenLineage into Airflow and dbt is a one-time setup. Once it's running, you get a full dependency graph for free — which is invaluable as the pipeline grows.</p>
+
+      <h2>What I'd do differently</h2>
+
+      <p>If I were starting again, I'd invest earlier in <strong>schema evolution handling</strong>. The TfL API occasionally adds or renames fields, and the raw Parquet schema needs to evolve gracefully. Right now I handle this with schema enforcement at the staging layer, but a proper schema registry would be cleaner at scale.</p>
+
+      <p>I'd also add <strong>data contracts</strong> between the raw and staging layers from day one — formalising exactly what shape of data each consumer expects, so that upstream changes fail fast rather than silently degrading downstream models.</p>
+
+      <hr />
+
+      <p>The full project is open-source on GitHub: <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer">aosman101/tfl-realtime-lakehouse</a>. If you're building something similar or have questions about any part of the stack, leave a comment below — I'm happy to go deeper on any layer.</p>
+
+    </div>
+
+    <div class="post-reactions">
+      <div class="reactions-label" aria-hidden="true">Discussion</div>
+      <h2 class="reactions-heading">Reactions &amp; <em>comments</em>.</h2>
+      <p class="reactions-sub">React with an emoji or leave a comment — powered by GitHub Discussions. A free GitHub account is all you need.</p>
+
+      <script src="https://giscus.app/client.js"
+        data-repo="aosman101/aosman101.github.io"
+        data-repo-id="REPLACE_WITH_YOUR_REPO_ID"
+        data-category="Announcements"
+        data-category-id="REPLACE_WITH_YOUR_CATEGORY_ID"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+
+  </div>
+</article>
+
+<footer role="contentinfo" style="margin-top:5rem">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="../projects.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../skills.html">Stack</a>
+        <a href="../writing.html">Writing</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+</body>
+</html>

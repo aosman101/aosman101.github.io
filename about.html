@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Adil Osman</title>
+  <meta name="description" content="About Adil Osman — London-based Data Engineer and Data Scientist. First Class BSc, Birkbeck, University of London." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: start; }
+    .about-copy p { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    .about-copy strong { color: var(--text-primary); font-weight: 500; }
+    .trait-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .trait {
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.07em;
+      color: var(--text-secondary); border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem; border-radius: 100px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .trait:hover { color: var(--accent); border-color: var(--accent-mid); }
+
+    /* Avatar with real photo */
+    .avatar-card { position: relative; }
+    .avatar-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      position: relative;
+    }
+    .avatar-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .avatar-photo-wrap .avatar-grid-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, rgba(74,158,255,0.10) 1px, transparent 1px);
+      background-size: 22px 22px;
+      z-index: 1;
+    }
+    .avatar-photo-wrap .avatar-glow {
+      position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
+      width: 160px; height: 80px;
+      background: radial-gradient(ellipse, rgba(74,158,255,0.20) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .avatar-foot { margin-top: 1rem; }
+    .avatar-name { font-size: 1.0625rem; font-weight: 500; color: var(--text-primary); letter-spacing: -0.01em; }
+    .avatar-role-tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 0.25rem; }
+
+    /* Degree card */
+    .degree-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .degree-icon {
+      width: 36px; height: 36px;
+      background: var(--accent-dim);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.06em;
+    }
+    .degree-info-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+    .degree-info-title { font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); }
+    .degree-info-org { font-size: 0.8125rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    /* Academic highlights */
+    .grades-section { margin-top: 3.5rem; }
+    .grades-section .section-label { margin-bottom: 0.5rem; }
+    .grades-section h3 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 300;
+      color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    }
+    .grades-section h3 em { font-style: italic; color: var(--accent); }
+    .grades-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.875rem;
+    }
+    .grade-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .grade-card:hover { border-color: var(--accent-mid); transform: translateY(-2px); }
+    .grade-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+    .grade-mark {
+      font-family: var(--font-mono); font-size: 1.75rem; font-weight: 500;
+      color: var(--accent); line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.02em;
+    }
+    .grade-mark sup { font-size: 0.8rem; vertical-align: super; opacity: 0.7; }
+    .grade-module {
+      font-size: 0.85rem; font-weight: 500; color: var(--text-primary);
+      line-height: 1.35; margin-bottom: 0.25rem;
+    }
+    .grade-year {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .avatar-photo-wrap { max-width: 220px; aspect-ratio: 1; }
+      .grades-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .grades-grid { grid-template-columns: 1fr 1fr; gap: 0.625rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Stack</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero" style="background:var(--bg-surface);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="page-hero-label">About</div>
+    <h1 class="page-hero-title">Building <em>pipelines</em><br>that hold up.</h1>
+    <p class="page-hero-sub">London-based Data Engineer and Data Scientist. First Class BSc, Birkbeck, University of London.</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section aria-labelledby="about-heading">
+  <div class="wrap">
+    <div class="about-grid">
+
+      <!-- LEFT COLUMN: Photo + links -->
+      <div class="reveal">
+        <div class="avatar-card">
+          <div class="avatar-photo-wrap">
+            <div class="avatar-grid-overlay" aria-hidden="true"></div>
+            <img
+              src="assets/profile.jpeg"
+              alt="Adil Osman at his Birkbeck graduation ceremony"
+              loading="lazy"
+            />
+            <div class="avatar-glow" aria-hidden="true"></div>
+          </div>
+          <div class="avatar-foot">
+            <div class="avatar-name">Adil Osman</div>
+            <div class="avatar-role-tag">Data Engineer · Analytics Engineer</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.75rem">
+          <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer" class="clink" style="padding:0.75rem 1rem">
+            <div class="clink-icon" aria-hidden="true" style="width:28px;height:28px">
+              <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="1" y="1" width="13" height="13" rx="2"/><path d="M4.5 6.5v4M4.5 4v.5"/><path d="M7.5 10.5v-2A1.5 1.5 0 0110.5 10v.5" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="clink-info"><div class="clink-label">LinkedIn</div><div class="clink-val" style="font-size:0.8rem">adil-osman-303185297</div></div>
+            <svg class="clink-arrow" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" class="clink" style="padding:0.75rem 1rem">
+            <div class="clink-icon" aria-hidden="true" style="width:28px;height:28px">
+              <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 11c0 .9.4 1.4.9 1.9.4-.5.9-.9.9-1.9"/><path d="M7.5 1.5a5.5 5.5 0 00-1.92 10.65c.27.04.36-.12.36-.26v-1.1c-1.5.33-1.82-.72-1.82-.72a1.43 1.43 0 00-.6-.79c-.49-.33.04-.32.04-.32a1.14 1.14 0 01.83.56 1.16 1.16 0 001.58.45 1.15 1.15 0 01.34-.72C4.7 10.2 3.3 9.7 3.3 7.3a2.13 2.13 0 01.57-1.48 2 2 0 01.05-1.46s.46-.15 1.52.56a5.2 5.2 0 012.76 0c1.05-.71 1.51-.56 1.51-.56a2 2 0 01.06 1.46 2.13 2.13 0 01.57 1.48c0 2.4-1.46 2.92-2.85 3.07a1.3 1.3 0 01.37 1v1.49c0 .14.08.3.37.26A5.5 5.5 0 007.5 1.5z"/></svg>
+            </div>
+            <div class="clink-info"><div class="clink-label">GitHub</div><div class="clink-val" style="font-size:0.8rem">aosman101</div></div>
+            <svg class="clink-arrow" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Bio + traits -->
+      <div>
+        <div class="section-label" aria-hidden="true">Who I am</div>
+        <h2 class="section-title reveal" id="about-heading" style="margin-bottom:2rem">The work,<br>the <em>thinking</em>.</h2>
+        <div class="about-copy reveal d1">
+          <p>I'm a London-based data professional with a <strong>First Class BSc in Data Science &amp; Computing from Birkbeck, University of London</strong>. Studying part-time while building real-world projects shaped how I approach engineering: deliberately, methodically, and with a strong bias for systems that hold up under pressure.</p>
+          <p>My work is grounded in <strong>data engineering and analytics engineering</strong> — building pipelines and systems that are reliable, observable, and produce data that people can trust and act on. I specialise in the full pipeline lifecycle: from raw ingestion and orchestration (Airflow, CDC with Debezium/Redpanda) to transformation and warehousing (dbt, DuckDB, BigQuery), data quality enforcement (Great Expectations), and lineage tracking (OpenLineage).</p>
+          <p>On the <strong>data science side</strong>, I apply machine learning where there's genuine predictive value: financial time-series forecasting with LSTM networks, statistical modelling, and rigorous model evaluation. I treat ML as an engineering discipline — reproducible workflows, honest backtesting, and results you can stand behind.</p>
+          <p>I work across <strong>finance, sport, and urban/environmental data</strong> — domains where the stakes of data quality and pipeline reliability actually matter. My projects span TfL real-time data, Premier League and F1 analytics warehouses, London air quality monitoring, and equity price forecasting.</p>
+        </div>
+        <div class="trait-cloud reveal d2" aria-label="Technical interests">
+          <span class="trait">Data Engineering</span>
+          <span class="trait">Analytics Engineering</span>
+          <span class="trait">Real-time Pipelines</span>
+          <span class="trait">CDC / Streaming</span>
+          <span class="trait">dbt &amp; Warehousing</span>
+          <span class="trait">Data Observability</span>
+          <span class="trait">Machine Learning</span>
+          <span class="trait">Financial Data</span>
+          <span class="trait">Sports Analytics</span>
+          <span class="trait">Urban &amp; Environmental</span>
+        </div>
+
+        <!-- ACADEMIC HIGHLIGHTS -->
+        <div class="grades-section reveal d3">
+          <div class="section-label" aria-hidden="true">Academic Highlights</div>
+          <h3>Top grades from<br><em>Birkbeck</em>.</h3>
+          <div class="grades-grid" role="list" aria-label="Top five module grades">
+
+            <div class="grade-card" role="listitem">
+              <div class="grade-mark">94<sup>%</sup></div>
+              <div class="grade-module">Software &amp; Programming I</div>
+              <div class="grade-year">2022/23 · Year 2</div>
+            </div>
+
+            <div class="grade-card" role="listitem">
+              <div class="grade-mark">90<sup>%</sup></div>
+              <div class="grade-module">Database Management</div>
+              <div class="grade-year">2024/25 · Final Year</div>
+            </div>
+
+            <div class="grade-card" role="listitem">
+              <div class="grade-mark">84<sup>%</sup></div>
+              <div class="grade-module">Data Structures &amp; Algorithms</div>
+              <div class="grade-year">2022/23 · Year 2</div>
+            </div>
+
+            <div class="grade-card" role="listitem">
+              <div class="grade-mark">84<sup>%</sup></div>
+              <div class="grade-module">Artificial Intelligence &amp; Machine Learning</div>
+              <div class="grade-year">2024/25 · Final Year</div>
+            </div>
+
+            <div class="grade-card" role="listitem">
+              <div class="grade-mark">84<sup>%</sup></div>
+              <div class="grade-module">Software &amp; Programming II</div>
+              <div class="grade-year">2023/24 · Year 3</div>
+            </div>
+
+          </div>
+          <p style="margin-top:1rem;font-size:0.825rem;color:var(--text-muted);font-family:var(--font-mono);">First Class Honours · BSc Data Science &amp; Computing · Birkbeck, University of London</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="alt-bg" aria-labelledby="exp-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label" aria-hidden="true">Experience</div>
+      <h2 class="section-title reveal" id="exp-heading">Where I've <em>worked</em>.</h2>
+    </div>
+    <div class="timeline">
+
+      <!-- Role 1 -->
+      <div class="titem reveal">
+        <div class="titem-dot" aria-hidden="true"></div>
+        <div class="titem-period">Apr 2024 — Jul 2025 · 1 yr 4 mos</div>
+        <div class="titem-title">Junior Data Engineer &amp; Peer Mentor</div>
+        <div class="titem-org">Somalis in Tech · Full-time · London, UK · Hybrid</div>
+        <div class="titem-body">
+          <p style="margin-bottom:0.6rem">Designed and maintained production-grade end-to-end data pipelines to ingest, clean, and model member and event engagement data using <strong>Python, SQL, dbt, and Apache Airflow</strong> — improving data freshness from 6 hours to 45 minutes (87% improvement) and ensuring 95% of loads met a 1-hour freshness SLA.</p>
+          <p style="margin-bottom:0.6rem">Automated data collection and reporting workflows for workshops, hackathons, and startup events, eliminating ~65% of manual reporting tasks and expediting time-to-insight for weekly stakeholder updates.</p>
+          <p style="margin-bottom:0.6rem">Developed self-service dashboards and reporting packages highlighting KPIs — attendance trends, participation rates, and program impact — reducing manual reporting by ~18 hours per month.</p>
+          <p style="margin-bottom:0.6rem">Partnered with cross-functional leaders to establish metrics and enforce reporting SLAs; achieved 99% on-time weekly delivery with end-to-end pipeline latency under 60 minutes at the 95th percentile, contributing to a 22% increase in attendance for flagship programs.</p>
+          <p>Provided structured 1-on-1 mentoring through the Caawi Mentorship Platform, guiding cohorts of ~12 early-career candidates in data engineering, portfolio development, and job readiness.</p>
+        </div>
+        <div class="titem-tags">
+          <span class="badge">Python</span><span class="badge">SQL</span><span class="badge">dbt</span><span class="badge">Apache Airflow</span><span class="badge">MySQL</span><span class="badge">Data Pipelines</span><span class="badge">Mentoring</span>
+        </div>
+      </div>
+
+      <!-- Role 2 -->
+      <div class="titem reveal d1">
+        <div class="titem-dot" aria-hidden="true"></div>
+        <div class="titem-period">Jun 2023 — Feb 2024 · 9 mos</div>
+        <div class="titem-title">Junior Data Analyst</div>
+        <div class="titem-org">HQ Analytics · Full-time · Dubai, UAE · Remote</div>
+        <div class="titem-body">
+          <p style="margin-bottom:0.6rem">Pre-processed large-scale, multi-source datasets using <strong>Python and SQL</strong>, implementing deduplication and schema validation to reduce data defects by 30% and cut data preparation time from 10 hours to 5 hours per reporting cycle.</p>
+          <p style="margin-bottom:0.6rem">Automated data extraction and established daily refresh pipelines, improving stakeholder turnaround from 3 days to same-day delivery — a 67% efficiency gain.</p>
+          <p style="margin-bottom:0.6rem">Conducted comprehensive EDA to identify key operational drivers — lead-time variance, fulfilment delays, returns, and margin leakage — producing 12+ actionable recommendations adopted by stakeholders to drive data-driven decision-making.</p>
+          <p style="margin-bottom:0.6rem">Applied feature engineering techniques (lateness flags, supplier segmentation) to enhance signal separation between high- and low-performing suppliers by 15%.</p>
+          <p>Built interactive <strong>Power BI KPI dashboards</strong> for real-time monitoring, reducing manual reporting by 16 hours per month, growing adoption to 25+ users across operations and commercial teams, and contributing to an 8% reduction in logistics costs and 12% increase in on-time delivery.</p>
+        </div>
+        <div class="titem-tags">
+          <span class="badge">Python</span><span class="badge">SQL</span><span class="badge">Power BI</span><span class="badge">EDA</span><span class="badge">Feature Engineering</span><span class="badge">MySQL</span><span class="badge">Reporting</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & PROJECTS -->
+<section aria-labelledby="edu-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label" aria-hidden="true">Background</div>
+      <h2 class="section-title reveal" id="edu-heading">Education &amp; <em>projects</em>.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="titem reveal">
+        <div class="titem-dot" aria-hidden="true"></div>
+        <div class="titem-period">2021 — 2025</div>
+        <div class="titem-title">First Class BSc Data Science &amp; Computing</div>
+        <div class="titem-org">Birkbeck, University of London</div>
+        <div class="titem-body">
+          Undergraduate degree (part-time) combining statistical foundations, machine learning, software engineering, and data systems — awarded First Class Honours. Achieved standout results in Database Management (90%), Software &amp; Programming (94%), and Artificial Intelligence &amp; Machine Learning (84%). Final-year dissertation focused on end-to-end data science systems built for production quality. Also served as a final-year peer mentor through BBK Peer Mentoring.
+        </div>
+        <div class="titem-tags">
+          <span class="badge">First Class Honours</span><span class="badge">Machine Learning</span><span class="badge">Statistics</span><span class="badge">Databases</span><span class="badge">Python</span><span class="badge">SQL</span><span class="badge">Software Engineering</span>
+        </div>
+      </div>
+
+      <div class="titem reveal d1">
+        <div class="titem-dot" aria-hidden="true"></div>
+        <div class="titem-period">Ongoing</div>
+        <div class="titem-title">Independent Data Engineering Projects</div>
+        <div class="titem-org">Self-directed — London</div>
+        <div class="titem-body">
+          Building and publishing production-grade systems: a real-time TfL lakehouse with Airflow, dbt, DuckDB, Great Expectations, and OpenLineage; a CDC analytics stack using Debezium, Redpanda, and ClickHouse; analytics warehouses on BigQuery for Premier League and F1 data; an air quality lakehouse with MinIO; and an LSTM-based financial forecasting pipeline. Focused on production patterns — observability, data quality, CI, and engineering discipline.
+        </div>
+        <div class="titem-tags">
+          <span class="badge">dbt</span><span class="badge">Airflow</span><span class="badge">DuckDB</span><span class="badge">BigQuery</span><span class="badge">Debezium</span><span class="badge">ClickHouse</span><span class="badge">GitHub Actions</span>
+        </div>
+      </div>
+
+      <div class="titem reveal d2">
+        <div class="titem-dot" aria-hidden="true"></div>
+        <div class="titem-period">Community</div>
+        <div class="titem-title">Member — Somalis in Tech</div>
+        <div class="titem-org">London</div>
+        <div class="titem-body">
+          Active member of Somalis in Tech, a community supporting Somali professionals and students in the technology industry.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section aria-label="Navigation CTA">
+  <div class="wrap" style="display:flex;gap:1.25rem;flex-wrap:wrap">
+    <a href="projects.html" class="btn-primary">View Projects<svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left:0.5rem" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="contact.html" class="btn-ghost">Get in Touch</a>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="projects.html">Work</a><a href="about.html">About</a><a href="skills.html">Stack</a><a href="writing.html">Writing</a><a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

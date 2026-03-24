@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Adil Osman</title>
+  <meta name="description" content="All projects by Adil Osman — data engineering, analytics engineering, ML, and data science." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
+    /* "Other work" secondary grid */
+    .other-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .mini-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.375rem;
+      transition: border-color 0.2s ease;
+    }
+    .mini-card:hover { border-color: var(--border-hover); }
+    .mini-card-tag {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 0.625rem;
+    }
+    .mini-card-title { font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem; line-height: 1.3; }
+    .mini-card-desc { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem; }
+    .mini-card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .mini-card-lang { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-tertiary); }
+    .mini-card-link { font-family: var(--font-mono); font-size: 0.62rem; color: var(--accent); opacity: 0.7; transition: opacity 0.15s ease; }
+    .mini-card-link:hover { opacity: 1; }
+
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 1rem 0 3rem; }
+
+    .github-cta {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem; margin-top: 3rem;
+    }
+    .github-cta-left { display: flex; align-items: center; gap: 1rem; }
+    .github-cta-icon { width: 40px; height: 40px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .github-cta-icon svg { width: 18px; height: 18px; color: var(--text-secondary); }
+    .github-cta-title { font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); }
+    .github-cta-sub { font-size: 0.8125rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .other-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .other-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Stack</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero" style="background:var(--bg-surface);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="page-hero-label">Projects</div>
+    <h1 class="page-hero-title">Projects that <em>ship</em>.</h1>
+    <p class="page-hero-sub">Real systems built to production standards — pipelines, warehouses, ML workflows, and data science work across finance, sport, and urban data.</p>
+  </div>
+</div>
+
+<section aria-labelledby="projects-heading">
+  <div class="wrap">
+
+    <!-- FILTER -->
+    <div class="filter-row reveal" role="group" aria-label="Filter by category">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="de">Data Engineering</button>
+      <button class="filter-btn" data-filter="streaming">Streaming / CDC</button>
+      <button class="filter-btn" data-filter="analytics">Analytics Engineering</button>
+      <button class="filter-btn" data-filter="ml">Machine Learning</button>
+      <button class="filter-btn" data-filter="ds">Data Science</button>
+    </div>
+
+    <!-- CORE DATA PROJECTS GRID -->
+    <div class="projects-grid" id="projectsGrid">
+
+      <!-- 1. TfL Real-Time Lakehouse — wide featured -->
+      <article class="pcard wide reveal" data-cats="de streaming">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Engineering · Real-time &nbsp;·&nbsp; ⭐ 3</span>
+          <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">TfL Real-Time Lakehouse</h3>
+        <p class="pcard-desc">Real-time London transport data on your laptop. Airflow ingests TfL bus and tube arrivals and stores them in Parquet. dbt and DuckDB handle transformation, Great Expectations validates every batch, and OpenLineage provides full data lineage tracking — a completely observable, production-pattern lakehouse with zero cloud dependency.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Parquet</span><span class="badge">Great Expectations</span><span class="badge">OpenLineage</span><span class="badge">TfL API</span>
+        </div>
+      </article>
+
+      <!-- 2. StreamShop CDC -->
+      <article class="pcard reveal d1" data-cats="de streaming">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Engineering · CDC</span>
+          <a href="https://github.com/aosman101/streamshop-cdc-analytics" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">StreamShop CDC Analytics Stack</h3>
+        <p class="pcard-desc">Production-style Change Data Capture pipeline: Postgres → Debezium → Redpanda (Kafka-compatible API) → ClickHouse. Includes a synthetic e-commerce event generator, Python CDC sink, and dbt models with tests for analytical queries on captured changes.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">Debezium</span><span class="badge">Redpanda</span><span class="badge">ClickHouse</span><span class="badge">dbt</span><span class="badge">PostgreSQL</span>
+        </div>
+      </article>
+
+      <!-- 3. London Air Quality Lakehouse -->
+      <article class="pcard reveal d2" data-cats="de">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Engineering · Environmental</span>
+          <a href="https://github.com/aosman101/london-air-quality-weather-lakehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">London Air Quality &amp; Weather Lakehouse</h3>
+        <p class="pcard-desc">Local-first lakehouse ingesting OpenAQ air quality and Open-Meteo weather data. Airflow orchestrates ingestion, raw JSON lands in MinIO (S3-compatible), and dbt applies incremental models with full validation in PostgreSQL.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">PostgreSQL</span><span class="badge">MinIO (S3)</span><span class="badge">OpenAQ API</span>
+        </div>
+      </article>
+
+      <!-- 4. F1 RaceOps Warehouse -->
+      <article class="pcard reveal d1" data-cats="analytics warehouse">
+        <div class="pcard-top">
+          <span class="pcard-tag">Analytics Engineering · Sports</span>
+          <a href="https://github.com/aosman101/f1-raceops-analytics-warehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">F1 RaceOps Analytics Warehouse</h3>
+        <p class="pcard-desc">Formula 1 analytics warehouse built on an Ergast-compatible schema, converting raw race timing data into KPIs for pit stop performance, strategy effectiveness, and reliability. Dimensional modelling with dbt and full CI via GitHub Actions.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">dbt</span><span class="badge">SQL</span><span class="badge">GitHub Actions</span><span class="badge">Ergast API</span>
+        </div>
+      </article>
+
+      <!-- 5. Premier League Warehouse -->
+      <article class="pcard reveal d2" data-cats="analytics warehouse">
+        <div class="pcard-top">
+          <span class="pcard-tag">Analytics Engineering · Football</span>
+          <a href="https://github.com/aosman101/premier-league-analytics-warehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">Premier League Analytics Warehouse</h3>
+        <p class="pcard-desc">End-to-end football analytics warehouse on BigQuery, built with dbt and GitHub Actions CI. Covers Premier League seasons 2014–15 to 2024–25 from openfootball JSON, modelled into analytics-ready dimensional tables.</p>
+        <div class="pcard-stack">
+          <span class="badge">dbt</span><span class="badge">BigQuery</span><span class="badge">GitHub Actions</span><span class="badge">SQL</span><span class="badge">Python</span>
+        </div>
+      </article>
+
+      <!-- 6. Mini Lake dbt DuckDB -->
+      <article class="pcard reveal d1" data-cats="de analytics">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Engineering · Lakehouse</span>
+          <a href="https://github.com/aosman101/mini-lake-dbt-duckdb" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">Mini Lake — dbt + DuckDB</h3>
+        <p class="pcard-desc">Local-first, portable lakehouse demo using dbt and DuckDB. Features versioned seeds, staging-to-marts models, schema tests, auto-generated documentation, and a GitHub Actions CI example — ideal for learning and prototyping analytics engineering patterns.</p>
+        <div class="pcard-stack">
+          <span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Python</span><span class="badge">GitHub Actions</span><span class="badge">SQL</span>
+        </div>
+      </article>
+
+      <!-- 7. Stock Market Prediction — ML -->
+      <article class="pcard wide reveal" data-cats="ml">
+        <div class="pcard-top">
+          <span class="pcard-tag">Machine Learning · Finance</span>
+          <a href="https://github.com/aosman101/Stock-Market-Prediction" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">Stock Market Prediction with LSTM Networks</h3>
+        <p class="pcard-desc">End-to-end ML pipeline for financial time-series forecasting using LSTM deep learning. Achieves an <strong style="color:var(--text-primary)">R² of 0.95</strong>, mean absolute error of <strong style="color:var(--text-primary)">$2.4</strong>, and <strong style="color:var(--text-primary)">87% directional accuracy</strong>. Covers data ingestion, feature engineering (technical indicators, rolling stats, lag features), LSTM architecture design, hyperparameter tuning, and rigorous backtesting methodology.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">TensorFlow / Keras</span><span class="badge">LSTM</span><span class="badge">Pandas</span><span class="badge">NumPy</span><span class="badge">Scikit-learn</span><span class="badge">Matplotlib</span>
+        </div>
+      </article>
+
+      <!-- 8. Missing Data — DS -->
+      <article class="pcard reveal d1" data-cats="ds">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Science · ML</span>
+          <a href="https://github.com/aosman101/missing-data" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">Missing Data — Imputation Techniques</h3>
+        <p class="pcard-desc">Interactive notebook clarifying MCAR, MAR, and MNAR missingness mechanics; NumPy masked arrays; and modern imputation using scikit-learn KNN and Iterative/MICE imputation. Includes reproducible experiments and visual analysis.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">Scikit-learn</span><span class="badge">NumPy</span><span class="badge">Jupyter</span>
+        </div>
+      </article>
+
+      <!-- 9. Probability / CLT — DS -->
+      <article class="pcard reveal d2" data-cats="ds">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Science · Statistics</span>
+          <a href="https://github.com/aosman101/chebyshev-lln-clt" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">Chebyshev, LLN &amp; CLT — Probability Fundamentals</h3>
+        <p class="pcard-desc">Notebook exploring core probability theory: binomial distributions, the Law of Large Numbers, the Central Limit Theorem, and Chebyshev's inequality with Uniform/Normal/Gamma tail comparisons — all implemented and visualised from scratch.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">NumPy</span><span class="badge">Matplotlib</span><span class="badge">Jupyter</span>
+        </div>
+      </article>
+
+      <!-- 10. Reggie Linear Regression — DS -->
+      <article class="pcard reveal d1" data-cats="ds">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Science · Statistics</span>
+          <a href="https://github.com/aosman101/reggie-linear-regression" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">Linear Regression from Scratch</h3>
+        <p class="pcard-desc">Implements OLS linear regression from the ground up — slope/intercept derivation, loss function, gradient descent, and model evaluation with visualisation. Demonstrates core ML foundations without library abstractions.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">NumPy</span><span class="badge">Matplotlib</span><span class="badge">Jupyter</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- OTHER WORK -->
+    <div style="margin-top:5rem">
+      <div class="section-label" style="margin-bottom:1rem" aria-hidden="true">Other Work</div>
+      <h3 style="font-family:var(--font-display);font-weight:300;font-size:1.5rem;letter-spacing:-0.02em;margin-bottom:0.5rem;color:var(--text-primary)">Earlier &amp; exploratory projects.</h3>
+      <p style="font-size:0.9rem;color:var(--text-tertiary);margin-bottom:2rem">Systems design, UI prototyping, and foundational programming work.</p>
+      <hr class="section-divider" />
+      <div class="other-grid">
+
+        <div class="mini-card reveal">
+          <div class="mini-card-tag">Systems Design</div>
+          <div class="mini-card-title">Fitness Gym Systems Design</div>
+          <div class="mini-card-desc">UML diagrams, CRC cards, UI flows, and a prototype for a gym information system — full systems analysis deliverable.</div>
+          <div class="mini-card-footer">
+            <span class="mini-card-lang">UML / Diagrams</span>
+            <a href="https://github.com/aosman101/fitness-gym-systems-design-assets" target="_blank" rel="noopener noreferrer" class="mini-card-link">GitHub →</a>
+          </div>
+        </div>
+
+        <div class="mini-card reveal d1">
+          <div class="mini-card-tag">Frontend</div>
+          <div class="mini-card-title">Fitness Gym UI Prototype</div>
+          <div class="mini-card-desc">Framework-free JavaScript SPA for a gym management UI. Hash routing, responsive styles, Home/Classes/Trainers/Memberships/Dashboard/Sign-in pages — all in a single file.</div>
+          <div class="mini-card-footer">
+            <span class="mini-card-lang">JavaScript</span>
+            <a href="https://github.com/aosman101/fitness-gym-ui-prototype" target="_blank" rel="noopener noreferrer" class="mini-card-link">GitHub →</a>
+          </div>
+        </div>
+
+        <div class="mini-card reveal d2">
+          <div class="mini-card-tag">Java · OOP</div>
+          <div class="mini-card-title">Wallet Polymorphism Demo</div>
+          <div class="mini-card-desc">Java OOP demo illustrating inheritance, method overriding, and polymorphism through a Wallet holding CallingCard, IDCard, and DriverLicense types.</div>
+          <div class="mini-card-footer">
+            <span class="mini-card-lang">Java</span>
+            <a href="https://github.com/aosman101/java-wallet-polymorphism" target="_blank" rel="noopener noreferrer" class="mini-card-link">GitHub →</a>
+          </div>
+        </div>
+
+        <div class="mini-card reveal d1">
+          <div class="mini-card-tag">Cryptography</div>
+          <div class="mini-card-title">Casual Coded Correspondence</div>
+          <div class="mini-card-desc">Caesar and Vigenère cipher implementation in a Jupyter Notebook, including a brute-force Caesar solver. Classical cryptography as a teaching exercise.</div>
+          <div class="mini-card-footer">
+            <span class="mini-card-lang">Python · Jupyter</span>
+            <a href="https://github.com/aosman101/casual-coded-correspondence" target="_blank" rel="noopener noreferrer" class="mini-card-link">GitHub →</a>
+          </div>
+        </div>
+
+        <div class="mini-card reveal d2">
+          <div class="mini-card-tag">Java · OOP</div>
+          <div class="mini-card-title">Storage Unit Manager</div>
+          <div class="mini-card-desc">Java mini-project for a self-storage unit system. Item and SelfStorageUnit classes with store, manage, and analyse functionality, tested with a driver class.</div>
+          <div class="mini-card-footer">
+            <span class="mini-card-lang">Java</span>
+            <a href="https://github.com/aosman101/storeage-unit-manager" target="_blank" rel="noopener noreferrer" class="mini-card-link">GitHub →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GitHub CTA -->
+    <div class="github-cta reveal">
+      <div class="github-cta-left">
+        <div class="github-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6.5 13c0 1 .5 1.6 1 2.1.5-.5 1-1.1 1-2.1"/>
+            <path d="M9 2a6.5 6.5 0 00-2.27 12.58c.32.05.43-.14.43-.31v-1.3c-1.77.39-2.15-.85-2.15-.85a1.7 1.7 0 00-.7-.93c-.57-.39.04-.38.04-.38a1.34 1.34 0 01.98.66 1.37 1.37 0 001.87.53 1.37 1.37 0 01.4-.85C5.58 12.1 3.8 11.5 3.8 8.85a2.52 2.52 0 01.67-1.75 2.35 2.35 0 01.07-1.72s.54-.17 1.8.66a6.15 6.15 0 013.26 0c1.26-.83 1.8-.66 1.8-.66a2.35 2.35 0 01.07 1.72 2.52 2.52 0 01.67 1.75c0 3.08-1.73 3.77-3.38 3.96a1.54 1.54 0 01.44 1.29v1.92c0 .17.1.36.43.31A6.5 6.5 0 009 2z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="github-cta-title">All source code on GitHub</div>
+          <div class="github-cta-sub">15 public repositories · github.com/aosman101</div>
+        </div>
+      </div>
+      <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="white-space:nowrap">
+        View Profile
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="projects.html">Work</a><a href="about.html">About</a><a href="skills.html">Stack</a><a href="writing.html">Writing</a><a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

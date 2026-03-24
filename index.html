@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adil Osman — Data Engineer &amp; Data Scientist</title>
+  <meta name="description" content="London-based Data Engineer and Data Scientist. Building reliable pipelines, analytics-ready data systems, and ML workflows. First Class BSc, Birkbeck." />
+  <meta property="og:title" content="Adil Osman — Data Engineer &amp; Data Scientist" />
+  <meta property="og:description" content="Building reliable pipelines and analytics-ready data systems." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="canonical" href="https://aosman101.github.io/" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Adil Osman",
+    "url": "https://aosman101.github.io/",
+    "email": "aosman10020@gmail.com",
+    "jobTitle": "Data Engineer",
+    "description": "London-based Data Engineer and Data Scientist. First Class BSc in Data Science & Computing, Birkbeck, University of London. Specialist in data pipelines, analytics engineering, and machine learning workflows.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "London",
+      "addressCountry": "GB"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Birkbeck, University of London"
+    },
+    "sameAs": [
+      "https://github.com/aosman101",
+      "https://www.linkedin.com/in/adil-osman-303185297/"
+    ],
+    "knowsAbout": [
+      "Data Engineering",
+      "Analytics Engineering",
+      "Data Science",
+      "Machine Learning",
+      "Apache Airflow",
+      "dbt",
+      "Apache Spark",
+      "Python",
+      "SQL",
+      "DuckDB",
+      "BigQuery",
+      "ClickHouse",
+      "Debezium",
+      "Change Data Capture"
+    ]
+  }
+  </script>
+  <style>
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 100%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 450px;
+      background: radial-gradient(ellipse, rgba(74,158,255,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; padding: calc(var(--nav-h) + 4rem) 0 5rem; }
+    .hero-status {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-tertiary); border: 1px solid var(--border); background: var(--bg-surface);
+      padding: 0.35rem 0.875rem; border-radius: 100px; margin-bottom: 2.25rem;
+      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.1s forwards;
+    }
+    .hero-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulseGreen 2.5s ease-in-out infinite; }
+    @keyframes pulseGreen { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,0.4);}50%{opacity:.7;box-shadow:0 0 0 4px rgba(74,222,128,0);} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);} }
+    .hero-name {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(3.75rem, 9vw, 7.5rem); line-height: 0.95; letter-spacing: -0.03em;
+      margin-bottom: 0.5rem; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-role {
+      font-family: var(--font-mono); font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary);
+      margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.3s forwards;
+    }
+    .hero-statement {
+      font-size: clamp(1rem, 1.8vw, 1.2rem); font-weight: 300; color: var(--text-secondary);
+      max-width: 540px; line-height: 1.75; margin-bottom: 2.75rem;
+      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+    }
+    .hero-statement strong { color: var(--text-primary); font-weight: 500; }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards; }
+    .hero-meta {
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+      margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);
+      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.65s forwards;
+    }
+    .hero-meta-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; color: var(--text-tertiary); }
+    .hero-meta-item svg { width: 13px; height: 13px; }
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; right: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0; animation: fadeUp 1s var(--ease-out) 1s forwards;
+    }
+    .scroll-hint-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-tertiary); writing-mode: vertical-rl; }
+    .scroll-hint-line { width: 1px; height: 52px; background: linear-gradient(to bottom, var(--text-tertiary), transparent); animation: scrollDrop 2.2s ease-in-out infinite; }
+    @keyframes scrollDrop {0%{transform:scaleY(0);transform-origin:top;opacity:1;}45%{transform:scaleY(1);transform-origin:top;opacity:1;}55%{transform:scaleY(1);transform-origin:bottom;opacity:1;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
+
+    /* About teaser */
+    .about-teaser-grid { display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: center; }
+    .about-copy p { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; }
+    .about-copy p:last-of-type { margin-bottom: 0; }
+    .about-copy strong { color: var(--text-primary); font-weight: 500; }
+
+    /* Featured projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
+    /* Stack strip */
+    .stack-strip { display: flex; flex-wrap: wrap; gap: 0.625rem; margin-top: 2rem; }
+    .stack-pill {
+      font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.07em;
+      color: var(--text-secondary); border: 1px solid var(--border);
+      padding: 0.4rem 0.875rem; border-radius: 100px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .stack-pill:hover { color: var(--accent); border-color: var(--accent-mid); }
+
+    /* CTA banner */
+    .cta-banner {
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    }
+    .cta-banner h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.02em; }
+    .cta-banner h2 em { font-style: italic; color: var(--accent); }
+    .cta-banner p { font-size: 0.9375rem; color: var(--text-secondary); margin-top: 0.5rem; }
+
+    @media (max-width: 900px) {
+      .about-teaser-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .cta-banner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .hero-meta { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .scroll-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Stack</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section id="hero" aria-label="Introduction">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-status">
+        <span class="hero-status-dot" aria-hidden="true"></span>
+        London, UK &nbsp;·&nbsp; Open to opportunities
+      </div>
+      <h1 class="hero-name">Adil <em>Osman</em></h1>
+      <p class="hero-role">Data Engineer &nbsp;&nbsp;·&nbsp;&nbsp; Analytics Engineer &nbsp;&nbsp;·&nbsp;&nbsp; Data Scientist</p>
+      <p class="hero-statement">
+        I build <strong>reliable data pipelines and analytics-ready systems</strong> — from real-time ingestion and CDC stacks to lakehouse architectures, dbt warehouses, and machine learning workflows grounded in real data.
+      </p>
+      <div class="hero-actions">
+        <a href="projects.html" class="btn-primary">
+          View My Work
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="contact.html" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-meta">
+        <span class="hero-meta-item">
+          <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6.5 1C4.57 1 3 2.57 3 4.5c0 2.7 3.5 7 3.5 7S10 7.2 10 4.5C10 2.57 8.43 1 6.5 1z"/><circle cx="6.5" cy="4.5" r="1.3"/></svg>
+          London, UK
+        </span>
+        <span class="hero-meta-item">
+          <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="1" y="2.5" width="11" height="8.5" rx="1.5"/><path d="M1 5.5h11M4.5 1v1.5M8.5 1v1.5" stroke-linecap="round"/></svg>
+          First Class BSc · Birkbeck, University of London
+        </span>
+        <span class="hero-meta-item">
+          <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 10l3-3 2.5 2.5L10 4.5l2 2"/></svg>
+          Python · SQL · dbt · Airflow · Spark
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint-line"></div>
+    <span class="scroll-hint-label">Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT TEASER -->
+<section class="alt-bg" aria-label="About teaser">
+  <div class="wrap">
+    <div class="about-teaser-grid">
+      <div class="reveal">
+        <div class="avatar-card">
+          <div class="avatar-inner">
+            <div class="avatar-grid-overlay" aria-hidden="true"></div>
+            <span class="avatar-initials" aria-hidden="true">AO</span>
+          </div>
+          <div class="avatar-foot">
+            <div class="avatar-name">Adil Osman</div>
+            <div class="avatar-role-tag">Data Engineer · Analytics Engineer</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label" aria-hidden="true">About</div>
+        <h2 class="section-title reveal" style="margin-bottom:1.5rem">Building <em>pipelines</em><br>that hold up.</h2>
+        <div class="about-copy reveal d1">
+          <p>I'm a London-based data professional with a <strong>First Class BSc in Data Science &amp; Computing from Birkbeck, University of London</strong>. My work focuses on data engineering and analytics engineering — designing pipelines that are reliable, observable, and deliver data that downstream consumers can actually trust.</p>
+          <p>I work with real-time ingestion, CDC architectures, local-first lakehouses, and dbt-driven warehouses across domains including finance, sport, urban transport, and environmental data.</p>
+        </div>
+        <a href="about.html" class="btn-link reveal d2" style="margin-top:1.75rem">
+          More about me
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section aria-labelledby="featured-heading">
+  <div class="wrap">
+    <div class="section-head" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="section-label" aria-hidden="true">Featured Work</div>
+        <h2 class="section-title reveal" id="featured-heading">Projects that <em>ship</em>.</h2>
+      </div>
+      <a href="projects.html" class="btn-link reveal" style="padding-bottom:0.25rem">
+        All 15 projects
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="projects-grid">
+
+      <article class="pcard wide reveal" data-cats="de streaming">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Engineering · Real-time</span>
+          <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">TfL Real-Time Lakehouse &nbsp;<span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent);background:var(--accent-dim);padding:0.15rem 0.5rem;border-radius:100px;vertical-align:middle">⭐ 3</span></h3>
+        <p class="pcard-desc">Real-time transport data from London on a local laptop. Airflow ingests TfL arrivals and stores them in Parquet. dbt and DuckDB transform the data, Great Expectations validates it, and OpenLineage tracks data lineage — a fully observable, production-pattern lakehouse without cloud dependency.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Parquet</span><span class="badge">Great Expectations</span><span class="badge">OpenLineage</span>
+        </div>
+      </article>
+
+      <article class="pcard reveal d1" data-cats="de streaming">
+        <div class="pcard-top">
+          <span class="pcard-tag">Data Engineering · CDC</span>
+          <a href="https://github.com/aosman101/streamshop-cdc-analytics" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">StreamShop CDC Analytics Stack</h3>
+        <p class="pcard-desc">Production-style Change Data Capture pipeline: Postgres → Debezium → Redpanda (Kafka API) → ClickHouse. Includes a synthetic e-commerce data generator, Python CDC sink, and dbt models with tests for analytical queries.</p>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">Debezium</span><span class="badge">Redpanda</span><span class="badge">ClickHouse</span><span class="badge">dbt</span><span class="badge">PostgreSQL</span>
+        </div>
+      </article>
+
+      <article class="pcard reveal d2" data-cats="analytics warehouse">
+        <div class="pcard-top">
+          <span class="pcard-tag">Analytics Engineering</span>
+          <a href="https://github.com/aosman101/premier-league-analytics-warehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">Premier League Analytics Warehouse</h3>
+        <p class="pcard-desc">End-to-end football analytics warehouse on BigQuery using dbt and GitHub Actions. Covers Premier League seasons 2014–15 to 2024–25 from openfootball JSON, modelled into analytics-ready tables with full CI.</p>
+        <div class="pcard-stack">
+          <span class="badge">dbt</span><span class="badge">BigQuery</span><span class="badge">GitHub Actions</span><span class="badge">SQL</span><span class="badge">Python</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- STACK HIGHLIGHTS -->
+<section class="alt-bg" aria-label="Core stack">
+  <div class="wrap">
+    <div class="section-label reveal" aria-hidden="true">Core Stack</div>
+    <h2 class="section-title reveal d1">The tools I <em>trust</em>.</h2>
+    <div class="stack-strip reveal d2" role="list" aria-label="Key technologies">
+      <span class="stack-pill" role="listitem">Python</span>
+      <span class="stack-pill" role="listitem">SQL</span>
+      <span class="stack-pill" role="listitem">dbt Core</span>
+      <span class="stack-pill" role="listitem">Apache Airflow</span>
+      <span class="stack-pill" role="listitem">Apache Spark</span>
+      <span class="stack-pill" role="listitem">DuckDB</span>
+      <span class="stack-pill" role="listitem">PostgreSQL</span>
+      <span class="stack-pill" role="listitem">BigQuery</span>
+      <span class="stack-pill" role="listitem">ClickHouse</span>
+      <span class="stack-pill" role="listitem">Kafka / Redpanda</span>
+      <span class="stack-pill" role="listitem">Debezium</span>
+      <span class="stack-pill" role="listitem">Great Expectations</span>
+      <span class="stack-pill" role="listitem">GitHub Actions</span>
+    </div>
+    <a href="skills.html" class="btn-link reveal d3" style="margin-top:2rem">
+      Full stack breakdown
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section aria-label="CTA">
+  <div class="wrap">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Let's work <em>together</em>.</h2>
+        <p>Open to Data Engineer, Analytics Engineer, and Data Scientist roles — London and remote.</p>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="contact.html" class="btn-primary">
+          Get in Touch
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer" class="btn-ghost">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="projects.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Stack</a>
+        <a href="writing.html">Writing</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

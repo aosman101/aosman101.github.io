@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stack — Adil Osman</title>
+  <meta name="description" content="Technical stack of Adil Osman — Python, SQL, dbt, Airflow, Spark, Azure, AWS, Databricks, Snowflake, BigQuery, Power BI, Tableau, MLflow and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .skills-intro { max-width: 600px; font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 3.5rem; }
+    .skills-intro strong { color: var(--text-primary); font-weight: 500; }
+    .stack-philosophy {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem; margin-top: 3rem;
+    }
+    .stack-philosophy p { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; }
+    .stack-philosophy p strong { color: var(--text-primary); font-weight: 500; font-style: normal; }
+
+    /* Tool badge strip */
+    .tool-strip {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .tool-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.35rem 0.9rem;
+      font-family: var(--font-mono); font-size: 0.67rem;
+      letter-spacing: 0.06em; color: var(--text-secondary);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .tool-badge:hover { border-color: var(--accent-mid); color: var(--accent); }
+    .tool-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Stack</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero" style="background:var(--bg-surface);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="page-hero-label">Technical Stack</div>
+    <h1 class="page-hero-title">What I work <em>with</em>.</h1>
+    <p class="page-hero-sub">Tools chosen for what they're genuinely good at — not for résumé padding. Each one earns its place.</p>
+  </div>
+</div>
+
+<section aria-labelledby="skills-heading">
+  <div class="wrap">
+    <div class="skills-intro reveal">
+      My stack spans the full data engineering lifecycle — from real-time ingestion and CDC pipelines to warehouse modelling, BI, data quality, and ML workflows. These are tools I <strong>actively use and understand in depth</strong> across production-pattern projects and real professional experience.
+    </div>
+
+    <!-- Quick-scan tool badge strip -->
+    <div class="tool-strip reveal" aria-label="Key tools at a glance">
+      <span class="tool-badge"><span class="dot"></span>Python</span>
+      <span class="tool-badge"><span class="dot"></span>SQL</span>
+      <span class="tool-badge"><span class="dot"></span>dbt</span>
+      <span class="tool-badge"><span class="dot"></span>Apache Airflow</span>
+      <span class="tool-badge"><span class="dot"></span>Apache Spark</span>
+      <span class="tool-badge"><span class="dot"></span>BigQuery</span>
+      <span class="tool-badge"><span class="dot"></span>Snowflake</span>
+      <span class="tool-badge"><span class="dot"></span>ClickHouse</span>
+      <span class="tool-badge"><span class="dot"></span>DuckDB</span>
+      <span class="tool-badge"><span class="dot"></span>Debezium</span>
+      <span class="tool-badge"><span class="dot"></span>Redpanda</span>
+      <span class="tool-badge"><span class="dot"></span>Kafka</span>
+      <span class="tool-badge"><span class="dot"></span>Azure</span>
+      <span class="tool-badge"><span class="dot"></span>AWS</span>
+      <span class="tool-badge"><span class="dot"></span>Databricks</span>
+      <span class="tool-badge"><span class="dot"></span>Docker</span>
+      <span class="tool-badge"><span class="dot"></span>Terraform</span>
+      <span class="tool-badge"><span class="dot"></span>Power BI</span>
+      <span class="tool-badge"><span class="dot"></span>Tableau</span>
+      <span class="tool-badge"><span class="dot"></span>Looker</span>
+      <span class="tool-badge"><span class="dot"></span>Great Expectations</span>
+      <span class="tool-badge"><span class="dot"></span>OpenLineage</span>
+      <span class="tool-badge"><span class="dot"></span>MLflow</span>
+      <span class="tool-badge"><span class="dot"></span>TensorFlow</span>
+      <span class="tool-badge"><span class="dot"></span>GitHub Actions</span>
+    </div>
+
+    <div class="skills-grid" id="skills-heading">
+
+      <!-- 01 -->
+      <div class="skill-group reveal">
+        <div class="sg-num">01 / Programming Languages</div>
+        <div class="sg-title">Languages</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Python</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>SQL</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Java</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>R</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Bash / Shell</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>JavaScript</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Jinja (dbt templating)</div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="skill-group reveal d1">
+        <div class="sg-num">02 / Data Engineering</div>
+        <div class="sg-title">Pipelines &amp; Orchestration</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Apache Airflow</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Apache Spark</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt Core / dbt Cloud</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Databricks</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Airbyte / Fivetran (EL)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Docker</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Terraform (IaC)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>ELT / ETL design</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Incremental loading</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Schema enforcement</div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="skill-group reveal d2">
+        <div class="sg-num">03 / Streaming &amp; CDC</div>
+        <div class="sg-title">Real-time &amp; Event-driven</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Debezium (CDC)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Redpanda (Kafka API)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Apache Kafka</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Apache Flink (concepts)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Event streaming patterns</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Change data capture design</div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="skill-group reveal d1">
+        <div class="sg-num">04 / Cloud Platforms</div>
+        <div class="sg-title">Cloud &amp; Infrastructure</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Microsoft Azure</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Azure Data Factory</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Azure Synapse Analytics</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Amazon Web Services (AWS)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>AWS S3 / Glue / Lambda</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Google Cloud Platform (GCP)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Databricks</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Snowflake</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Google BigQuery</div>
+        </div>
+      </div>
+
+      <!-- 04b -->
+      <div class="skill-group reveal d2">
+        <div class="sg-num">04b / Databases &amp; Storage</div>
+        <div class="sg-title">Data Stores</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>ClickHouse</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>DuckDB</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>PostgreSQL</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>MySQL</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>MinIO (S3-compatible)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Parquet / Delta / columnar</div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="skill-group reveal d2">
+        <div class="sg-num">05 / Analytics Engineering</div>
+        <div class="sg-title">Warehousing &amp; Modelling</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt (models, tests, docs)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Dimensional modelling</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Lakehouse architecture</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Looker / LookML</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt data contracts &amp; tests</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Slowly changing dimensions</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Staging → marts modelling</div>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="skill-group reveal d3">
+        <div class="sg-num">06 / BI &amp; Visualisation</div>
+        <div class="sg-title">Dashboards &amp; Reporting</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Power BI</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Tableau</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Looker</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Metabase</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Apache Superset</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Streamlit</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Plotly / Dash</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>KPI dashboard design</div>
+        </div>
+      </div>
+
+      <!-- 07 -->
+      <div class="skill-group reveal d1">
+        <div class="sg-num">07 / Data Quality &amp; Observability</div>
+        <div class="sg-title">Quality &amp; Lineage</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Great Expectations</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Soda Core</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>OpenLineage / Marquez</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt schema tests</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Row-level validation</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>SLA monitoring</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Pipeline observability</div>
+        </div>
+      </div>
+
+      <!-- 08 -->
+      <div class="skill-group reveal d2">
+        <div class="sg-num">08 / Machine Learning &amp; AI</div>
+        <div class="sg-title">Modelling &amp; ML Ops</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Scikit-learn</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>TensorFlow / Keras</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>MLflow (experiment tracking)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Weights &amp; Biases</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Hugging Face (transformers)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>LSTM / RNN architectures</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Feature engineering</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Time-series modelling</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Backtesting &amp; evaluation</div>
+        </div>
+      </div>
+
+      <!-- 09 -->
+      <div class="skill-group reveal d3">
+        <div class="sg-num">09 / Python Data Stack</div>
+        <div class="sg-title">Libraries &amp; Analysis</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Pandas</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>NumPy / SciPy</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Matplotlib / Seaborn</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Plotly</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>SQLAlchemy</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Jupyter Notebooks</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>FastAPI</div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="skill-group reveal d1">
+        <div class="sg-num">10 / CI/CD &amp; DevOps</div>
+        <div class="sg-title">Workflow &amp; Tooling</div>
+        <div class="sg-items">
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>GitHub Actions</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Git / GitHub</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Docker &amp; Docker Compose</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Terraform</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Kubernetes (concepts)</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>CI/CD pipeline design</div>
+          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Reproducible environments</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stack-philosophy reveal" style="margin-top:3rem">
+      <p>
+        I pick tools that fit the problem. <strong>Airflow</strong> for orchestration with retries, dependencies, and monitoring. <strong>dbt</strong> because SQL-first transformations with built-in testing and lineage are the right model for analytics engineering. <strong>Databricks and Snowflake</strong> for scalable, cloud-native data processing where performance and collaboration matter. <strong>Azure and AWS</strong> as the infrastructure backbone for production pipelines. <strong>Debezium + Redpanda</strong> when the problem demands capturing every database change in real time. <strong>Power BI and Tableau</strong> to translate data into decisions stakeholders can act on. The stack reflects the problem — not the other way around.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="alt-bg" aria-label="Navigation CTA">
+  <div class="wrap" style="display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center">
+    <a href="projects.html" class="btn-primary">See it in use<svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left:0.5rem" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="contact.html" class="btn-ghost">Get in Touch</a>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="projects.html">Work</a><a href="about.html">About</a><a href="skills.html">Stack</a><a href="writing.html">Writing</a><a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

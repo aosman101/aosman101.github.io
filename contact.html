@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Adil Osman</title>
+  <meta name="description" content="Get in touch with Adil Osman — open to data science, analytics engineering, data engineering, and ML roles." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .contact-copy {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .contact-copy strong { color: var(--text-primary); font-weight: 500; }
+    .clinks { display: flex; flex-direction: column; gap: 0.875rem; }
+    .roles-list {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .roles-list-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .role-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+    }
+    .role-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .role-item-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Stack</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero" style="background:var(--bg-surface); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="page-hero-label">Contact</div>
+    <h1 class="page-hero-title">Let's work <em>together</em>.</h1>
+    <p class="page-hero-sub">Open to data science, analytics engineering, data engineering, and ML opportunities — London and remote.</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section aria-labelledby="contact-heading">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <div>
+        <div class="section-label" aria-hidden="true">Get in touch</div>
+        <h2 class="section-title reveal" id="contact-heading" style="margin-bottom:2rem">
+          Open to the right<br><em>opportunity</em>.
+        </h2>
+        <p class="contact-copy reveal d1">
+          I'm looking for roles where I can build real data systems — <strong>data scientist, analytics engineer, data engineer, or ML engineer</strong> positions, from early career through junior-to-mid level.
+        </p>
+        <p class="contact-copy reveal d2">
+          If you're working on something interesting in data, ML, or analytics engineering, I'd genuinely like to hear about it. Also happy to connect with collaborators and data practitioners.
+        </p>
+        <div class="open-badge reveal d3">
+          <span class="open-dot" aria-hidden="true"></span>
+          Currently open to opportunities in London and remote.
+        </div>
+
+        <div class="roles-list reveal d3" role="list" aria-label="Roles I'm open to">
+          <div class="roles-list-label">Open to</div>
+          <div class="role-item" role="listitem"><span class="role-item-dot" aria-hidden="true"></span>Data Scientist</div>
+          <div class="role-item" role="listitem"><span class="role-item-dot" aria-hidden="true"></span>Analytics Engineer</div>
+          <div class="role-item" role="listitem"><span class="role-item-dot" aria-hidden="true"></span>Data Engineer</div>
+          <div class="role-item" role="listitem"><span class="role-item-dot" aria-hidden="true"></span>ML Engineer</div>
+          <div class="role-item" role="listitem"><span class="role-item-dot" aria-hidden="true"></span>Data Platform Engineer</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="clinks reveal" role="list" aria-label="Contact methods">
+
+          <a href="mailto:aosman10020@gmail.com" class="clink" role="listitem">
+            <div class="clink-icon" aria-hidden="true">
+              <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                <rect x="1" y="3" width="13" height="9" rx="1.5"/>
+                <path d="M1 5l6.5 4.5L14 5"/>
+              </svg>
+            </div>
+            <div class="clink-info">
+              <div class="clink-label">Email</div>
+              <div class="clink-val">aosman10020@gmail.com</div>
+            </div>
+            <svg class="clink-arrow" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer" class="clink" role="listitem" aria-label="LinkedIn profile (opens in new tab)">
+            <div class="clink-icon" aria-hidden="true">
+              <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                <rect x="1" y="1" width="13" height="13" rx="2"/>
+                <path d="M4.5 6.5v4M4.5 4v.5"/>
+                <path d="M7.5 10.5v-2A1.5 1.5 0 0110.5 10v.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="clink-info">
+              <div class="clink-label">LinkedIn</div>
+              <div class="clink-val">adil-osman-303185297</div>
+            </div>
+            <svg class="clink-arrow" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" class="clink" role="listitem" aria-label="GitHub profile (opens in new tab)">
+            <div class="clink-icon" aria-hidden="true">
+              <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5.5 11c0 .9.4 1.4.9 1.9.4-.5.9-.9.9-1.9"/>
+                <path d="M7.5 1.5a5.5 5.5 0 00-1.92 10.65c.27.04.36-.12.36-.26v-1.1c-1.5.33-1.82-.72-1.82-.72a1.43 1.43 0 00-.6-.79c-.49-.33.04-.32.04-.32a1.14 1.14 0 01.83.56 1.16 1.16 0 001.58.45 1.15 1.15 0 01.34-.72C4.7 10.2 3.3 9.7 3.3 7.3a2.13 2.13 0 01.57-1.48 2 2 0 01.05-1.46s.46-.15 1.52.56a5.2 5.2 0 012.76 0c1.05-.71 1.51-.56 1.51-.56a2 2 0 01.06 1.46 2.13 2.13 0 01.57 1.48c0 2.4-1.46 2.92-2.85 3.07a1.3 1.3 0 01.37 1v1.49c0 .14.08.3.37.26A5.5 5.5 0 007.5 1.5z"/>
+              </svg>
+            </div>
+            <div class="clink-info">
+              <div class="clink-label">GitHub</div>
+              <div class="clink-val">github.com/aosman101</div>
+            </div>
+            <svg class="clink-arrow" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="projects.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Stack</a>
+        <a href="writing.html">Writing</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
