@@ -7,16 +7,16 @@
 [![Interactivity](https://img.shields.io/badge/interactivity-Vanilla%20JavaScript-F7DF1E?logo=javascript&logoColor=000)](assets/script.js)
 [![SEO](https://img.shields.io/badge/SEO-meta%20%2B%20sitemap-0A7C86)](sitemap.xml)
 
-This repository contains the live source for [aosman101.github.io](https://aosman101.github.io/), a static GitHub Pages portfolio for Adil Osman, a London-based Data Engineer, Analytics Engineer, and Data Scientist. The site brings together project work, technical writing, background, stack, and contact details in a lightweight multi-page build with no framework overhead.
+This repository hosts the live source for [aosman101.github.io](https://aosman101.github.io/), which is a static GitHub Pages portfolio for Adil Osman, a Data Engineer, Analytics Engineer, and Data Scientist based in London. The site showcases project work, technical writing, background information, tech stack, and contact details, all presented in a lightweight multi-page format without any framework overhead.
 
 ## What the Site Covers
 
-- `Home`: positioning, featured work, stack highlights, and current availability
-- `Work`: filterable project catalogue across data engineering, analytics engineering, machine learning, and data science
-- `About`: professional background, experience timeline, education, and academic highlights
-- `Stack`: grouped breakdown of tools across pipelines, CDC, warehousing, BI, quality, cloud, and ML
-- `Writing`: published technical notes plus a reusable post template
-- `Contact`: email, LinkedIn, GitHub, and the roles this portfolio is aimed at
+- `Home`: positioning, featured work, stack highlights, and current availability.
+- `Work`: filterable project catalogue across data engineering, analytics engineering, machine learning, and data science.
+- `About`: professional background, experience timeline, education, and academic highlights.
+- `Stack`: grouped breakdown of tools across pipelines, CDC, warehousing, BI, quality, cloud, and ML.
+- `Writing`: published technical notes plus a reusable post template.
+- `Contact`: email, LinkedIn, GitHub, and the roles this portfolio is aimed at.
 
 ## Built With
 
@@ -28,11 +28,11 @@ This repository contains the live source for [aosman101.github.io](https://aosma
 
 ## Highlights
 
-- Responsive multi-page portfolio with mobile navigation
-- Client-side filtering for project cards and writing categories
+- Responsive multi-page portfolio with mobile navigation.
+- Client-side filtering for project cards and writing categories.
 - Scroll reveal effects powered by `IntersectionObserver`
 - SEO basics in place: page descriptions, Open Graph metadata for posts, `robots.txt`, and `sitemap.xml`
-- Content-first structure that is easy to maintain without a build pipeline
+- Content-first structure that is easy to maintain without a build pipeline.
 
 ## Repository Layout
 
@@ -76,4 +76,3 @@ Because this is a pure static site, edits can be made directly in the HTML, CSS,
 - LinkedIn: [adil-osman-303185297](https://www.linkedin.com/in/adil-osman-303185297/)
 - GitHub: [aosman101](https://github.com/aosman101)
 - Email: [aosman10020@gmail.com](mailto:aosman10020@gmail.com)
-- Open to: Data Engineer, Analytics Engineer, Data Scientist, ML Engineer, and Data Platform Engineer roles in London or remote
