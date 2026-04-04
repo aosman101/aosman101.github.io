@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Writing — Adil Osman</title>
   <meta name="description" content="Writing and technical notes by Adil Osman on data engineering, analytics engineering, and machine learning." />
+  <meta property="og:title" content="Writing — Adil Osman" />
+  <meta property="og:description" content="Technical writing on data engineering, analytics, pipeline design, and lessons from building real systems." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aosman101.github.io/writing.html" />
+  <meta property="og:image" content="https://aosman101.github.io/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Writing — Adil Osman" />
+  <meta name="twitter:description" content="Technical writing on data engineering, analytics, pipeline design, and lessons from building real systems." />
+  <meta name="twitter:image" content="https://aosman101.github.io/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -192,10 +201,33 @@
     <!-- Published articles -->
     <!-- =====================================================================
          TO ADD A NEW POST:
-         1. Duplicate one of the .article-card blocks below
-         2. Update: data-tags, href, article-date, article-tag, article-title, article-excerpt
-         3. Create the matching file inside the posts/ folder (copy post-template.html)
-         4. That's it — the filter system works automatically
+         1. Copy the template below and paste it inside the articles-grid
+         2. Update: data-tags, href, date, tag, title, excerpt, and read time
+         3. Create the matching HTML file inside the posts/ folder
+         4. The filter system picks up data-tags automatically
+
+         TEMPLATE — copy everything between START and END:
+
+         ~~~ START ~~~
+         <a class="article-card reveal" href="posts/YOUR-POST-SLUG.html" data-tags="data-engineering">
+           <div class="article-meta">
+             <span class="article-date">DD Mon YYYY</span>
+             <span class="article-readtime">· X min read</span>
+             <span class="article-tag">Category Name</span>
+           </div>
+           <h3 class="article-title">Your Post Title Here</h3>
+           <p class="article-excerpt">A short summary of the post (1–2 sentences).</p>
+           <div class="article-footer">
+             <span class="article-read-link">
+               Read post
+               <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+             </span>
+           </div>
+         </a>
+         ~~~ END ~~~
+
+         VALID data-tags (comma-separated for multiple):
+           data-engineering, analytics-engineering, machine-learning, data-quality
          ===================================================================== -->
     <div class="articles-grid" id="articlesGrid">
 
