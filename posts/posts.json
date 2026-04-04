@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "building-a-tfl-realtime-lakehouse",
+    "title": "Building a Real-Time TfL Lakehouse from Scratch",
+    "excerpt": "How I designed and built a production-style streaming data lakehouse using the TfL Unified API — covering Airflow orchestration, DuckDB, dbt transformations, Great Expectations validation, and OpenLineage lineage tracking.",
+    "date": "2026-03-24",
+    "readTime": 8,
+    "tag": "Data Engineering",
+    "filterTag": "data-engineering"
+  }
+]

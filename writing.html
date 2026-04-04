@@ -198,58 +198,8 @@
       <button class="filter-btn" data-filter="data-quality">Data Quality</button>
     </div>
 
-    <!-- Published articles -->
-    <!-- =====================================================================
-         TO ADD A NEW POST:
-         1. Copy the template below and paste it inside the articles-grid
-         2. Update: data-tags, href, date, tag, title, excerpt, and read time
-         3. Create the matching HTML file inside the posts/ folder
-         4. The filter system picks up data-tags automatically
-
-         TEMPLATE — copy everything between START and END:
-
-         ~~~ START ~~~
-         <a class="article-card reveal" href="posts/YOUR-POST-SLUG.html" data-tags="data-engineering">
-           <div class="article-meta">
-             <span class="article-date">DD Mon YYYY</span>
-             <span class="article-readtime">· X min read</span>
-             <span class="article-tag">Category Name</span>
-           </div>
-           <h3 class="article-title">Your Post Title Here</h3>
-           <p class="article-excerpt">A short summary of the post (1–2 sentences).</p>
-           <div class="article-footer">
-             <span class="article-read-link">
-               Read post
-               <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-             </span>
-           </div>
-         </a>
-         ~~~ END ~~~
-
-         VALID data-tags (comma-separated for multiple):
-           data-engineering, analytics-engineering, machine-learning, data-quality
-         ===================================================================== -->
-    <div class="articles-grid" id="articlesGrid">
-
-      <a class="article-card reveal" href="posts/building-a-tfl-realtime-lakehouse.html" data-tags="data-engineering">
-        <div class="article-meta">
-          <span class="article-date">24 Mar 2026</span>
-          <span class="article-readtime">· 8 min read</span>
-          <span class="article-tag">Data Engineering</span>
-        </div>
-        <h3 class="article-title">Building a Real-Time TfL Lakehouse from Scratch</h3>
-        <p class="article-excerpt">How I designed and built a production-style streaming data lakehouse using the TfL Unified API — covering Airflow orchestration, DuckDB, dbt transformations, Great Expectations validation, and OpenLineage lineage tracking.</p>
-        <div class="article-footer">
-          <span class="article-read-link">
-            Read post
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- ADD MORE POSTS ABOVE THIS LINE -->
-
-    </div>
+    <!-- Articles are loaded dynamically from posts/posts.json -->
+    <div class="articles-grid" id="articlesGrid"></div>
 
     <div class="empty-state" id="emptyState" aria-live="polite">
       No posts in this category yet — check back soon.
@@ -319,26 +269,68 @@
 
 <script src="assets/script.js"></script>
 <script>
-  // Writing page filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.article-card');
+  const grid = document.getElementById('articlesGrid');
   const emptyState = document.getElementById('emptyState');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const arrowSvg = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function formatDate(iso) {
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function renderCards(posts) {
+    grid.innerHTML = '';
+    posts.forEach(p => {
+      const a = document.createElement('a');
+      a.className = 'article-card reveal';
+      a.href = 'posts/' + p.slug + '.html';
+      a.dataset.tags = p.filterTag;
+      a.innerHTML =
+        '<div class="article-meta">' +
+          '<span class="article-date">' + formatDate(p.date) + '</span>' +
+          '<span class="article-readtime">&middot; ' + p.readTime + ' min read</span>' +
+          '<span class="article-tag">' + p.tag + '</span>' +
+        '</div>' +
+        '<h3 class="article-title">' + p.title + '</h3>' +
+        '<p class="article-excerpt">' + p.excerpt + '</p>' +
+        '<div class="article-footer">' +
+          '<span class="article-read-link">Read post ' + arrowSvg + '</span>' +
+        '</div>';
+      grid.appendChild(a);
+    });
+  }
+
+  function applyFilter(filter) {
+    const cards = grid.querySelectorAll('.article-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      const show = filter === 'all' || tags.split(',').map(t => t.trim()).includes(filter);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    emptyState.classList.toggle('visible', visible === 0);
+  }
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      let visible = 0;
-      cards.forEach(card => {
-        const tags = card.dataset.tags || '';
-        const show = filter === 'all' || tags.split(',').map(t => t.trim()).includes(filter);
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-      emptyState.classList.toggle('visible', visible === 0);
+      applyFilter(btn.dataset.filter);
     });
   });
+
+  // Load posts from JSON
+  fetch('posts/posts.json')
+    .then(r => r.json())
+    .then(posts => {
+      posts.sort((a, b) => b.date.localeCompare(a.date));
+      renderCards(posts);
+    })
+    .catch(() => {
+      emptyState.classList.add('visible');
+    });
 </script>
 </body>
 </html>

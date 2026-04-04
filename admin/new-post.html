@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Post — Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    .admin-wrap { max-width: 680px; margin: 0 auto; padding: calc(var(--nav-h) + 3rem) 2rem 4rem; }
+    .admin-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 2rem; letter-spacing: -0.02em;
+      color: var(--text-primary); margin-bottom: 0.5rem;
+    }
+    .admin-title em { font-style: italic; color: var(--accent); }
+    .admin-sub { font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 2.5rem; line-height: 1.6; }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label {
+      display: block; font-family: var(--font-mono); font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; font-family: var(--font-body);
+      font-size: 0.9375rem; color: var(--text-primary);
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.75rem 1rem;
+      transition: border-color 0.15s ease;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none; border-color: var(--accent);
+    }
+    .form-select { cursor: pointer; }
+    .form-textarea { min-height: 200px; resize: vertical; line-height: 1.7; font-family: var(--font-mono); font-size: 0.85rem; }
+    .form-hint { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.35rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .btn-generate {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-mono); font-size: 0.75rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bg-base); background: var(--accent);
+      border: none; border-radius: var(--radius-sm);
+      padding: 0.85rem 1.75rem; cursor: pointer;
+      transition: opacity 0.15s ease;
+    }
+    .btn-generate:hover { opacity: 0.85; }
+
+    .output-section { margin-top: 3rem; display: none; }
+    .output-section.visible { display: block; }
+    .output-block { margin-bottom: 2rem; }
+    .output-label {
+      font-family: var(--font-mono); font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.75rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .btn-copy {
+      font-family: var(--font-mono); font-size: 0.62rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-secondary); background: var(--bg-surface);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 0.35rem 0.75rem; cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-copy:hover { color: var(--accent); border-color: var(--accent-mid); }
+    .btn-copy.copied { color: #4ade80; border-color: #4ade80; }
+    .output-code {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono); font-size: 0.8rem;
+      color: var(--text-secondary); line-height: 1.6;
+      white-space: pre-wrap; word-break: break-all;
+      max-height: 300px; overflow-y: auto;
+    }
+
+    .steps-box {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem; margin-bottom: 2rem;
+    }
+    .steps-box h3 {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .steps-box ol { padding-left: 1.25rem; font-size: 0.875rem; color: var(--text-secondary); line-height: 1.8; }
+    .steps-box code { font-family: var(--font-mono); font-size: 0.82em; color: var(--accent); background: var(--accent-dim); padding: 0.1em 0.4em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="../projects.html">Work</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../skills.html">Stack</a></li>
+      <li><a href="../writing.html">Writing</a></li>
+      <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="admin-wrap">
+  <h1 class="admin-title">New <em>post</em>.</h1>
+  <p class="admin-sub">Fill in the details below and click generate. You'll get everything you need to publish a new post.</p>
+
+  <form id="postForm" autocomplete="off">
+    <div class="form-group">
+      <label class="form-label" for="postTitle">Post Title</label>
+      <input class="form-input" type="text" id="postTitle" placeholder="e.g. Building a Real-Time TfL Lakehouse" required />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="postDate">Date</label>
+        <input class="form-input" type="date" id="postDate" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="postReadTime">Read Time (minutes)</label>
+        <input class="form-input" type="number" id="postReadTime" min="1" max="60" value="8" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="postCategory">Category</label>
+      <select class="form-select" id="postCategory" required>
+        <option value="data-engineering">Data Engineering</option>
+        <option value="analytics-engineering">Analytics Engineering</option>
+        <option value="machine-learning">Machine Learning</option>
+        <option value="data-quality">Data Quality</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="postExcerpt">Excerpt</label>
+      <input class="form-input" type="text" id="postExcerpt" placeholder="A short summary (1-2 sentences) shown on the writing page" required />
+      <div class="form-hint">This appears on the card on the writing page.</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="postSubtitle">Subtitle</label>
+      <input class="form-input" type="text" id="postSubtitle" placeholder="A subtitle shown at the top of the post (optional)" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="postBody">Post Body (HTML)</label>
+      <textarea class="form-textarea" id="postBody" placeholder="<p>Start writing your post here...</p>
+
+<h2>Section Heading</h2>
+<p>Body text. Use <strong>bold</strong> for key ideas.</p>"></textarea>
+      <div class="form-hint">Write in HTML. Use &lt;h2&gt; for sections, &lt;h3&gt; for sub-sections, &lt;p&gt; for paragraphs, &lt;code&gt; for inline code, &lt;pre&gt;&lt;code&gt; for code blocks.</div>
+    </div>
+
+    <button class="btn-generate" type="submit">
+      Generate Post
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+
+  <div class="output-section" id="outputSection">
+    <hr style="border:none;border-top:1px solid var(--border);margin:2rem 0" />
+
+    <div class="steps-box">
+      <h3>Steps to publish</h3>
+      <ol>
+        <li>Copy the <strong>Post HTML</strong> below and save it as <code>posts/<span id="slugPreview"></span>.html</code></li>
+        <li>Copy the <strong>JSON Entry</strong> and add it to the array in <code>posts/posts.json</code></li>
+        <li>Push to GitHub — done!</li>
+      </ol>
+    </div>
+
+    <div class="output-block">
+      <div class="output-label">
+        Post HTML File
+        <button class="btn-copy" data-target="outputPostHtml" type="button">Copy</button>
+      </div>
+      <div class="output-code" id="outputPostHtml"></div>
+    </div>
+
+    <div class="output-block">
+      <div class="output-label">
+        JSON Entry (add to posts/posts.json)
+        <button class="btn-copy" data-target="outputJson" type="button">Copy</button>
+      </div>
+      <div class="output-code" id="outputJson"></div>
+    </div>
+  </div>
+</div>
+
+<footer role="contentinfo" style="margin-top:3rem">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+<script>
+  const categoryLabels = {
+    'data-engineering': 'Data Engineering',
+    'analytics-engineering': 'Analytics Engineering',
+    'machine-learning': 'Machine Learning',
+    'data-quality': 'Data Quality'
+  };
+
+  function slugify(text) {
+    return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  document.getElementById('postForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const title = document.getElementById('postTitle').value.trim();
+    const date = document.getElementById('postDate').value;
+    const readTime = document.getElementById('postReadTime').value;
+    const category = document.getElementById('postCategory').value;
+    const excerpt = document.getElementById('postExcerpt').value.trim();
+    const subtitle = document.getElementById('postSubtitle').value.trim();
+    const body = document.getElementById('postBody').value;
+    const slug = slugify(title);
+    const tagLabel = categoryLabels[category];
+
+    const d = new Date(date + 'T00:00:00');
+    const dateFormatted = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+    // Generate post HTML
+    const postHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${title} — Adil Osman</title>
+  <meta name="description" content="${excerpt}" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${excerpt}" />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    .post-wrap { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+    .post-header { padding: calc(var(--nav-h) + 4rem) 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+    .post-back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 2rem; transition: color 0.15s ease; }
+    .post-back:hover { color: var(--accent); }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .post-tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); padding: 0.22rem 0.7rem; border-radius: 100px; }
+    .post-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.875rem, 4vw, 2.75rem); line-height: 1.1; letter-spacing: -0.025em; color: var(--text-primary); margin-bottom: 1rem; }
+    .post-title em { font-style: italic; color: var(--accent); }
+    .post-subtitle { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+    .post-byline { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-tertiary); }
+    .post-byline-author { color: var(--text-secondary); }
+    .post-byline-sep { opacity: 0.4; }
+    .post-body { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.85; }
+    .post-body h2 { font-family: var(--font-display); font-weight: 300; font-size: 1.625rem; letter-spacing: -0.02em; color: var(--text-primary); margin: 3rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .post-body h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 2rem 0 0.75rem; }
+    .post-body p { margin-bottom: 1.4rem; }
+    .post-body p:last-child { margin-bottom: 0; }
+    .post-body strong { color: var(--text-primary); font-weight: 600; }
+    .post-body em { color: var(--accent); font-style: italic; }
+    .post-body a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent-mid); text-underline-offset: 3px; }
+    .post-body a:hover { text-decoration-color: var(--accent); }
+    .post-body ul, .post-body ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+    .post-body li { margin-bottom: 0.5rem; }
+    .post-body blockquote { border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 2rem 0; background: var(--accent-dim); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-secondary); }
+    .post-body code { font-family: var(--font-mono); font-size: 0.85em; background: var(--bg-elevated); border: 1px solid var(--border); padding: 0.15em 0.45em; border-radius: 4px; color: var(--accent); }
+    .post-body pre { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1.75rem 0; }
+    .post-body pre code { background: none; border: none; padding: 0; font-size: 0.875rem; color: var(--text-primary); line-height: 1.7; }
+    .post-body hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+    .post-body img { max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border); margin: 1.5rem 0; }
+    .callout { background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-md); padding: 1.1rem 1.4rem; margin: 2rem 0; font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; }
+    .callout strong { color: var(--accent); }
+    .post-reactions { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .reactions-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.625rem; }
+    .reactions-label::after { content: ''; display: block; height: 1px; width: 40px; background: var(--accent-mid); }
+    .reactions-heading { font-family: var(--font-display); font-weight: 300; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .reactions-heading em { font-style: italic; color: var(--accent); }
+    .reactions-sub { font-size: 0.875rem; color: var(--text-tertiary); margin-bottom: 2rem; line-height: 1.6; }
+    .giscus, .giscus-frame { width: 100%; }
+    @media (max-width: 640px) { .post-header { padding-top: calc(var(--nav-h) + 2.5rem); } .post-body { font-size: 1rem; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="../projects.html">Work</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../skills.html">Stack</a></li>
+      <li><a href="../writing.html">Writing</a></li>
+      <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<article>
+  <div class="post-wrap">
+    <header class="post-header">
+      <a href="../writing.html" class="post-back" aria-label="Back to all posts">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M12 6.5H1M6 1L0.5 6.5 6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All posts
+      </a>
+      <div class="post-tags">
+        <span class="post-tag">${tagLabel}</span>
+      </div>
+      <h1 class="post-title">${title}</h1>
+      ${subtitle ? '<p class="post-subtitle">' + subtitle + '</p>' : ''}
+      <div class="post-byline">
+        <span class="post-byline-author">Adil Osman</span>
+        <span class="post-byline-sep">&middot;</span>
+        <time datetime="${date}">${dateFormatted}</time>
+        <span class="post-byline-sep">&middot;</span>
+        <span>${readTime} min read</span>
+      </div>
+    </header>
+
+    <div class="post-body">
+      ${body || '<p>Start writing your post here.</p>'}
+    </div>
+
+    <div class="post-reactions">
+      <div class="reactions-label" aria-hidden="true">Discussion</div>
+      <h2 class="reactions-heading">Reactions &amp; <em>comments</em>.</h2>
+      <p class="reactions-sub">React with an emoji or leave a comment. A free GitHub account is all you need.</p>
+      <script src="https://giscus.app/client.js"
+        data-repo="aosman101/aosman101.github.io"
+        data-repo-id="R_kgDORvxkjA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDORvxkjM4C5MN8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      <\/script>
+    </div>
+  </div>
+</article>
+
+<footer role="contentinfo" style="margin-top:5rem">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;&middot;&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="../projects.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../skills.html">Stack</a>
+        <a href="../writing.html">Writing</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+</body>
+</html>`;
+
+    // Generate JSON entry
+    const jsonEntry = JSON.stringify({
+      slug: slug,
+      title: title,
+      excerpt: excerpt,
+      date: date,
+      readTime: parseInt(readTime),
+      tag: tagLabel,
+      filterTag: category
+    }, null, 2);
+
+    // Show outputs
+    document.getElementById('slugPreview').textContent = slug;
+    document.getElementById('outputPostHtml').textContent = postHtml;
+    document.getElementById('outputJson').textContent = jsonEntry;
+    document.getElementById('outputSection').classList.add('visible');
+    document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Copy buttons
+  document.querySelectorAll('.btn-copy').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const target = document.getElementById(this.dataset.target);
+      navigator.clipboard.writeText(target.textContent).then(() => {
+        this.textContent = 'Copied!';
+        this.classList.add('copied');
+        setTimeout(() => {
+          this.textContent = 'Copy';
+          this.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  });
+
+  // Set default date to today
+  document.getElementById('postDate').valueAsDate = new Date();
+</script>
+</body>
+</html>
