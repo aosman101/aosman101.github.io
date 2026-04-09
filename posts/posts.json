@@ -1,5 +1,14 @@
 [
   {
+    "slug": "building-the-tfl-travel-app-with-somalis-in-tech",
+    "title": "Building the TfL Travel App with Somalis in Tech",
+    "excerpt": "How a community data engineering project became a real tool for London students and commuters — and what it taught me about building software that actually helps people.",
+    "date": "2026-04-09",
+    "readTime": 12,
+    "tag": "Community",
+    "filterTag": "community"
+  },
+  {
     "slug": "building-a-tfl-realtime-lakehouse",
     "title": "Building a Real-Time TfL Lakehouse from Scratch",
     "excerpt": "How I designed and built a production-style streaming data lakehouse using the TfL Unified API — covering Airflow orchestration, DuckDB, dbt transformations, Great Expectations validation, and OpenLineage lineage tracking. Built as a teaching tool for Somalis in Tech, helping students and users understand real-world pipeline design.",

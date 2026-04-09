@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building the TfL Travel App with Somalis in Tech — Adil Osman</title>
+  <meta name="description" content="How a community data engineering project became a real tool for London students and commuters — built with the TfL API, Airflow, dbt, and DuckDB at Somalis in Tech." />
+  <meta property="og:title" content="Building the TfL Travel App with Somalis in Tech" />
+  <meta property="og:description" content="How a community data engineering project became a real tool for London students and commuters." />
+  <meta property="og:type" content="article" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    .post-wrap { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+    .post-header { padding: calc(var(--nav-h) + 4rem) 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+    .post-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 2rem;
+      transition: color 0.15s ease;
+    }
+    .post-back:hover { color: var(--accent); }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .post-tag {
+      font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-dim); padding: 0.22rem 0.7rem; border-radius: 100px;
+    }
+    .post-title {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.875rem, 4vw, 2.75rem);
+      line-height: 1.1; letter-spacing: -0.025em;
+      color: var(--text-primary); margin-bottom: 1rem;
+    }
+    .post-title em { font-style: italic; color: var(--accent); }
+    .post-subtitle { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+    .post-byline {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.08em; color: var(--text-tertiary);
+    }
+    .post-byline-author { color: var(--text-secondary); }
+    .post-byline-sep { opacity: 0.4; }
+    .post-body { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.85; }
+    .post-body h2 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.625rem; letter-spacing: -0.02em;
+      color: var(--text-primary); margin: 3rem 0 1rem;
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .post-body h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); margin: 2rem 0 0.75rem; }
+    .post-body p { margin-bottom: 1.4rem; }
+    .post-body strong { color: var(--text-primary); font-weight: 600; }
+    .post-body em { color: var(--accent); font-style: italic; }
+    .post-body a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent-mid); text-underline-offset: 3px; }
+    .post-body a:hover { text-decoration-color: var(--accent); }
+    .post-body ul, .post-body ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+    .post-body li { margin-bottom: 0.5rem; }
+    .post-body blockquote {
+      border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 2rem 0;
+      background: var(--accent-dim); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic; color: var(--text-secondary);
+    }
+    .post-body code {
+      font-family: var(--font-mono); font-size: 0.85em;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      padding: 0.15em 0.45em; border-radius: 4px; color: var(--accent);
+    }
+    .post-body pre {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 1.25rem 1.5rem;
+      overflow-x: auto; margin: 1.75rem 0;
+    }
+    .post-body pre code { background: none; border: none; padding: 0; font-size: 0.875rem; color: var(--text-primary); line-height: 1.7; }
+    .post-body hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+    .callout {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-md);
+      padding: 1.1rem 1.4rem; margin: 2rem 0;
+      font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7;
+    }
+    .callout strong { color: var(--accent); }
+    .impact-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      margin: 2rem 0;
+    }
+    .impact-card {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 1.25rem; text-align: center;
+    }
+    .impact-num {
+      font-family: var(--font-mono); font-size: 1.75rem; font-weight: 500;
+      color: var(--accent); line-height: 1; margin-bottom: 0.4rem;
+    }
+    .impact-label {
+      font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.4;
+    }
+    .post-reactions { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .reactions-label {
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.625rem;
+    }
+    .reactions-label::after { content: ''; display: block; height: 1px; width: 40px; background: var(--accent-mid); }
+    .reactions-heading { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .reactions-heading em { font-style: italic; color: var(--accent); }
+    .reactions-sub { font-size: 0.875rem; color: var(--text-tertiary); margin-bottom: 2rem; line-height: 1.6; }
+    .giscus, .giscus-frame { width: 100%; }
+    @media (max-width: 640px) {
+      .post-header { padding-top: calc(var(--nav-h) + 2.5rem); }
+      .post-body { font-size: 1rem; }
+      .impact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="../projects.html">Work</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../skills.html">Stack</a></li>
+      <li><a href="../writing.html">Writing</a></li>
+      <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<article>
+  <div class="post-wrap">
+    <header class="post-header">
+      <a href="../writing.html" class="post-back" aria-label="Back to all posts">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M12 6.5H1M6 1L0.5 6.5 6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All posts
+      </a>
+      <div class="post-tags">
+        <span class="post-tag">Community</span>
+        <span class="post-tag">Data Engineering</span>
+        <span class="post-tag">TfL</span>
+      </div>
+      <h1 class="post-title">Building the TfL Travel App <em>with Somalis in Tech</em></h1>
+      <p class="post-subtitle">How a community data engineering project became a real tool for London students and commuters &mdash; and what it taught me about building software that actually helps people.</p>
+      <div class="post-byline">
+        <span class="post-byline-author">Adil Osman</span>
+        <span class="post-byline-sep">&middot;</span>
+        <time datetime="2026-04-09">9 Apr 2026</time>
+        <span class="post-byline-sep">&middot;</span>
+        <span>12 min read</span>
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      <p>Most side projects start with curiosity. This one started with a question from a student: <strong>"How do I actually know when my bus is coming?"</strong></p>
+
+      <p>It sounds trivial. But for students commuting across London on tight schedules and tighter budgets, unreliable journey information means missed lectures, wasted Oyster credit, and a lot of frustration. The official TfL app works, but it wasn't built for the way these students actually move — hopping between buses, checking multiple stops, planning around disruptions in real time.</p>
+
+      <p>So I built something better. Not a polished consumer app — a <em>real data engineering system</em> that ingests live TfL data, transforms it, validates it, and serves it through a clean interface that students and commuters can actually use. And I did it as part of my work with <strong>Somalis in Tech</strong>, turning the entire build into a teaching opportunity.</p>
+
+      <div class="callout">
+        <strong>What is Somalis in Tech?</strong> A London-based community supporting Somali professionals and students in the technology industry. I joined as a Junior Data Engineer and Peer Mentor, working on real data infrastructure while mentoring early-career candidates in data engineering and portfolio development.
+      </div>
+
+      <h2>The problem worth solving</h2>
+
+      <p>London's transport network is massive — over 9,000 bus stops, 270 tube stations, and dozens of rail, DLR, and Overground stations. Transport for London publishes a rich <strong>Unified API</strong> covering real-time arrivals, line statuses, stop points, disruptions, and journey planning. The data is there. But turning raw API responses into something genuinely useful for commuters requires real engineering.</p>
+
+      <p>The students I was mentoring through the <strong>Caawi Mentorship Platform</strong> needed something tangible — a project they could see, touch, and learn from. Not another tutorial. Not a toy dataset. A real system, processing real data, solving a real problem they personally experienced every day.</p>
+
+      <p>That's how the TfL Travel App was born: part tool, part teaching platform.</p>
+
+      <h2>Architecture: building it right</h2>
+
+      <p>I designed the system with the same rigour I'd apply to any production data platform. Four layers, each handled by the right tool:</p>
+
+      <ul>
+        <li><strong>Ingestion &amp; orchestration:</strong> Apache Airflow schedules DAGs that poll the TfL Unified API for real-time arrivals, line statuses, and stop point data. Arrivals refresh every 3 minutes; statuses every 10 minutes; stop points daily.</li>
+        <li><strong>Storage:</strong> Raw API responses land as Parquet files on the local filesystem, partitioned by date and hour — mimicking an S3-backed lakehouse pattern without cloud dependency.</li>
+        <li><strong>Transformation:</strong> dbt Core applies a strict medallion architecture — staging models for type-casting and deduplication, intermediate models for business logic, and mart-layer tables optimised for the queries users actually need.</li>
+        <li><strong>Quality &amp; observability:</strong> Great Expectations validates every batch with not-null checks, range validations, accepted value sets, and freshness SLAs. OpenLineage tracks full data lineage across every pipeline run.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Design principle:</strong> Every layer is independently testable and replaceable. Swapping DuckDB for BigQuery, or local Parquet for S3, should be a configuration change — not a rewrite. This modularity made it far easier to teach each component in isolation.
+      </div>
+
+      <h2>What users actually get</h2>
+
+      <p>The app serves three core use cases that students and commuters consistently told me they needed:</p>
+
+      <h3>Real-time arrival predictions</h3>
+      <p>Users search for a stop or station and see live arrival predictions — not just scheduled times, but actual predicted arrivals based on vehicle positions. The data comes from the TfL arrivals endpoint, processed through the pipeline and served with sub-minute latency. For students timing a bus-to-tube connection, those few minutes of accuracy matter.</p>
+
+      <h3>Line status and disruption alerts</h3>
+      <p>The pipeline monitors all tube, bus, DLR, and Overground lines for disruptions. When a line is suspended, delayed, or running a modified service, the mart-layer models flag it immediately. Users see disruptions before they affect their journey — not after they're already standing on a platform.</p>
+
+      <h3>Journey reliability insights</h3>
+      <p>Over time, the lakehouse accumulates historical arrival data. This unlocks something the official TfL app doesn't offer: <strong>historical reliability patterns</strong>. Users can see which routes are consistently late, which times of day have the most disruptions, and plan accordingly. This turned out to be the feature students valued most — it changed how they planned their commutes.</p>
+
+      <h2>The teaching dimension</h2>
+
+      <p>Building the app was only half the project. The other half was using it as a <strong>hands-on teaching tool</strong> for the cohort of ~12 early-career candidates I was mentoring through Somalis in Tech.</p>
+
+      <p>Each layer of the stack became a teaching module:</p>
+
+      <ul>
+        <li><strong>API ingestion:</strong> Students learned how to work with REST APIs, handle rate limits, design retry logic, and think about idempotency — using the TfL API as their real-world example.</li>
+        <li><strong>Data modelling:</strong> We walked through the staging-to-marts pattern in dbt, discussing why you separate raw, typed, and business-logic layers. Students built their own dbt models against the TfL data.</li>
+        <li><strong>Data quality:</strong> Using Great Expectations, students wrote their own expectation suites — learning to think about what "correct data" actually means in a system processing live transport feeds.</li>
+        <li><strong>Pipeline orchestration:</strong> Airflow DAGs gave students a visual model of how data flows through a real system — dependencies, retries, SLAs, and failure handling.</li>
+      </ul>
+
+      <blockquote>
+        The best way to teach data engineering isn't to lecture about it. It's to build something real and let people pull it apart.
+      </blockquote>
+
+      <h2>Impact and what students built</h2>
+
+      <p>The results exceeded what I expected. Feedback from students showed the project genuinely shifted their understanding of data engineering from abstract concepts to concrete, buildable systems.</p>
+
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-num">~12</div>
+          <div class="impact-label">mentees through the Caawi platform</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">87%</div>
+          <div class="impact-label">improvement in data freshness (6h to 45min)</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">65%</div>
+          <div class="impact-label">reduction in manual reporting tasks</div>
+        </div>
+      </div>
+
+      <p>Several mentees went on to build their own pipeline projects inspired by this architecture. One built a weather data lakehouse. Another started a sports analytics warehouse using the same dbt patterns. Seeing students take the concepts and apply them independently — that's when I knew the teaching approach worked.</p>
+
+      <p>Beyond the mentoring cohort, the app itself proved useful to the broader Somalis in Tech community. Members used it for their daily commutes, and the real-time disruption alerts became particularly popular during the winter months when service disruptions spike.</p>
+
+      <h2>Technical challenges and lessons</h2>
+
+      <h3>API rate limits and graceful degradation</h3>
+      <p>The TfL API has rate limits that you hit quickly when polling thousands of stops. I implemented a priority-based polling strategy: high-traffic stops (major tube stations, university-adjacent bus stops) refresh more frequently, while quieter stops use longer intervals. When rate limits are hit, the pipeline falls back to the most recent cached data rather than failing entirely.</p>
+
+      <h3>Schema evolution in live APIs</h3>
+      <p>TfL occasionally changes its API response schema — adding fields, renaming attributes, or changing data types. The raw layer stores responses as-is, and the staging layer uses defensive casting with explicit column selection. When a schema change breaks a staging model, dbt tests catch it before downstream models are affected.</p>
+
+      <h3>Making it accessible</h3>
+      <p>Most data engineering projects are built for engineers. This one needed to be usable by students who might never have seen a terminal. That meant investing in clear documentation, a simple interface, and error messages that explain what went wrong in plain language — not stack traces.</p>
+
+      <h2>What I would do differently</h2>
+
+      <p>If I started again, three things would change:</p>
+
+      <ul>
+        <li><strong>Data contracts from day one.</strong> Formalising the expected shape of data between layers would have caught schema issues faster and made the teaching clearer — students would see exactly what each layer promises to deliver.</li>
+        <li><strong>More granular monitoring.</strong> I'd add per-stop freshness SLAs and alerting, not just per-pipeline. Some stops matter more than others, and the monitoring should reflect that.</li>
+        <li><strong>User feedback loop.</strong> Building a simple feedback mechanism from the start would have helped prioritise which stops and features to focus on, rather than relying on informal conversations.</li>
+      </ul>
+
+      <h2>Beyond the code</h2>
+
+      <p>This project taught me something that no technical tutorial covers: <strong>the gap between "it works" and "it helps."</strong></p>
+
+      <p>A pipeline that processes data correctly is engineering. A pipeline that processes data correctly <em>and makes someone's commute less stressful</em> — that's software worth building. The students I mentored didn't just learn dbt and Airflow. They learned that data engineering has a purpose beyond the pipeline.</p>
+
+      <p>The TfL Travel App is still running, still ingesting live data, and still being used by members of the Somalis in Tech community. It's not perfect. It's not a startup. It's a tool that solves a real problem for real people — and it was built by a community that supports each other.</p>
+
+      <p>That's the kind of engineering I want to keep doing.</p>
+
+      <hr />
+
+      <p>The full project is open-source on GitHub: <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer">aosman101/tfl-realtime-lakehouse</a>. If you're building community-driven data projects or using the TfL API, I'd love to hear about it — leave a comment below or reach out on <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+
+    </div>
+
+    <div class="post-reactions">
+      <div class="reactions-label" aria-hidden="true">Discussion</div>
+      <h2 class="reactions-heading">Reactions &amp; <em>comments</em>.</h2>
+      <p class="reactions-sub">React with an emoji or leave the first comment — giscus will create the GitHub Discussion automatically on first interaction. A free GitHub account is all you need.</p>
+
+      <script src="https://giscus.app/client.js"
+        data-repo="aosman101/aosman101.github.io"
+        data-repo-id="R_kgDORvxkjA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDORvxkjM4C5MN8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+
+  </div>
+</article>
+
+<footer role="contentinfo" style="margin-top:5rem">
+  <div class="wrap">
+    <div class="foot-inner">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <nav class="foot-links" aria-label="Footer navigation">
+        <a href="../projects.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../skills.html">Stack</a>
+        <a href="../writing.html">Writing</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+</body>
+</html>
