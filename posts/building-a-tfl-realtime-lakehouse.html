@@ -145,6 +145,10 @@
 
       <p>The answer is yes. But it requires making deliberate choices at every layer of the stack, and understanding why each tool earns its place.</p>
 
+      <div class="callout">
+        <strong>Community impact:</strong> This project was built as part of my work with <strong>Somalis in Tech</strong>, where I used it as a teaching tool for users and students in the community. The TfL app gave members hands-on experience with a real production-style data platform — from understanding how live API data flows through pipelines to seeing how dbt transformations and data quality checks work in practice. Feedback from students showed it helped demystify data engineering concepts and improved their confidence in building their own projects. Several mentees went on to build their own pipeline projects inspired by this architecture.
+      </div>
+
       <h2>Why TfL data?</h2>
 
       <p>Transport for London publishes a rich, free Unified API covering real-time arrivals, line statuses, stop points, journey planning, and more. It's a genuinely interesting dataset — high-frequency, multi-modal, and full of the kind of messiness you find in real operational systems. Delayed arrivals, missing stop data, edge cases around service disruptions. Good data engineering practice requires handling all of it.</p>
@@ -223,7 +227,7 @@ def fetch_arrivals(stop_id: str, execution_date: str) -> None:
 
       <hr />
 
-      <p>The full project is open-source on GitHub: <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer">aosman101/tfl-realtime-lakehouse</a>. If you're building something similar or have questions about any part of the stack, leave a comment below — I'm happy to go deeper on any layer.</p>
+      <p>The full project is open-source on GitHub: <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer">aosman101/tfl-realtime-lakehouse</a>. It's also been used as a learning resource within the <strong>Somalis in Tech</strong> community, where students and early-career professionals have used it to understand real-world pipeline design. If you're building something similar or have questions about any part of the stack, leave a comment below — I'm happy to go deeper on any layer.</p>
 
     </div>
 
