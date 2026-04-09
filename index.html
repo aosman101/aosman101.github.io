@@ -16,7 +16,7 @@
   <meta name="twitter:image" content="https://aosman101.github.io/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="canonical" href="https://aosman101.github.io/" />
   <link rel="stylesheet" href="assets/style.css" />
   <script type="application/ld+json">
@@ -27,7 +27,7 @@
     "url": "https://aosman101.github.io/",
     "email": "aosman10020@gmail.com",
     "jobTitle": "Data Engineer",
-    "description": "London-based Data Engineer and Data Scientist. First Class BSc in Data Science & Computing, Birkbeck, University of London. Specialist in data pipelines, analytics engineering, and machine learning workflows.",
+    "description": "London-based Data Engineer and Data Scientist. First Class BSc in Data Science & Computing, Birkbeck, University of London.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "London",
@@ -42,24 +42,15 @@
       "https://www.linkedin.com/in/adil-osman-303185297/"
     ],
     "knowsAbout": [
-      "Data Engineering",
-      "Analytics Engineering",
-      "Data Science",
-      "Machine Learning",
-      "Apache Airflow",
-      "dbt",
-      "Apache Spark",
-      "Python",
-      "SQL",
-      "DuckDB",
-      "BigQuery",
-      "ClickHouse",
-      "Debezium",
-      "Change Data Capture"
+      "Data Engineering", "Analytics Engineering", "Data Science",
+      "Machine Learning", "Apache Airflow", "dbt", "Apache Spark",
+      "Python", "SQL", "DuckDB", "BigQuery", "ClickHouse",
+      "Debezium", "Change Data Capture"
     ]
   }
   </script>
   <style>
+    /* ── Hero ── */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -70,94 +61,143 @@
     #hero::before {
       content: '';
       position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 100%);
+      background-image: radial-gradient(circle, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 15%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 15%, transparent 100%);
       pointer-events: none;
     }
     #hero::after {
       content: '';
       position: absolute;
-      top: -120px; left: 50%; transform: translateX(-50%);
-      width: 700px; height: 450px;
-      background: radial-gradient(ellipse, rgba(74,158,255,0.09) 0%, transparent 70%);
+      top: -150px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 65%);
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 1; padding: calc(var(--nav-h) + 4rem) 0 5rem; }
+    .hero-glow {
+      position: absolute;
+      bottom: -200px; left: -200px;
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; padding: calc(var(--nav-h) + 5rem) 0 6rem; }
     .hero-status {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-tertiary); border: 1px solid var(--border); background: var(--bg-surface);
-      padding: 0.35rem 0.875rem; border-radius: 100px; margin-bottom: 2.25rem;
-      opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.1s forwards;
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-tertiary);
+      border: 1px solid var(--border);
+      background: rgba(17,17,20,0.6);
+      backdrop-filter: blur(8px);
+      padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 1s var(--ease-out) 0.1s forwards;
     }
     .hero-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulseGreen 2.5s ease-in-out infinite; }
-    @keyframes pulseGreen { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,0.4);}50%{opacity:.7;box-shadow:0 0 0 4px rgba(74,222,128,0);} }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);} }
+    @keyframes pulseGreen { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,0.4);}50%{opacity:.7;box-shadow:0 0 0 5px rgba(74,222,128,0);} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
     .hero-name {
-      font-family: var(--font-display); font-weight: 300;
-      font-size: clamp(3.75rem, 9vw, 7.5rem); line-height: 0.95; letter-spacing: -0.03em;
-      margin-bottom: 0.5rem; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(4rem, 10vw, 8.5rem); line-height: 0.92; letter-spacing: -0.03em;
+      margin-bottom: 0.75rem; opacity: 0; animation: fadeUp 1s var(--ease-out) 0.2s forwards;
     }
     .hero-name em { font-style: italic; color: var(--accent); }
     .hero-role {
-      font-family: var(--font-mono); font-size: clamp(0.7rem, 1.4vw, 0.85rem);
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary);
-      margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.3s forwards;
+      font-family: var(--font-mono); font-size: clamp(0.65rem, 1.3vw, 0.78rem);
+      font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-tertiary);
+      margin-bottom: 2.75rem; opacity: 0; animation: fadeUp 1s var(--ease-out) 0.35s forwards;
     }
+    .hero-role span { color: var(--accent); }
     .hero-statement {
-      font-size: clamp(1rem, 1.8vw, 1.2rem); font-weight: 300; color: var(--text-secondary);
-      max-width: 540px; line-height: 1.75; margin-bottom: 2.75rem;
-      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+      font-size: clamp(1.0625rem, 1.8vw, 1.25rem); font-weight: 300; color: var(--text-secondary);
+      max-width: 560px; line-height: 1.8; margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp 1s var(--ease-out) 0.45s forwards;
     }
     .hero-statement strong { color: var(--text-primary); font-weight: 500; }
-    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.5s forwards; }
+    .hero-actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s var(--ease-out) 0.55s forwards; }
     .hero-meta {
-      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
-      margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);
-      opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.65s forwards;
+      display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap;
+      margin-top: 4.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
+      opacity: 0; animation: fadeUp 1s var(--ease-out) 0.7s forwards;
     }
-    .hero-meta-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; color: var(--text-tertiary); }
-    .hero-meta-item svg { width: 13px; height: 13px; }
+    .hero-meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--text-tertiary); }
+    .hero-meta-item svg { width: 14px; height: 14px; color: var(--accent-mid); }
     .scroll-hint {
-      position: absolute; bottom: 2.5rem; right: 2.5rem;
+      position: absolute; bottom: 3rem; right: 3rem;
       display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      opacity: 0; animation: fadeUp 1s var(--ease-out) 1s forwards;
+      opacity: 0; animation: fadeUp 1s var(--ease-out) 1.1s forwards;
     }
-    .scroll-hint-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-tertiary); writing-mode: vertical-rl; }
-    .scroll-hint-line { width: 1px; height: 52px; background: linear-gradient(to bottom, var(--text-tertiary), transparent); animation: scrollDrop 2.2s ease-in-out infinite; }
+    .scroll-hint-label { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-tertiary); writing-mode: vertical-rl; }
+    .scroll-hint-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--accent-mid), transparent); animation: scrollDrop 2.5s ease-in-out infinite; }
     @keyframes scrollDrop {0%{transform:scaleY(0);transform-origin:top;opacity:1;}45%{transform:scaleY(1);transform-origin:top;opacity:1;}55%{transform:scaleY(1);transform-origin:bottom;opacity:1;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
 
-    /* About teaser */
-    .about-teaser-grid { display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: center; }
-    .about-copy p { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; }
+    /* ── Decorative line ── */
+    .hero-line {
+      position: absolute;
+      top: 20%; right: 8%;
+      width: 1px; height: 180px;
+      background: linear-gradient(to bottom, transparent, var(--accent-mid), transparent);
+      opacity: 0; animation: fadeUp 1.2s var(--ease-out) 0.9s forwards;
+    }
+    .hero-line-dot {
+      position: absolute; top: 0; left: -3px;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(201,168,76,0.4);
+      animation: driftDown 3s ease-in-out infinite;
+    }
+    @keyframes driftDown { 0%{top:0}50%{top:100%}100%{top:0} }
+
+    /* ── About teaser ── */
+    .about-teaser-grid { display: grid; grid-template-columns: 240px 1fr; gap: 5rem; align-items: center; }
+    .about-copy p { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; }
     .about-copy p:last-of-type { margin-bottom: 0; }
     .about-copy strong { color: var(--text-primary); font-weight: 500; }
 
-    /* Featured projects */
+    /* ── Featured projects ── */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 
-    /* Stack strip */
-    .stack-strip { display: flex; flex-wrap: wrap; gap: 0.625rem; margin-top: 2rem; }
+    /* ── Stack strip ── */
+    .stack-strip { display: flex; flex-wrap: wrap; gap: 0.625rem; margin-top: 2.25rem; }
     .stack-pill {
-      font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.07em;
-      color: var(--text-secondary); border: 1px solid var(--border);
-      padding: 0.4rem 0.875rem; border-radius: 100px;
-      transition: color 0.15s ease, border-color 0.15s ease;
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.07em; color: var(--text-secondary);
+      border: 1px solid var(--border); background: var(--bg-surface);
+      padding: 0.4rem 0.95rem; border-radius: 100px;
+      transition: all 0.2s ease;
     }
-    .stack-pill:hover { color: var(--accent); border-color: var(--accent-mid); }
+    .stack-pill:hover { color: var(--accent); border-color: var(--accent-mid); background: var(--accent-dim); }
 
-    /* CTA banner */
+    /* ── CTA banner ── */
     .cta-banner {
       background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
-      padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+      padding: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+      position: relative; overflow: hidden;
     }
-    .cta-banner h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.02em; }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-mid), transparent);
+    }
+    .cta-banner h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.625rem, 3vw, 2.5rem); letter-spacing: -0.02em; }
     .cta-banner h2 em { font-style: italic; color: var(--accent); }
     .cta-banner p { font-size: 0.9375rem; color: var(--text-secondary); margin-top: 0.5rem; }
 
-    .writing-teaser:hover { border-color: var(--accent-mid); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+    /* ── Writing teaser ── */
+    .writing-teaser {
+      display: block; background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.25rem; text-decoration: none;
+      transition: all 0.3s var(--ease-out); position: relative; overflow: hidden;
+    }
+    .writing-teaser::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent 60%);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .writing-teaser:hover { border-color: var(--accent-mid); transform: translateY(-4px); box-shadow: 0 20px 56px rgba(0,0,0,0.4); }
+    .writing-teaser:hover::before { opacity: 1; }
 
     @media (max-width: 900px) {
       .about-teaser-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -167,6 +207,7 @@
     @media (max-width: 640px) {
       .hero-meta { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
       .scroll-hint { display: none; }
+      .hero-line { display: none; }
     }
   </style>
 </head>
@@ -189,16 +230,20 @@
 </nav>
 
 <section id="hero" aria-label="Introduction">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-line" aria-hidden="true">
+    <div class="hero-line-dot"></div>
+  </div>
   <div class="wrap">
     <div class="hero-content">
       <div class="hero-status">
         <span class="hero-status-dot" aria-hidden="true"></span>
-        London, UK &nbsp;·&nbsp; Data Engineer &amp; Data Scientist
+        London, UK &nbsp;·&nbsp; Open to opportunities
       </div>
-      <h1 class="hero-name">Adil <em>Osman</em></h1>
-      <p class="hero-role">Data Engineer &nbsp;&nbsp;·&nbsp;&nbsp; Analytics Engineer &nbsp;&nbsp;·&nbsp;&nbsp; Data Scientist</p>
+      <h1 class="hero-name">Adil<br><em>Osman</em></h1>
+      <p class="hero-role">Data Engineer <span>&mdash;</span> Analytics Engineer <span>&mdash;</span> Data Scientist</p>
       <p class="hero-statement">
-        Welcome! I'm a London-based data professional who loves turning raw data into something meaningful. I design <strong>end-to-end data pipelines, lakehouse architectures, and analytics-ready warehouses</strong> — working across real-time ingestion, CDC, dbt, and machine learning to build systems you can genuinely rely on.
+        I design <strong>end-to-end data pipelines, lakehouse architectures, and analytics-ready warehouses</strong> that hold up under pressure. From real-time ingestion and CDC to dbt transformations and ML workflows &mdash; I build systems you can trust.
       </p>
       <div class="hero-actions">
         <a href="projects.html" class="btn-primary">
@@ -247,12 +292,12 @@
       </div>
       <div>
         <div class="section-label" aria-hidden="true">About</div>
-        <h2 class="section-title reveal" style="margin-bottom:1.5rem">Building <em>pipelines</em><br>that hold up.</h2>
+        <h2 class="section-title reveal" style="margin-bottom:1.75rem">Building <em>pipelines</em><br>that hold up.</h2>
         <div class="about-copy reveal d1">
-          <p>I'm a London-based data professional with a <strong>First Class BSc in Data Science &amp; Computing from Birkbeck, University of London</strong>. My work focuses on data engineering and analytics engineering — designing pipelines that are reliable, observable, and deliver data that downstream consumers can actually trust.</p>
+          <p>I'm a London-based data professional with a <strong>First Class BSc in Data Science &amp; Computing from Birkbeck, University of London</strong>. My work focuses on data engineering and analytics engineering &mdash; designing pipelines that are reliable, observable, and deliver data that downstream consumers can actually trust.</p>
           <p>I work with real-time ingestion, CDC architectures, local-first lakehouses, and dbt-driven warehouses across domains including finance, sport, urban transport, and environmental data.</p>
         </div>
-        <a href="about.html" class="btn-link reveal d2" style="margin-top:1.75rem">
+        <a href="about.html" class="btn-link reveal d2" style="margin-top:2rem">
           More about me
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -283,8 +328,8 @@
             <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-        <h3 class="pcard-title">TfL Real-Time Lakehouse &nbsp;<span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent);background:var(--accent-dim);padding:0.15rem 0.5rem;border-radius:100px;vertical-align:middle">⭐ 3</span></h3>
-        <p class="pcard-desc">Real-time transport data from London on a local laptop. Airflow ingests TfL arrivals and stores them in Parquet. dbt and DuckDB transform the data, Great Expectations validates it, and OpenLineage tracks data lineage — a fully observable, production-pattern lakehouse without cloud dependency.</p>
+        <h3 class="pcard-title">TfL Real-Time Lakehouse</h3>
+        <p class="pcard-desc">Real-time London transport data on your laptop. Airflow ingests TfL arrivals and stores them in Parquet. dbt and DuckDB transform the data, Great Expectations validates it, and OpenLineage tracks data lineage &mdash; a fully observable, production-pattern lakehouse without cloud dependency.</p>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Parquet</span><span class="badge">Great Expectations</span><span class="badge">OpenLineage</span>
         </div>
@@ -298,7 +343,7 @@
           </a>
         </div>
         <h3 class="pcard-title">StreamShop CDC Analytics Stack</h3>
-        <p class="pcard-desc">Production-style Change Data Capture pipeline: Postgres → Debezium → Redpanda (Kafka API) → ClickHouse. Includes a synthetic e-commerce data generator, Python CDC sink, and dbt models with tests for analytical queries.</p>
+        <p class="pcard-desc">Production-style Change Data Capture pipeline: Postgres &rarr; Debezium &rarr; Redpanda (Kafka API) &rarr; ClickHouse. Includes a synthetic e-commerce data generator, Python CDC sink, and dbt models with tests.</p>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Debezium</span><span class="badge">Redpanda</span><span class="badge">ClickHouse</span><span class="badge">dbt</span><span class="badge">PostgreSQL</span>
         </div>
@@ -335,15 +380,26 @@
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-    <a href="posts/building-a-tfl-realtime-lakehouse.html" class="writing-teaser reveal d1" style="display:block;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;text-decoration:none;transition:border-color 0.2s ease,transform 0.2s ease;position:relative;overflow:hidden">
-      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap">
-        <span style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);padding:0.18rem 0.6rem;border-radius:100px">Data Engineering</span>
-        <span style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;color:var(--text-tertiary);text-transform:uppercase">24 Mar 2026 · 8 min read</span>
-      </div>
-      <h3 style="font-family:var(--font-display);font-weight:300;font-size:1.375rem;line-height:1.3;letter-spacing:-0.015em;color:var(--text-primary);margin-bottom:0.75rem">Building a Real-Time TfL Lakehouse from Scratch</h3>
-      <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem">How I designed and built a production-style streaming data lakehouse using the TfL Unified API — and used it as a teaching tool for students at Somalis in Tech to improve their understanding of real-world pipeline design.</p>
-      <span style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:0.4rem">Read post <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem">
+      <a href="posts/building-the-tfl-travel-app-with-somalis-in-tech.html" class="writing-teaser reveal">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.125rem;flex-wrap:wrap">
+          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);padding:0.2rem 0.65rem;border-radius:100px;border:1px solid rgba(201,168,76,0.12)">Community</span>
+          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.1em;color:var(--text-tertiary);text-transform:uppercase">9 Apr 2026 · 12 min read</span>
+        </div>
+        <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.3rem;line-height:1.3;letter-spacing:-0.01em;color:var(--text-primary);margin-bottom:0.75rem">Building the TfL Travel App with Somalis in Tech</h3>
+        <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.125rem">How a community data engineering project became a real tool for London students and commuters &mdash; and what it taught me about building software that actually helps people.</p>
+        <span style="font-family:var(--font-mono);font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:0.4rem">Read post <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="posts/building-a-tfl-realtime-lakehouse.html" class="writing-teaser reveal d1">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.125rem;flex-wrap:wrap">
+          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);padding:0.2rem 0.65rem;border-radius:100px;border:1px solid rgba(201,168,76,0.12)">Data Engineering</span>
+          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.1em;color:var(--text-tertiary);text-transform:uppercase">24 Mar 2026 · 8 min read</span>
+        </div>
+        <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.3rem;line-height:1.3;letter-spacing:-0.01em;color:var(--text-primary);margin-bottom:0.75rem">Building a Real-Time TfL Lakehouse from Scratch</h3>
+        <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.125rem">How I designed a production-style streaming data lakehouse using the TfL Unified API &mdash; and used it as a teaching tool for students at Somalis in Tech.</p>
+        <span style="font-family:var(--font-mono);font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:0.4rem">Read post <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -369,7 +425,7 @@
       <span class="stack-pill" role="listitem">PyTorch</span>
       <span class="stack-pill" role="listitem">GitHub Actions</span>
     </div>
-    <a href="skills.html" class="btn-link reveal d3" style="margin-top:2rem">
+    <a href="skills.html" class="btn-link reveal d3" style="margin-top:2.25rem">
       Full stack breakdown
       <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -382,7 +438,7 @@
     <div class="cta-banner reveal">
       <div>
         <h2>Let's work <em>together</em>.</h2>
-        <p>Building reliable pipelines and analytics-ready data systems — let's connect.</p>
+        <p>Building reliable pipelines and analytics-ready data systems &mdash; let's connect.</p>
       </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap">
         <a href="contact.html" class="btn-primary">
