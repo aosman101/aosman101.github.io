@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0E2A47" />
   <title>Writing — Adil Osman</title>
   <meta name="description" content="Writing and technical notes by Adil Osman on data engineering, analytics engineering, and machine learning." />
   <meta property="og:title" content="Writing — Adil Osman" />
@@ -396,6 +397,42 @@
 
 <script src="assets/script.js"></script>
 <script>
+  // ─────────────────────────────────────────────────────────────
+  //  ADD A NEW ARTICLE
+  //  1. Duplicate posts/post-template.html → posts/<slug>.html
+  //  2. Write your article inside that new file
+  //  3. Add a new object to the POSTS array below
+  //     Fields:
+  //       slug      → filename without .html (must match the file)
+  //       title     → article title shown on the card
+  //       excerpt   → one-paragraph summary for the card
+  //       date      → YYYY-MM-DD (newest post becomes the featured one)
+  //       readTime  → estimated minutes to read (number)
+  //       tag       → display label e.g. "Data Engineering"
+  //       filterTag → slug form used by the filter buttons above
+  //  4. Keep posts/posts.json in sync so search engines see it too.
+  // ─────────────────────────────────────────────────────────────
+  const POSTS = [
+    {
+      slug: "building-the-tfl-travel-app-with-somalis-in-tech",
+      title: "Building the TfL Travel App with Somalis in Tech",
+      excerpt: "How a community data engineering project became a real tool for London students and commuters — and what it taught me about building software that actually helps people.",
+      date: "2026-04-09",
+      readTime: 12,
+      tag: "Community",
+      filterTag: "community"
+    },
+    {
+      slug: "building-a-tfl-realtime-lakehouse",
+      title: "Building a Real-Time TfL Lakehouse from Scratch",
+      excerpt: "How I designed and built a production-style streaming data lakehouse using the TfL Unified API — covering Airflow orchestration, DuckDB, dbt transformations, Great Expectations validation, and OpenLineage lineage tracking. Built as a teaching tool for Somalis in Tech, helping students and users understand real-world pipeline design.",
+      date: "2026-03-24",
+      readTime: 8,
+      tag: "Data Engineering",
+      filterTag: "data-engineering"
+    }
+  ];
+
   const featuredEl = document.getElementById('featuredPost');
   const grid = document.getElementById('articlesGrid');
   const emptyState = document.getElementById('emptyState');
@@ -487,42 +524,35 @@
     });
   });
 
-  // Load posts from JSON
-  fetch('posts/posts.json')
-    .then(function(r) { return r.json(); })
-    .then(function(posts) {
-      posts.sort(function(a, b) { return b.date.localeCompare(a.date); });
+  // Render posts from the inline POSTS array (works locally and on GitHub Pages)
+  (function renderAll() {
+    var posts = POSTS.slice().sort(function(a, b) { return b.date.localeCompare(a.date); });
 
-      // Update post count
-      postCountEl.innerHTML = '<span>' + posts.length + '</span> ' + (posts.length === 1 ? 'post' : 'posts') + ' published';
+    postCountEl.innerHTML = '<span>' + posts.length + '</span> ' + (posts.length === 1 ? 'post' : 'posts') + ' published';
 
-      // Render featured (latest) post
-      if (posts.length > 0) {
-        renderFeatured(posts[0]);
-      }
-
-      // Render remaining posts as cards
-      if (posts.length > 1) {
-        renderCards(posts.slice(1));
-      }
-
-      // Re-observe reveals for dynamically added elements
-      var newReveals = document.querySelectorAll('.reveal:not(.visible)');
-      if (newReveals.length) {
-        var obs = new IntersectionObserver(function(entries) {
-          entries.forEach(function(e) {
-            if (e.isIntersecting) {
-              e.target.classList.add('visible');
-              obs.unobserve(e.target);
-            }
-          });
-        }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
-        newReveals.forEach(function(el) { obs.observe(el); });
-      }
-    })
-    .catch(function() {
+    if (posts.length > 0) {
+      renderFeatured(posts[0]);
+    }
+    if (posts.length > 1) {
+      renderCards(posts.slice(1));
+    }
+    if (posts.length === 0) {
       emptyState.classList.add('visible');
-    });
+    }
+
+    var newReveals = document.querySelectorAll('.reveal:not(.visible)');
+    if (newReveals.length) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+      newReveals.forEach(function(el) { obs.observe(el); });
+    }
+  })();
 </script>
 </body>
 </html>
