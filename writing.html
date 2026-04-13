@@ -48,6 +48,65 @@
       background: var(--accent-dim);
     }
 
+    .writing-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin: 2rem 0 2.75rem;
+      padding: 1.35rem 1.5rem;
+      background: linear-gradient(135deg, var(--bg-elevated), var(--bg-surface));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .writing-tools::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 220px;
+      background: radial-gradient(circle at left center, var(--accent-dim), transparent 72%);
+      pointer-events: none;
+    }
+    .writing-tools-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+    }
+    .writing-tools-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+    }
+    .writing-tools-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .writing-tools-title em { font-style: italic; color: var(--accent); }
+    .writing-tools-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .writing-tools-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
     /* ── Featured post (latest) ── */
     .featured-post {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0;
@@ -268,6 +327,7 @@
       .topics-grid { grid-template-columns: 1fr; }
       .articles-grid { grid-template-columns: 1fr; }
       .writing-cta { flex-direction: column; align-items: flex-start; }
+      .writing-tools { padding: 1.2rem 1.15rem; }
     }
   </style>
 </head>
@@ -310,6 +370,21 @@
       <button class="filter-btn" data-filter="analytics-engineering">Analytics Engineering</button>
       <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
       <button class="filter-btn" data-filter="data-quality">Data Quality</button>
+    </div>
+
+    <div class="writing-tools reveal d1">
+      <div class="writing-tools-copy">
+        <div class="writing-tools-label">Publishing</div>
+        <h3 class="writing-tools-title">Add a new <em>post</em>.</h3>
+        <p class="writing-tools-desc">Open the built-in post generator to create the article file and matching feed entry for the writing page.</p>
+      </div>
+      <div class="writing-tools-actions">
+        <a href="admin/new-post.html" class="btn-primary">
+          New Post
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1v11M1 6.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="admin/new-post.html" class="btn-ghost">Open Generator</a>
+      </div>
     </div>
 
     <!-- Featured post (latest) — populated dynamically -->
