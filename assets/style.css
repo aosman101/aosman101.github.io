@@ -665,9 +665,6 @@ footer {
 @media (max-width: 900px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .pcard.wide { grid-column: span 1; }
-}
-
-@media (max-width: 900px) {
   .foot-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .metric:not(:last-child)::after { display: none; }
