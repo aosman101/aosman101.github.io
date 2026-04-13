@@ -72,6 +72,38 @@
       flex-shrink: 0;
     }
 
+    /* ── Contact form ── */
+    .contact-form { margin-top: 2.5rem; }
+    .contact-form-label {
+      font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.625rem;
+    }
+    .contact-form-label::after { content: ''; display: block; height: 1px; width: 40px; background: var(--accent-mid); }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-family: var(--font-mono); font-size: 0.62rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 0.4rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%; font-family: var(--font-body); font-size: 0.875rem;
+      color: var(--text-primary); background: var(--bg-elevated);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 0.7rem 0.9rem; outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-mid); }
+    .form-group textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+    .form-success {
+      display: none; padding: 1rem 1.25rem;
+      background: var(--accent-dim); border: 1px solid var(--accent-mid);
+      border-radius: var(--radius-sm); font-size: 0.875rem; color: var(--accent);
+      margin-top: 1rem;
+    }
+    .form-success.visible { display: block; }
+
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
     }
@@ -176,6 +208,30 @@
           </a>
 
         </div>
+
+        <!-- Contact form -->
+        <div class="contact-form reveal d1">
+          <div class="contact-form-label">Send a message</div>
+          <form id="contactForm" action="https://formspree.io/f/xpwzgvrd" method="POST">
+            <div class="form-group">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center">
+              Send Message
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+          <div class="form-success" id="formSuccess">Message sent. I'll get back to you soon.</div>
+        </div>
       </div>
 
     </div>
@@ -184,14 +240,14 @@
 
 <footer role="contentinfo">
   <div class="wrap">
-    <div class="foot-grid">
+    <div class="foot-grid" style="grid-template-columns:2fr 1fr 1fr">
       <div class="foot-brand">
         <a href="index.html" class="foot-logo">AO<em>.</em></a>
         <p class="foot-tagline">Data Engineer &amp; Analytics Engineer building reliable pipelines and analytics-ready data systems in London.</p>
-        <div class="foot-social">
-          <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 11c0 .9.4 1.4.9 1.9.4-.5.9-.9.9-1.9"/><path d="M7.5 1.5a5.5 5.5 0 00-1.92 10.65c.27.04.36-.12.36-.26v-1.1c-1.5.33-1.82-.72-1.82-.72a1.43 1.43 0 00-.6-.79c-.49-.33.04-.32.04-.32a1.14 1.14 0 01.83.56 1.16 1.16 0 001.58.45 1.15 1.15 0 01.34-.72C4.7 10.2 3.3 9.7 3.3 7.3a2.13 2.13 0 01.57-1.48 2 2 0 01.05-1.46s.46-.15 1.52.56a5.2 5.2 0 012.76 0c1.05-.71 1.51-.56 1.51-.56a2 2 0 01.06 1.46 2.13 2.13 0 01.57 1.48c0 2.4-1.46 2.92-2.85 3.07a1.3 1.3 0 01.37 1v1.49c0 .14.08.3.37.26A5.5 5.5 0 007.5 1.5z"/></svg></a>
-          <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="1" y="1" width="13" height="13" rx="2"/><path d="M4.5 6.5v4M4.5 4v.5"/><path d="M7.5 10.5v-2A1.5 1.5 0 0110.5 10v.5" stroke-linejoin="round"/></svg></a>
-          <a href="mailto:aosman10020@gmail.com" aria-label="Email"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="1" y="3" width="13" height="9" rx="1.5"/><path d="M1 5l6.5 4.5L14 5"/></svg></a>
+        <div class="foot-social" style="gap:0.5rem">
+          <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="width:28px;height:28px"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M5.5 11c0 .9.4 1.4.9 1.9.4-.5.9-.9.9-1.9"/><path d="M7.5 1.5a5.5 5.5 0 00-1.92 10.65c.27.04.36-.12.36-.26v-1.1c-1.5.33-1.82-.72-1.82-.72a1.43 1.43 0 00-.6-.79c-.49-.33.04-.32.04-.32a1.14 1.14 0 01.83.56 1.16 1.16 0 001.58.45 1.15 1.15 0 01.34-.72C4.7 10.2 3.3 9.7 3.3 7.3a2.13 2.13 0 01.57-1.48 2 2 0 01.05-1.46s.46-.15 1.52.56a5.2 5.2 0 012.76 0c1.05-.71 1.51-.56 1.51-.56a2 2 0 01.06 1.46 2.13 2.13 0 01.57 1.48c0 2.4-1.46 2.92-2.85 3.07a1.3 1.3 0 01.37 1v1.49c0 .14.08.3.37.26A5.5 5.5 0 007.5 1.5z"/></svg></a>
+          <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="width:28px;height:28px"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" style="width:12px;height:12px"><rect x="1" y="1" width="13" height="13" rx="2"/><path d="M4.5 6.5v4M4.5 4v.5"/><path d="M7.5 10.5v-2A1.5 1.5 0 0110.5 10v.5" stroke-linejoin="round"/></svg></a>
+          <a href="mailto:aosman10020@gmail.com" aria-label="Email" style="width:28px;height:28px"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" style="width:12px;height:12px"><rect x="1" y="3" width="13" height="9" rx="1.5"/><path d="M1 5l6.5 4.5L14 5"/></svg></a>
         </div>
       </div>
       <div class="foot-nav-col">
@@ -200,9 +256,9 @@
       </div>
       <div class="foot-nav-col">
         <div class="foot-col-title">Connect</div>
-        <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:aosman10020@gmail.com">Email</a>
+        <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" style="font-size:0.75rem">GitHub</a>
+        <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer" style="font-size:0.75rem">LinkedIn</a>
+        <a href="mailto:aosman10020@gmail.com" style="font-size:0.75rem">Email</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -213,5 +269,17 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var form=this,btn=form.querySelector('button[type="submit"]');
+  btn.disabled=true;btn.textContent='Sending...';
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+  .then(function(r){
+    if(r.ok){form.reset();document.getElementById('formSuccess').classList.add('visible');btn.textContent='Sent!';}
+    else{btn.textContent='Error — try again';btn.disabled=false;}
+  }).catch(function(){btn.textContent='Error — try again';btn.disabled=false;});
+});
+</script>
 </body>
 </html>

@@ -97,10 +97,18 @@
     .reactions-heading em { font-style: italic; color: var(--accent); }
     .reactions-sub { font-size: 0.875rem; color: var(--text-tertiary); margin-bottom: 2rem; line-height: 1.6; }
     .giscus, .giscus-frame { width: 100%; }
+    /* ── Reading progress bar ── */
+    .reading-progress {
+      position: fixed; top: 0; left: 0; width: 0; height: 3px;
+      background: var(--accent); z-index: 300;
+      transition: width 0.1s linear;
+    }
     @media (max-width: 640px) { .post-header { padding-top: calc(var(--nav-h) + 2.5rem); } .post-body { font-size: 1rem; } }
   </style>
 </head>
 <body>
+
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
@@ -278,5 +286,8 @@ def fetch_arrivals(stop_id: str, execution_date: str) -> None:
 </footer>
 
 <script src="../assets/script.js"></script>
+<script>
+(function(){var bar=document.getElementById('readingProgress');if(!bar)return;window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0%';},{passive:true});})();
+</script>
 </body>
 </html>
