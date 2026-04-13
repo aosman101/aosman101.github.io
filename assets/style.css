@@ -13,9 +13,9 @@
   --border-hover: #566684;
 
   --text-primary:   #D4AF37;
-  --text-secondary: #D0D4DC;
-  --text-tertiary:  #8892A5;
-  --text-muted:     #8892A5;
+  --text-secondary: #F7F9FC;
+  --text-tertiary:  #D7DEEA;
+  --text-muted:     #B7C3D6;
 
   --accent:     #D4AF37;
   --accent-dim: rgba(212,175,55,0.12);
@@ -42,7 +42,7 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   background: var(--bg);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-family: var(--font-body);
   font-weight: 300;
   line-height: 1.7;
