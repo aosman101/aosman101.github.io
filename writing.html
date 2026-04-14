@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#081A3A" />
+  <meta name="theme-color" content="#0F2B52" />
   <title>Writing — Adil Osman</title>
   <meta name="description" content="Writing and technical notes by Adil Osman on data engineering, analytics engineering, and machine learning." />
   <meta property="og:title" content="Writing — Adil Osman" />
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/style.css?v=20260413" />
+  <link rel="stylesheet" href="assets/style.css?v=20260414" />
   <style>
     /* ── Post count ── */
     .post-count {
@@ -133,20 +133,20 @@
       content: '';
       position: absolute; bottom: -60px; left: -60px;
       width: 200px; height: 200px;
-      background: radial-gradient(ellipse, rgba(212,175,55,0.07) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(var(--accent-rgb),0.07) 0%, transparent 70%);
       pointer-events: none;
     }
     .featured-badge {
       font-family: var(--font-mono); font-size: 0.58rem; font-weight: 500;
       letter-spacing: 0.16em; text-transform: uppercase;
-      color: #081A3A; background: var(--accent);
+      color: var(--bg); background: var(--accent);
       padding: 0.22rem 0.65rem; border-radius: 100px;
       display: inline-flex; align-items: center; gap: 0.4rem;
       width: fit-content; margin-bottom: 1.25rem;
     }
     .featured-badge-dot {
       width: 5px; height: 5px; border-radius: 50%;
-      background: #081A3A; opacity: 0.35;
+      background: var(--bg); opacity: 0.35;
     }
     .featured-title {
       font-family: var(--font-display); font-weight: 400;
@@ -173,7 +173,7 @@
     }
     .featured-meta-icon {
       width: 32px; height: 32px;
-      background: var(--accent-dim); border: 1px solid rgba(212,175,55,0.18);
+      background: var(--accent-dim); border: 1px solid rgba(var(--accent-rgb),0.18);
       border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
@@ -224,7 +224,7 @@
       letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--accent); background: var(--accent-dim);
       padding: 0.2rem 0.65rem; border-radius: 100px;
-      border: 1px solid rgba(212,175,55,0.18);
+      border: 1px solid rgba(var(--accent-rgb),0.18);
     }
     .article-date {
       font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500;

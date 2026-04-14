@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#081A3A" />
+  <meta name="theme-color" content="#0F2B52" />
   <title>Adil Osman — Data Engineer &amp; Analytics Engineer</title>
   <meta name="description" content="London-based Data Engineer and Analytics Engineer. Building reliable pipelines, analytics-ready data systems, and ML workflows. First Class BSc, Birkbeck." />
   <meta property="og:title" content="Adil Osman — Data Engineer &amp; Analytics Engineer" />
@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="canonical" href="https://aosman101.github.io/" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/style.css?v=20260413" />
+  <link rel="stylesheet" href="assets/style.css?v=20260414" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,7 +63,7 @@
     #hero::before {
       content: '';
       position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(212,175,55,0.06) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(var(--accent-rgb),0.06) 1px, transparent 1px);
       background-size: 32px 32px;
       mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 15%, transparent 100%);
       -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 15%, transparent 100%);
@@ -74,14 +74,14 @@
       position: absolute;
       top: -150px; right: -100px;
       width: 600px; height: 600px;
-      background: radial-gradient(ellipse, rgba(212,175,55,0.07) 0%, transparent 65%);
+      background: radial-gradient(ellipse, rgba(var(--accent-rgb),0.07) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero-glow {
       position: absolute;
       bottom: -200px; left: -200px;
       width: 500px; height: 500px;
-      background: radial-gradient(ellipse, rgba(212,175,55,0.05) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(var(--accent-rgb),0.05) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; padding: calc(var(--nav-h) + 5rem) 0 6rem; }
@@ -91,7 +91,7 @@
       letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--text-tertiary);
       border: 1px solid var(--border);
-      background: rgba(31,39,53,0.82);
+      background: rgba(var(--bg-rgb),0.75);
       backdrop-filter: blur(8px);
       padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2.5rem;
       opacity: 0; animation: fadeUp 1s var(--ease-out) 0.1s forwards;
@@ -146,7 +146,7 @@
       position: absolute; top: 0; left: -3px;
       width: 7px; height: 7px; border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 12px rgba(212,175,55,0.3);
+      box-shadow: 0 0 12px rgba(var(--accent-rgb),0.3);
       animation: driftDown 3s ease-in-out infinite;
     }
     @keyframes driftDown { 0%{top:0}50%{top:100%}100%{top:0} }
@@ -306,9 +306,10 @@
     <div class="about-teaser-grid">
       <div class="reveal">
         <div class="avatar-card">
-          <div class="avatar-inner">
+          <div class="avatar-photo-wrap">
             <div class="avatar-grid-overlay" aria-hidden="true"></div>
-            <span class="avatar-initials" aria-hidden="true">AO</span>
+            <img src="assets/profile.jpeg" alt="Adil Osman" loading="lazy" />
+            <div class="avatar-glow" aria-hidden="true"></div>
           </div>
           <div class="avatar-foot">
             <div class="avatar-name">Adil Osman</div>
@@ -409,7 +410,7 @@
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem">
       <a href="posts/building-the-tfl-travel-app-with-somalis-in-tech.html" class="writing-teaser reveal">
         <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.125rem;flex-wrap:wrap">
-          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);padding:0.2rem 0.65rem;border-radius:100px;border:1px solid rgba(212,175,55,0.18)">Community</span>
+          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);padding:0.2rem 0.65rem;border-radius:100px;border:1px solid rgba(var(--accent-rgb),0.18)">Community</span>
           <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.1em;color:var(--text-tertiary);text-transform:uppercase">9 Apr 2026 · 12 min read</span>
         </div>
         <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.3rem;line-height:1.3;letter-spacing:-0.01em;color:var(--text-primary);margin-bottom:0.75rem">Building the TfL Travel App with Somalis in Tech</h3>
@@ -418,7 +419,7 @@
       </a>
       <a href="posts/building-a-tfl-realtime-lakehouse.html" class="writing-teaser reveal d1">
         <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.125rem;flex-wrap:wrap">
-          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);padding:0.2rem 0.65rem;border-radius:100px;border:1px solid rgba(212,175,55,0.18)">Data Engineering</span>
+          <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);padding:0.2rem 0.65rem;border-radius:100px;border:1px solid rgba(var(--accent-rgb),0.18)">Data Engineering</span>
           <span style="font-family:var(--font-mono);font-size:0.6rem;font-weight:500;letter-spacing:0.1em;color:var(--text-tertiary);text-transform:uppercase">24 Mar 2026 · 8 min read</span>
         </div>
         <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.3rem;line-height:1.3;letter-spacing:-0.01em;color:var(--text-primary);margin-bottom:0.75rem">Building a Real-Time TfL Lakehouse from Scratch</h3>

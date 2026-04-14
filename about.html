@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#081A3A" />
+  <meta name="theme-color" content="#0F2B52" />
   <title>About — Adil Osman</title>
   <meta name="description" content="About Adil Osman — London-based Data Engineer and Data Scientist. First Class BSc, Birkbeck, University of London." />
   <meta property="og:title" content="About — Adil Osman" />
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/style.css?v=20260413" />
+  <link rel="stylesheet" href="assets/style.css?v=20260414" />
   <style>
     .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: start; }
     .about-copy p { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.1rem; }
@@ -54,14 +54,14 @@
     }
     .avatar-photo-wrap .avatar-grid-overlay {
       position: absolute; inset: 0; pointer-events: none;
-      background-image: radial-gradient(circle, rgba(212,175,55,0.10) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(var(--accent-rgb),0.10) 1px, transparent 1px);
       background-size: 22px 22px;
       z-index: 1;
     }
     .avatar-photo-wrap .avatar-glow {
       position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
       width: 160px; height: 80px;
-      background: radial-gradient(ellipse, rgba(212,175,55,0.15) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(var(--accent-rgb),0.15) 0%, transparent 70%);
       pointer-events: none; z-index: 0;
     }
     .avatar-foot { margin-top: 1rem; }
