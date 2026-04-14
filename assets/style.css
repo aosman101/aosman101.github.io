@@ -5,12 +5,14 @@
 
 /* ── Design tokens ── */
 :root {
-  --bg:           #081A3A;
-  --bg-surface:   #10244A;
-  --bg-elevated:  #1F2735;
-  --bg-deep:      #050F24;
-  --border:       #3A4660;
-  --border-hover: #566684;
+  --bg:           #0F2B52;
+  --bg-surface:   #183660;
+  --bg-elevated:  #21426E;
+  --bg-deep:      #0A1F40;
+  --bg-rgb:       15, 43, 82;
+  --accent-rgb:   212, 175, 55;
+  --border:       #40587A;
+  --border-hover: #5E7A9A;
 
   --text-primary:   #D4AF37;
   --text-secondary: #F7F9FC;
@@ -181,7 +183,7 @@ section { padding: 8rem 0; }
   opacity: 0;
   transition: opacity 0.25s ease;
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,175,55,0.24); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(var(--accent-rgb),0.24); }
 .btn-primary:hover::before { opacity: 1; }
 
 .btn-ghost {
