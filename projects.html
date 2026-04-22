@@ -61,12 +61,51 @@
     .github-cta-title { font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); }
     .github-cta-sub { font-size: 0.8125rem; color: var(--text-secondary); margin-top: 0.2rem; }
 
+    /* Project card image gallery */
+    .pcard-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin: 0 0 1.25rem;
+    }
+    .pcard-gallery a {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--bg-elevated, #0F2B52);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .pcard-gallery a:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .pcard-gallery img {
+      display: block;
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .pcard-gallery figcaption {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      padding: 0.4rem 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+
     @media (max-width: 900px) {
       .projects-grid { grid-template-columns: 1fr; }
       .other-grid { grid-template-columns: repeat(2, 1fr); }
+      .pcard-gallery img { height: 140px; }
     }
     @media (max-width: 640px) {
       .other-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .pcard-gallery { grid-template-columns: 1fr; }
+      .pcard-gallery img { height: 180px; }
     }
   </style>
 </head>
@@ -167,6 +206,26 @@
         </div>
         <h3 class="pcard-title">F1 RaceOps Analytics Warehouse</h3>
         <p class="pcard-desc">Formula 1 analytics warehouse built on an Ergast-compatible schema, converting raw race timing data into KPIs for pit stop performance, strategy effectiveness, and reliability. Dimensional modelling with dbt and full CI via GitHub Actions.</p>
+        <div class="pcard-gallery" role="list" aria-label="F1 RaceOps sample outputs">
+          <a href="assets/projects/f1-raceops/driver-scorecard.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size driver scorecard">
+            <figure>
+              <img src="assets/projects/f1-raceops/driver-scorecard.png" alt="F1 driver scorecard — per-driver KPIs including points, podiums, wins, and average finishing position." loading="lazy" decoding="async" />
+              <figcaption>Driver Scorecard</figcaption>
+            </figure>
+          </a>
+          <a href="assets/projects/f1-raceops/constructor-points-trend.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size constructor points trend">
+            <figure>
+              <img src="assets/projects/f1-raceops/constructor-points-trend.png" alt="F1 constructor points trend — seasonal points accumulation by constructor." loading="lazy" decoding="async" />
+              <figcaption>Constructor Points Trend</figcaption>
+            </figure>
+          </a>
+          <a href="assets/projects/f1-raceops/pit-speed.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size pit stop speed analysis">
+            <figure>
+              <img src="assets/projects/f1-raceops/pit-speed.png" alt="F1 pit stop speed — distribution and rankings of pit stop durations." loading="lazy" decoding="async" />
+              <figcaption>Pit Stop Speed</figcaption>
+            </figure>
+          </a>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">dbt</span><span class="badge">SQL</span><span class="badge">GitHub Actions</span><span class="badge">Ergast API</span>
         </div>
