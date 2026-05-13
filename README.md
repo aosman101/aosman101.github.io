@@ -7,7 +7,7 @@
 [![Interactivity](https://img.shields.io/badge/interactivity-Vanilla%20JavaScript-F7DF1E?logo=javascript&logoColor=000)](assets/script.js)
 [![SEO](https://img.shields.io/badge/SEO-meta%20%2B%20sitemap-0A7C86)](sitemap.xml)
 
-This repository hosts the live source for [aosman101.github.io](https://aosman101.github.io/), which is a static GitHub Pages portfolio for Adil Osman, a Data Engineer, Analytics Engineer, and Data Scientist based in London. The site showcases project work, technical writing, background information, tech stack, and contact details, all presented in a lightweight multi-page format without any framework overhead.
+This repository hosts the live source for [aosman101.github.io](https://aosman101.github.io/), a static GitHub Pages portfolio for Adil Osman, a Data Engineer and Analytics Engineer based in London. The site showcases project work, technical writing, background information, tech stack, and contact details, all presented in a lightweight multi-page format without any framework overhead.
 
 ## What the Site Covers
 
