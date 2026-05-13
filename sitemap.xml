@@ -2,42 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://aosman101.github.io/index.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <loc>https://aosman101.github.io/</loc>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://aosman101.github.io/projects.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://aosman101.github.io/about.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://aosman101.github.io/skills.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://aosman101.github.io/writing.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://aosman101.github.io/contact.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://aosman101.github.io/posts/building-the-tfl-travel-app-with-somalis-in-tech.html</loc>
     <lastmod>2026-04-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -45,7 +52,7 @@
 
   <url>
     <loc>https://aosman101.github.io/posts/building-a-tfl-realtime-lakehouse.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="canonical" href="https://aosman101.github.io/projects.html" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/style.css?v=20260414" />
   <style>
@@ -132,7 +133,7 @@
 <div class="page-hero" style="background:var(--bg-surface);border-bottom:1px solid var(--border);">
   <div class="wrap">
     <div class="page-hero-label">Projects</div>
-    <h1 class="page-hero-title">Projects that <em>ship</em>.</h1>
+    <h1 class="page-hero-title" id="projects-heading">Projects that <em>ship</em>.</h1>
     <p class="page-hero-sub">Real systems built to production standards — pipelines, warehouses, ML workflows, and data science work across finance, sport, and urban data.</p>
   </div>
 </div>
@@ -163,8 +164,36 @@
         </div>
         <h3 class="pcard-title">TfL Real-Time Lakehouse</h3>
         <p class="pcard-desc">Real-time London transport data on your laptop. Airflow ingests TfL bus and tube arrivals and stores them in Parquet. dbt and DuckDB handle transformation, Great Expectations validates every batch, and OpenLineage provides full data lineage tracking — a completely observable, production-pattern lakehouse with zero cloud dependency.</p>
+        <div class="case-grid" aria-label="TfL Real-Time Lakehouse case study summary">
+          <div class="case-item">
+            <div class="case-label">Problem</div>
+            <div class="case-text">Live TfL API data is high-frequency, inconsistent, and hard to trust without repeatable validation.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Build</div>
+            <div class="case-text">Airflow ingestion, Parquet lake storage, DuckDB/dbt modelling, Great Expectations checks, and OpenLineage tracking.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Result</div>
+            <div class="case-text">A local-first lakehouse pattern that demonstrates production data engineering without cloud spend.</div>
+          </div>
+        </div>
+        <div class="project-architecture" aria-label="TfL lakehouse architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">TfL API</div>
+            <div class="arch-node">Airflow DAGs</div>
+            <div class="arch-node">Parquet Lake</div>
+            <div class="arch-node">dbt + DuckDB</div>
+            <div class="arch-node">Quality + Lineage</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Parquet</span><span class="badge">Great Expectations</span><span class="badge">OpenLineage</span><span class="badge">TfL API</span>
+        </div>
+        <div class="case-links">
+          <a href="posts/building-a-tfl-realtime-lakehouse.html" class="btn-link">Read case study <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -178,8 +207,35 @@
         </div>
         <h3 class="pcard-title">StreamShop CDC Analytics Stack</h3>
         <p class="pcard-desc">Production-style Change Data Capture pipeline: Postgres → Debezium → Redpanda (Kafka-compatible API) → ClickHouse. Includes a synthetic e-commerce event generator, Python CDC sink, and dbt models with tests for analytical queries on captured changes.</p>
+        <div class="case-grid" aria-label="StreamShop CDC case study summary">
+          <div class="case-item">
+            <div class="case-label">Problem</div>
+            <div class="case-text">Analytical stores need fresh operational changes without brittle batch exports or manual reloads.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Build</div>
+            <div class="case-text">A CDC chain from Postgres WAL events through Debezium and Redpanda into ClickHouse marts.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Result</div>
+            <div class="case-text">A reproducible streaming analytics stack with generated events, sink code, dbt tests, and query-ready facts.</div>
+          </div>
+        </div>
+        <div class="project-architecture" aria-label="StreamShop CDC architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">Postgres</div>
+            <div class="arch-node">Debezium</div>
+            <div class="arch-node">Redpanda</div>
+            <div class="arch-node">Python Sink</div>
+            <div class="arch-node">ClickHouse + dbt</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Debezium</span><span class="badge">Redpanda</span><span class="badge">ClickHouse</span><span class="badge">dbt</span><span class="badge">PostgreSQL</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/streamshop-cdc-analytics" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -193,8 +249,35 @@
         </div>
         <h3 class="pcard-title">London Air Quality &amp; Weather Lakehouse</h3>
         <p class="pcard-desc">Local-first lakehouse ingesting OpenAQ air quality and Open-Meteo weather data. Airflow orchestrates ingestion, raw JSON lands in MinIO (S3-compatible), and dbt applies incremental models with full validation in PostgreSQL.</p>
+        <div class="case-grid" aria-label="London air quality lakehouse case study summary">
+          <div class="case-item">
+            <div class="case-label">Problem</div>
+            <div class="case-text">Environmental analysis needs consistent station, pollutant, and weather data from separate APIs.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Build</div>
+            <div class="case-text">Airflow ingestion into S3-compatible MinIO, PostgreSQL serving tables, and incremental dbt models.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Result</div>
+            <div class="case-text">A portable lakehouse that joins air quality readings with weather context for repeatable analysis.</div>
+          </div>
+        </div>
+        <div class="project-architecture" aria-label="London air quality lakehouse architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">OpenAQ</div>
+            <div class="arch-node">Open-Meteo</div>
+            <div class="arch-node">Airflow</div>
+            <div class="arch-node">MinIO + Postgres</div>
+            <div class="arch-node">dbt Marts</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">PostgreSQL</span><span class="badge">MinIO (S3)</span><span class="badge">OpenAQ API</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/london-air-quality-weather-lakehouse" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -273,8 +356,35 @@
         </div>
         <h3 class="pcard-title">Deep Stock Insights — Financial Prediction Platform</h3>
         <p class="pcard-desc">Full-stack platform combining N-HiTS neural forecasting, LightGBM, XGBoost, and Monte Carlo simulations to predict prices across <strong style="color:var(--text-primary)">53 assets</strong> (crypto, equities, commodities). Features live WebSocket price streaming, 18+ technical indicators, walk-forward backtesting, AI-powered buy/sell signal ranking, and an interactive React dashboard with JWT authentication.</p>
+        <div class="case-grid" aria-label="Deep Stock Insights case study summary">
+          <div class="case-item">
+            <div class="case-label">Problem</div>
+            <div class="case-text">Financial ML projects often overfit in notebooks and fail to prove how predictions would behave over time.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Build</div>
+            <div class="case-text">A full-stack forecasting system with streaming prices, feature pipelines, ensemble models, backtesting, and a React UI.</div>
+          </div>
+          <div class="case-item">
+            <div class="case-label">Result</div>
+            <div class="case-text">A production-style dissertation system showing modelling, serving, evaluation, and user-facing delivery together.</div>
+          </div>
+        </div>
+        <div class="project-architecture" aria-label="Deep Stock Insights architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">Market Data</div>
+            <div class="arch-node">Feature Pipeline</div>
+            <div class="arch-node">Forecast Models</div>
+            <div class="arch-node">FastAPI</div>
+            <div class="arch-node">React Dashboard</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">FastAPI</span><span class="badge">React</span><span class="badge">TensorFlow / Keras</span><span class="badge">LightGBM</span><span class="badge">XGBoost</span><span class="badge">Scikit-learn</span><span class="badge">Tailwind CSS</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/deep-stocks-insights" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -447,7 +557,7 @@
         </div>
         <div>
           <div class="github-cta-title">All source code on GitHub</div>
-          <div class="github-cta-sub">18 public repositories · github.com/aosman101</div>
+          <div class="github-cta-sub">Public repositories · github.com/aosman101</div>
         </div>
       </div>
       <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="white-space:nowrap">
