@@ -72,6 +72,103 @@ if (filterBtns.length && pcards.length) {
   });
 }
 
+/* ── Gallery lightbox ── */
+(function initLightbox() {
+  const galleryLinks = document.querySelectorAll('.pcard-gallery a');
+  if (!galleryLinks.length) return;
+
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  let lightbox, imgEl, captionEl, closeBtn, lastFocused;
+
+  function makeCloseIcon() {
+    const svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('width', '18');
+    svg.setAttribute('height', '18');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    [['18','6','6','18'], ['6','6','18','18']].forEach(([x1,y1,x2,y2]) => {
+      const line = document.createElementNS(SVG_NS, 'line');
+      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+      svg.append(line);
+    });
+    return svg;
+  }
+
+  function build() {
+    lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-label', 'Image preview');
+
+    const figure = document.createElement('div');
+    figure.className = 'lightbox-figure';
+
+    closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'lightbox-close';
+    closeBtn.setAttribute('aria-label', 'Close image preview');
+    closeBtn.append(makeCloseIcon());
+
+    imgEl = document.createElement('img');
+    imgEl.className = 'lightbox-img';
+    imgEl.alt = '';
+
+    captionEl = document.createElement('div');
+    captionEl.className = 'lightbox-caption';
+
+    figure.append(closeBtn, imgEl, captionEl);
+    lightbox.append(figure);
+    document.body.append(lightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) close();
+    });
+    closeBtn.addEventListener('click', close);
+  }
+
+  function open(href, alt, caption) {
+    if (!lightbox) build();
+    imgEl.src = href;
+    imgEl.alt = alt || '';
+    captionEl.textContent = caption || '';
+    lastFocused = document.activeElement;
+    requestAnimationFrame(() => lightbox.classList.add('open'));
+    document.body.classList.add('menu-open');
+    document.addEventListener('keydown', onKey);
+    closeBtn.focus();
+  }
+
+  function close() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    document.removeEventListener('keydown', onKey);
+    setTimeout(() => { imgEl.src = ''; }, 250);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape') close();
+  }
+
+  galleryLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      const img = link.querySelector('img');
+      const cap = link.querySelector('figcaption');
+      open(link.getAttribute('href'), img && img.alt, cap && cap.textContent);
+    });
+  });
+})();
+
 /* ── Active nav link (highlight current page) ── */
 (function setActiveNav() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
