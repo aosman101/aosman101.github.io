@@ -1,27 +1,27 @@
 <svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1200" fill="#0F2B52"/>
+  <rect width="1200" height="1200" fill="#0B1626"/>
   <g transform="translate(0 285)">
-    <rect width="1200" height="630" fill="#0F2B52"/>
-    <rect x="56" y="56" width="1088" height="518" rx="28" fill="#183660" stroke="#40587A" stroke-width="2"/>
-    <path d="M56 172H1144" stroke="#40587A" stroke-width="1"/>
-    <path d="M150 56V574M1050 56V574" stroke="#40587A" stroke-width="1" opacity="0.55"/>
-    <g opacity="0.24">
-      <path d="M0 315H1200" stroke="#D4AF37"/>
-      <path d="M600 0V630" stroke="#D4AF37"/>
-      <circle cx="600" cy="315" r="226" stroke="#D4AF37"/>
-      <circle cx="600" cy="315" r="150" stroke="#D4AF37"/>
+    <rect width="1200" height="630" fill="#0B1626"/>
+    <rect x="56" y="56" width="1088" height="518" rx="28" fill="#111F33" stroke="#2E405A" stroke-width="2"/>
+    <path d="M56 172H1144" stroke="#2E405A" stroke-width="1"/>
+    <path d="M150 56V574M1050 56V574" stroke="#2E405A" stroke-width="1" opacity="0.55"/>
+    <g opacity="0.22">
+      <path d="M0 315H1200" stroke="#38BDF8"/>
+      <path d="M600 0V630" stroke="#38BDF8"/>
+      <circle cx="600" cy="315" r="226" stroke="#38BDF8"/>
+      <circle cx="600" cy="315" r="150" stroke="#38BDF8"/>
     </g>
-    <circle cx="1000" cy="138" r="190" fill="#D4AF37" opacity="0.06"/>
-    <circle cx="184" cy="510" r="160" fill="#D4AF37" opacity="0.08"/>
-    <text x="96" y="124" fill="#D4AF37" font-family="IBM Plex Mono, Menlo, monospace" font-size="24" font-weight="500" letter-spacing="5">ADIL OSMAN</text>
-    <text x="96" y="270" fill="#D4AF37" font-family="Georgia, Times New Roman, serif" font-size="76" font-weight="400">Data Engineer &amp;</text>
-    <text x="96" y="354" fill="#F7F9FC" font-family="Georgia, Times New Roman, serif" font-size="70" font-style="italic" font-weight="400">Analytics Engineer</text>
-    <text x="100" y="432" fill="#D7DEEA" font-family="Outfit, Arial, sans-serif" font-size="26" font-weight="300">Reliable pipelines, lakehouse systems, dbt warehouses,</text>
-    <text x="100" y="468" fill="#D7DEEA" font-family="Outfit, Arial, sans-serif" font-size="26" font-weight="300">and ML workflows.</text>
+    <circle cx="1000" cy="138" r="190" fill="#D6B54A" opacity="0.06"/>
+    <circle cx="184" cy="510" r="160" fill="#38BDF8" opacity="0.08"/>
+    <text x="96" y="124" fill="#D6B54A" font-family="IBM Plex Mono, Menlo, monospace" font-size="24" font-weight="500" letter-spacing="5">ADIL OSMAN</text>
+    <text x="96" y="270" fill="#F8FAFC" font-family="Georgia, Times New Roman, serif" font-size="76" font-weight="400">Data Engineer &amp;</text>
+    <text x="96" y="354" fill="#F8FAFC" font-family="Georgia, Times New Roman, serif" font-size="70" font-style="italic" font-weight="400">Analytics Engineer</text>
+    <text x="100" y="432" fill="#AAB8C8" font-family="Outfit, Arial, sans-serif" font-size="26" font-weight="300">Reliable pipelines, lakehouse systems, dbt warehouses,</text>
+    <text x="100" y="468" fill="#AAB8C8" font-family="Outfit, Arial, sans-serif" font-size="26" font-weight="300">and ML workflows.</text>
     <g transform="translate(96 512)">
-      <rect width="176" height="44" rx="22" fill="#D4AF37"/>
-      <text x="22" y="29" fill="#0F2B52" font-family="IBM Plex Mono, Menlo, monospace" font-size="16" font-weight="600" letter-spacing="2">LONDON, UK</text>
+      <rect width="176" height="44" rx="22" fill="#D6B54A"/>
+      <text x="22" y="29" fill="#0B1626" font-family="IBM Plex Mono, Menlo, monospace" font-size="16" font-weight="600" letter-spacing="2">LONDON, UK</text>
     </g>
-    <text x="830" y="526" fill="#D7DEEA" font-family="IBM Plex Mono, Menlo, monospace" font-size="18" font-weight="500" letter-spacing="2">aosman101.github.io</text>
+    <text x="830" y="526" fill="#AAB8C8" font-family="IBM Plex Mono, Menlo, monospace" font-size="18" font-weight="500" letter-spacing="2">aosman101.github.io</text>
   </g>
 </svg>

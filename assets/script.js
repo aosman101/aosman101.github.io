@@ -78,6 +78,14 @@ if (filterBtns.length && pcards.length) {
   if (!galleryLinks.length) return;
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
+  const focusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(',');
   let lightbox, imgEl, captionEl, closeBtn, lastFocused;
 
   function makeCloseIcon() {
@@ -105,7 +113,7 @@ if (filterBtns.length && pcards.length) {
     lightbox.className = 'lightbox';
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-modal', 'true');
-    lightbox.setAttribute('aria-label', 'Image preview');
+    lightbox.setAttribute('aria-labelledby', 'lightbox-caption');
 
     const figure = document.createElement('div');
     figure.className = 'lightbox-figure';
@@ -122,6 +130,7 @@ if (filterBtns.length && pcards.length) {
 
     captionEl = document.createElement('div');
     captionEl.className = 'lightbox-caption';
+    captionEl.id = 'lightbox-caption';
 
     figure.append(closeBtn, imgEl, captionEl);
     lightbox.append(figure);
@@ -133,11 +142,16 @@ if (filterBtns.length && pcards.length) {
     closeBtn.addEventListener('click', close);
   }
 
+  function getFocusable() {
+    return Array.from(lightbox.querySelectorAll(focusableSelector))
+      .filter(el => el.offsetParent !== null || el === document.activeElement);
+  }
+
   function open(href, alt, caption) {
     if (!lightbox) build();
     imgEl.src = href;
     imgEl.alt = alt || '';
-    captionEl.textContent = caption || '';
+    captionEl.textContent = caption || alt || 'Image preview';
     lastFocused = document.activeElement;
     requestAnimationFrame(() => lightbox.classList.add('open'));
     document.body.classList.add('menu-open');
@@ -155,7 +169,30 @@ if (filterBtns.length && pcards.length) {
   }
 
   function onKey(e) {
-    if (e.key === 'Escape') close();
+    if (e.key === 'Escape') {
+      close();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+
+    const focusable = getFocusable();
+    if (!focusable.length) {
+      e.preventDefault();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (!lightbox.contains(document.activeElement)) {
+      e.preventDefault();
+      first.focus();
+    } else if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   }
 
   galleryLinks.forEach(link => {
