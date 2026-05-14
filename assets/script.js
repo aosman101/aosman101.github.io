@@ -209,7 +209,7 @@ if (filterBtns.length && pcards.length) {
 /* ── Active nav link (highlight current page) ── */
 (function setActiveNav() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  document.querySelectorAll('#nav a').forEach(a => {
     const href = a.getAttribute('href');
     if (href === page || (page === 'index.html' && href === 'index.html')) {
       a.classList.add('active');

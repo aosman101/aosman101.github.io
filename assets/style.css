@@ -850,9 +850,12 @@ footer {
   .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .metrics-bar { padding: 2.5rem 0; }
   .hero-extra { display: none; }
+  .pcard { padding: 1.5rem; }
   .pcard-top { gap: 0.75rem; }
   .pcard-tag {
     max-width: calc(100% - 2rem);
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
     border-radius: var(--radius-md);
     white-space: normal;
   }
