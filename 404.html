@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B1626" />
+  <title>Page Not Found — Adil Osman</title>
+  <meta name="description" content="The page you were looking for doesn't exist." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/style.css?v=20260610" />
+  <style>
+    .nf-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .nf-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(var(--accent-rgb),0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 15%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 15%, transparent 100%);
+      pointer-events: none;
+    }
+    .nf-content { position: relative; z-index: 1; padding: calc(var(--nav-h) + 4rem) 0; text-align: center; width: 100%; }
+    .nf-code {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(6rem, 20vw, 12rem);
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.1s forwards;
+    }
+    .nf-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin: 1.5rem 0 1rem;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.25s forwards;
+    }
+    .nf-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.35s forwards;
+    }
+    .nf-title em { font-style: italic; color: var(--accent); }
+    .nf-sub {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 440px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.45s forwards;
+    }
+    .nf-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.25rem; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.55s forwards;
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="/projects.html">Work</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/skills.html">Stack</a></li>
+      <li><a href="/writing.html">Writing</a></li>
+      <li><a href="/contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main id="main">
+<section class="nf-hero" aria-labelledby="nf-heading">
+  <div class="wrap">
+    <div class="nf-content">
+      <div class="nf-code" aria-hidden="true">404</div>
+      <div class="nf-label">Page not found</div>
+      <h1 class="nf-title" id="nf-heading">This pipeline ran <em>dry</em>.</h1>
+      <p class="nf-sub">The page you're looking for doesn't exist, has moved, or never made it through quality checks. Let's get you back on track.</p>
+      <div class="nf-actions">
+        <a href="/index.html" class="btn-primary">
+          Back to Home
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/projects.html" class="btn-ghost">View Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="/assets/script.js"></script>
+</body>
+</html>
