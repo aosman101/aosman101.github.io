@@ -206,6 +206,78 @@ if (filterBtns.length && pcards.length) {
   });
 })();
 
+/* ── Scroll progress bar ── */
+(function initScrollProgress() {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.append(bar);
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+
+/* ── Back to top ── */
+(function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 16 16');
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('aria-hidden', 'true');
+  const path = document.createElementNS(SVG_NS, 'path');
+  path.setAttribute('d', 'M8 13V3M3 8l5-5 5 5');
+  path.setAttribute('stroke', 'currentColor');
+  path.setAttribute('stroke-width', '1.6');
+  path.setAttribute('stroke-linecap', 'round');
+  path.setAttribute('stroke-linejoin', 'round');
+  svg.append(path);
+  btn.append(svg);
+  document.body.append(btn);
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  const toggle = () => btn.classList.toggle('visible', window.scrollY > 600);
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+})();
+
+/* ── Metric count-up ── */
+(function initCountUp() {
+  const nums = document.querySelectorAll('.metric-num');
+  if (!nums.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const animate = (el) => {
+    const match = el.textContent.trim().match(/^(\d+)(.*)$/);
+    if (!match) return;
+    const target = parseInt(match[1], 10);
+    if (target < 2) return;
+    const suffix = match[2];
+    const duration = 1200;
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const cObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animate(e.target);
+        cObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  nums.forEach(el => cObs.observe(el));
+})();
+
 /* ── Active nav link (highlight current page) ── */
 (function setActiveNav() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
