@@ -687,5 +687,53 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script>
+(function () {
+  var body = document.getElementById('consoleBody');
+  if (!body) return;
+
+  var LINES = [
+    [['c-prompt', '$'], ['c-task', 'airflow dags trigger tfl_realtime_lakehouse']],
+    [['c-stage', '[ingest]'], ['c-task', 'tfl_arrivals · unified API'], ['c-ok', '✓ 4,182 events']],
+    [['c-stage', '[store]'], ['c-task', 'parquet · landing zone'], ['c-ok', '✓ 12 files']],
+    [['c-stage', '[transform]'], ['c-task', 'dbt run · staging → marts'], ['c-ok', '✓ 9 models']],
+    [['c-stage', '[validate]'], ['c-task', 'great_expectations · suite'], ['c-ok', '✓ 24/24 checks']],
+    [['c-stage', '[lineage]'], ['c-task', 'openlineage · emit'], ['c-ok', '✓ tracked']],
+    [['c-ok', '✔'], ['c-task', 'DAG succeeded · 20.4s'], ['c-note', 'data ready to serve']]
+  ];
+
+  var els = LINES.map(function (parts, i) {
+    var line = document.createElement('div');
+    line.className = 'console-line' + (i === LINES.length - 1 ? ' summary' : '');
+    parts.forEach(function (p) {
+      var s = document.createElement('span');
+      s.className = p[0];
+      s.textContent = p[1];
+      line.appendChild(s);
+    });
+    if (i === LINES.length - 1) {
+      var cur = document.createElement('span');
+      cur.className = 'console-cursor';
+      line.appendChild(cur);
+    }
+    body.appendChild(line);
+    return line;
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(function (l) { l.classList.add('on'); });
+    return;
+  }
+
+  function run() {
+    els.forEach(function (l) { l.classList.remove('on'); });
+    els.forEach(function (l, i) {
+      setTimeout(function () { l.classList.add('on'); }, 900 + i * 620);
+    });
+    setTimeout(run, 900 + els.length * 620 + 7000);
+  }
+  run();
+})();
+</script>
 </body>
 </html>
