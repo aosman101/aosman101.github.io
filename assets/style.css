@@ -28,6 +28,10 @@
   --accent-cool-dim: rgba(122,178,211,0.10);
   --accent-cool-mid: rgba(122,178,211,0.28);
 
+  --error:     #FCA5A5;
+  --error-dim: rgba(248,113,113,0.10);
+  --error-mid: rgba(248,113,113,0.32);
+
   --font-display: 'Instrument Serif', Georgia, serif;
   --font-body:    'Outfit', system-ui, -apple-system, sans-serif;
   --font-mono:    'IBM Plex Mono', 'Fira Code', monospace;

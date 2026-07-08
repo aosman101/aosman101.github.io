@@ -303,10 +303,11 @@ ORDER BY 1</code></pre>
   2. Edit the <title>, <meta description>, og:title, og:description
   3. Update the post-tags, post-title, post-subtitle, date, read time
   4. Write your content inside the <div class="post-body"> section
-  5. In writing.html, duplicate an article-card block and update:
-     - href  → "posts/my-new-post.html"
-     - data-tags → e.g. "data-engineering" or "machine-learning"
-     - article-date, article-tag, article-title, article-excerpt
+  5. Add an entry for the post to posts/posts.json:
+     - slug      → "my-new-post" (matches the filename, no .html)
+     - title, excerpt, date (YYYY-MM-DD), readTime (minutes)
+     - tag       → display label, e.g. "Data Engineering"
+     - filterTag → kebab-case, e.g. "data-engineering"
   6. Save and upload to GitHub — done!
 
   ================================================================

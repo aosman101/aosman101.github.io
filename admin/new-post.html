@@ -144,8 +144,8 @@
 
     <div class="form-group">
       <label class="form-label" for="postExcerpt">Excerpt</label>
-      <input class="form-input" type="text" id="postExcerpt" placeholder="A short summary (1-2 sentences) shown on the writing page" required />
-      <div class="form-hint">This appears on the card on the writing page.</div>
+      <input class="form-input" type="text" id="postExcerpt" placeholder="A short summary (1-2 sentences) shown in the post feed" required />
+      <div class="form-hint">This appears in the post's meta description and in <code>posts/posts.json</code>.</div>
     </div>
 
     <div class="form-group">
@@ -175,8 +175,7 @@
       <h3>Steps to publish</h3>
       <ol>
         <li>Copy the <strong>Post HTML</strong> below and save it as <code>posts/<span id="slugPreview"></span>.html</code></li>
-        <li>Copy the <strong>JSON Entry</strong> and add it to the <code>POSTS</code> array near the top of the <code>&lt;script&gt;</code> block in <code>writing.html</code></li>
-        <li>Also add the same entry to <code>posts/posts.json</code> (keeps the feed in sync for SEO)</li>
+        <li>Copy the <strong>JSON Entry</strong> and add it to <code>posts/posts.json</code> (keeps the post feed and SEO in sync)</li>
         <li>Push to GitHub — done!</li>
       </ol>
     </div>
