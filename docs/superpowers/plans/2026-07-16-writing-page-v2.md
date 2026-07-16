@@ -729,7 +729,7 @@ Update `<lastmod>` to `2026-07-16` for every page modified in Task 2 that appear
 
 - [ ] **Step 2: Verify well-formed XML**
 
-Run: `python3 -c "import xml.dom.minidom; xml.dom.minidom.parse('sitemap.xml'); print('OK')" && grep -c '<loc>' sitemap.xml`
+Run: `xmllint --noout sitemap.xml && echo OK && grep -c '<loc>' sitemap.xml`
 Expected: `OK` and `8`.
 
 - [ ] **Step 3: Commit**
