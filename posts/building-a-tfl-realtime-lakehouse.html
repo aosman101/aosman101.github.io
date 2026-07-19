@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="../assets/style.css?v=20260708" />
+  <link rel="stylesheet" href="../assets/style.css?v=20260719" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -158,6 +158,10 @@
       <li><a href="../writing.html">Writing</a></li>
       <li><a href="../contact.html" class="nav-cta">Contact</a></li>
     </ul>
+    <button class="nav-search" aria-label="Search site (Ctrl+K or Cmd+K)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+      <span class="nav-search-kbd">⌘K</span>
+    </button>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -326,7 +330,7 @@ def fetch_arrivals(stop_id: str, execution_date: str) -> None:
   </div>
 </footer>
 
-<script src="../assets/script.js"></script>
+<script src="../assets/script.js?v=20260719"></script>
 <script>
 (function(){var bar=document.getElementById('readingProgress');if(!bar)return;window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0%';},{passive:true});})();
 </script>
