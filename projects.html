@@ -24,7 +24,7 @@
   <link rel="canonical" href="https://aosman101.github.io/projects.html" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="assets/style.css?v=20260708" />
+  <link rel="stylesheet" href="assets/style.css?v=20260719" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -147,6 +147,10 @@
       <li><a href="writing.html">Writing</a></li>
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
+    <button class="nav-search" aria-label="Search site (Ctrl+K or Cmd+K)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+      <span class="nav-search-kbd">⌘K</span>
+    </button>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -179,7 +183,7 @@
     <div class="projects-grid" id="projectsGrid">
 
       <!-- 1. TfL Real-Time Lakehouse — wide featured -->
-      <article class="pcard wide reveal" data-cats="de streaming">
+      <article class="pcard wide reveal" data-cats="de streaming" id="tfl-lakehouse">
         <div class="pcard-top">
           <span class="pcard-tag">Data Engineering · Real-time</span>
           <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -222,7 +226,7 @@
       </article>
 
       <!-- 2. StreamShop CDC -->
-      <article class="pcard reveal d1" data-cats="de streaming">
+      <article class="pcard reveal d1" data-cats="de streaming" id="streamshop-cdc">
         <div class="pcard-top">
           <span class="pcard-tag">Data Engineering · CDC</span>
           <a href="https://github.com/aosman101/streamshop-cdc-analytics" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -264,7 +268,7 @@
       </article>
 
       <!-- 3. London Air Quality Lakehouse -->
-      <article class="pcard reveal d2" data-cats="de">
+      <article class="pcard reveal d2" data-cats="de" id="air-quality-lakehouse">
         <div class="pcard-top">
           <span class="pcard-tag">Data Engineering · Environmental</span>
           <a href="https://github.com/aosman101/london-air-quality-weather-lakehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -306,7 +310,7 @@
       </article>
 
       <!-- 4. F1 RaceOps Warehouse -->
-      <article class="pcard reveal d1" data-cats="analytics warehouse">
+      <article class="pcard reveal d1" data-cats="analytics warehouse" id="f1-raceops">
         <div class="pcard-top">
           <span class="pcard-tag">Analytics Engineering · Sports</span>
           <a href="https://github.com/aosman101/f1-raceops-analytics-warehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -341,7 +345,7 @@
       </article>
 
       <!-- 5. Premier League Warehouse -->
-      <article class="pcard reveal d2" data-cats="analytics warehouse">
+      <article class="pcard reveal d2" data-cats="analytics warehouse" id="premier-league-warehouse">
         <div class="pcard-top">
           <span class="pcard-tag">Analytics Engineering · Football</span>
           <a href="https://github.com/aosman101/premier-league-analytics-warehouse" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -356,7 +360,7 @@
       </article>
 
       <!-- 6. Mini Lake dbt DuckDB -->
-      <article class="pcard reveal d1" data-cats="de analytics">
+      <article class="pcard reveal d1" data-cats="de analytics" id="mini-lake">
         <div class="pcard-top">
           <span class="pcard-tag">Data Engineering · Lakehouse</span>
           <a href="https://github.com/aosman101/mini-lake-dbt-duckdb" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -371,7 +375,7 @@
       </article>
 
       <!-- 7. Deep Stock Insights — ML Platform -->
-      <article class="pcard wide reveal" data-cats="ml de">
+      <article class="pcard wide reveal" data-cats="ml de" id="deep-stock-insights">
         <div class="pcard-top">
           <span class="pcard-tag">Machine Learning · Full-Stack · Finance</span>
           <a href="https://github.com/aosman101/deep-stocks-insights" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -413,7 +417,7 @@
       </article>
 
       <!-- 8. AI Trading Agent — RL -->
-      <article class="pcard reveal d1" data-cats="ml de">
+      <article class="pcard reveal d1" data-cats="ml de" id="ai-trading-agent">
         <div class="pcard-top">
           <span class="pcard-tag">Machine Learning · Reinforcement Learning</span>
           <a href="https://github.com/aosman101/ai-trading-agent" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -428,7 +432,7 @@
       </article>
 
       <!-- 9. Stock Market Prediction — ML -->
-      <article class="pcard wide reveal" data-cats="ml">
+      <article class="pcard wide reveal" data-cats="ml" id="lstm-prediction">
         <div class="pcard-top">
           <span class="pcard-tag">Machine Learning · Finance</span>
           <a href="https://github.com/aosman101/Stock-Market-Prediction" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -463,7 +467,7 @@
       </article>
 
       <!-- 8. Missing Data — DS -->
-      <article class="pcard reveal d1" data-cats="ds">
+      <article class="pcard reveal d1" data-cats="ds" id="missing-data">
         <div class="pcard-top">
           <span class="pcard-tag">Data Science · ML</span>
           <a href="https://github.com/aosman101/missing-data" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -478,7 +482,7 @@
       </article>
 
       <!-- 9. Probability / CLT — DS -->
-      <article class="pcard reveal d2" data-cats="ds">
+      <article class="pcard reveal d2" data-cats="ds" id="probability-fundamentals">
         <div class="pcard-top">
           <span class="pcard-tag">Data Science · Statistics</span>
           <a href="https://github.com/aosman101/chebyshev-lln-clt" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -493,7 +497,7 @@
       </article>
 
       <!-- 10. Reggie Linear Regression — DS -->
-      <article class="pcard reveal d1" data-cats="ds">
+      <article class="pcard reveal d1" data-cats="ds" id="linear-regression">
         <div class="pcard-top">
           <span class="pcard-tag">Data Science · Statistics</span>
           <a href="https://github.com/aosman101/reggie-linear-regression" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -517,7 +521,7 @@
       <hr class="section-divider" />
       <div class="other-grid">
 
-        <div class="mini-card reveal">
+        <div class="mini-card reveal" id="fitness-gym-systems">
           <div class="mini-card-tag">Systems Design</div>
           <div class="mini-card-title">Fitness Gym Systems Design</div>
           <div class="mini-card-desc">UML diagrams, CRC cards, UI flows, and a prototype for a gym information system — full systems analysis deliverable.</div>
@@ -527,7 +531,7 @@
           </div>
         </div>
 
-        <div class="mini-card reveal d1">
+        <div class="mini-card reveal d1" id="fitness-gym-ui">
           <div class="mini-card-tag">Frontend</div>
           <div class="mini-card-title">Fitness Gym UI Prototype</div>
           <div class="mini-card-desc">Framework-free JavaScript SPA for a gym management UI. Hash routing, responsive styles, Home/Classes/Trainers/Memberships/Dashboard/Sign-in pages — all in a single file.</div>
@@ -537,7 +541,7 @@
           </div>
         </div>
 
-        <div class="mini-card reveal d2">
+        <div class="mini-card reveal d2" id="wallet-polymorphism">
           <div class="mini-card-tag">Java · OOP</div>
           <div class="mini-card-title">Wallet Polymorphism Demo</div>
           <div class="mini-card-desc">Java OOP demo illustrating inheritance, method overriding, and polymorphism through a Wallet holding CallingCard, IDCard, and DriverLicense types.</div>
@@ -547,7 +551,7 @@
           </div>
         </div>
 
-        <div class="mini-card reveal d1">
+        <div class="mini-card reveal d1" id="coded-correspondence">
           <div class="mini-card-tag">Cryptography</div>
           <div class="mini-card-title">Casual Coded Correspondence</div>
           <div class="mini-card-desc">Caesar and Vigenère cipher implementation in a Jupyter Notebook, including a brute-force Caesar solver. Classical cryptography as a teaching exercise.</div>
@@ -557,7 +561,7 @@
           </div>
         </div>
 
-        <div class="mini-card reveal d2">
+        <div class="mini-card reveal d2" id="storage-unit-manager">
           <div class="mini-card-tag">Java · OOP</div>
           <div class="mini-card-title">Storage Unit Manager</div>
           <div class="mini-card-desc">Java mini-project for a self-storage unit system. Item and SelfStorageUnit classes with store, manage, and analyse functionality, tested with a driver class.</div>
@@ -625,6 +629,6 @@
   </div>
 </footer>
 
-<script src="assets/script.js"></script>
+<script src="assets/script.js?v=20260719"></script>
 </body>
 </html>
