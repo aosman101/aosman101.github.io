@@ -291,3 +291,208 @@ if (filterBtns.length && pcards.length) {
     }
   });
 })();
+
+/* ================================================================
+   COMMAND PALETTE (Cmd/Ctrl+K)
+================================================================ */
+(function () {
+  var IN_POSTS = window.location.pathname.indexOf('/posts/') !== -1;
+  var PREFIX = IN_POSTS ? '../' : '';
+  var SECTIONS = ['Pages', 'Projects', 'Writing'];
+  var ENTRIES = [
+    { title: 'Home', section: 'Pages', href: 'index.html', keywords: 'start landing intro hero' },
+    { title: 'Work', section: 'Pages', href: 'projects.html', keywords: 'projects portfolio case studies' },
+    { title: 'About', section: 'Pages', href: 'about.html', keywords: 'bio experience education timeline' },
+    { title: 'Stack', section: 'Pages', href: 'skills.html', keywords: 'skills tools technologies' },
+    { title: 'Writing', section: 'Pages', href: 'writing.html', keywords: 'articles blog posts' },
+    { title: 'Contact', section: 'Pages', href: 'contact.html', keywords: 'email get in touch hire' },
+    { title: 'TfL Real-Time Lakehouse', section: 'Projects', href: 'projects.html#tfl-lakehouse', keywords: 'streaming airflow duckdb dbt data engineering real-time' },
+    { title: 'StreamShop CDC Analytics Stack', section: 'Projects', href: 'projects.html#streamshop-cdc', keywords: 'debezium kafka change data capture streaming' },
+    { title: 'London Air Quality & Weather Lakehouse', section: 'Projects', href: 'projects.html#air-quality-lakehouse', keywords: 'data engineering lakehouse weather pollution' },
+    { title: 'F1 RaceOps Analytics Warehouse', section: 'Projects', href: 'projects.html#f1-raceops', keywords: 'formula 1 dbt warehouse analytics racing' },
+    { title: 'Premier League Analytics Warehouse', section: 'Projects', href: 'projects.html#premier-league-warehouse', keywords: 'football soccer dbt warehouse analytics' },
+    { title: 'Mini Lake — dbt + DuckDB', section: 'Projects', href: 'projects.html#mini-lake', keywords: 'dbt duckdb analytics engineering' },
+    { title: 'Deep Stock Insights', section: 'Projects', href: 'projects.html#deep-stock-insights', keywords: 'financial prediction platform machine learning stocks' },
+    { title: 'AI Trading Agent', section: 'Projects', href: 'projects.html#ai-trading-agent', keywords: 'machine learning trading llm agent' },
+    { title: 'Stock Market Prediction with LSTM', section: 'Projects', href: 'projects.html#lstm-prediction', keywords: 'machine learning neural network time series' },
+    { title: 'Missing Data — Imputation Techniques', section: 'Projects', href: 'projects.html#missing-data', keywords: 'data science statistics imputation pandas' },
+    { title: 'Chebyshev, LLN & CLT', section: 'Projects', href: 'projects.html#probability-fundamentals', keywords: 'probability statistics central limit theorem' },
+    { title: 'Linear Regression from Scratch', section: 'Projects', href: 'projects.html#linear-regression', keywords: 'data science statistics numpy gradient' },
+    { title: 'Fitness Gym Systems Design', section: 'Projects', href: 'projects.html#fitness-gym-systems', keywords: 'uml systems analysis crc' },
+    { title: 'Fitness Gym UI Prototype', section: 'Projects', href: 'projects.html#fitness-gym-ui', keywords: 'javascript spa frontend prototype' },
+    { title: 'Wallet Polymorphism Demo', section: 'Projects', href: 'projects.html#wallet-polymorphism', keywords: 'java oop inheritance polymorphism' },
+    { title: 'Casual Coded Correspondence', section: 'Projects', href: 'projects.html#coded-correspondence', keywords: 'python cryptography caesar vigenere cipher jupyter' },
+    { title: 'Storage Unit Manager', section: 'Projects', href: 'projects.html#storage-unit-manager', keywords: 'java oop classes' },
+    { title: 'Building the TfL Travel App with Somalis in Tech', section: 'Writing', href: 'posts/building-the-tfl-travel-app-with-somalis-in-tech.html', keywords: 'article community case study travel app' },
+    { title: 'Building a Real-Time TfL Lakehouse from Scratch', section: 'Writing', href: 'posts/building-a-tfl-realtime-lakehouse.html', keywords: 'article data engineering streaming pipeline' }
+  ];
+
+  var overlay = null, panel = null, input = null, list = null;
+  var lastFocus = null, visible = [], selected = 0;
+
+  function score(entry, q) {
+    if (!q) return 1;
+    var t = entry.title.toLowerCase();
+    if (t.indexOf(q) === 0) return 0;
+    if (t.indexOf(q) !== -1) return 1;
+    if (entry.keywords.indexOf(q) !== -1) return 2;
+    return -1;
+  }
+
+  function render(query) {
+    var q = query.trim().toLowerCase();
+    visible = [];
+    list.innerHTML = '';
+    SECTIONS.forEach(function (name) {
+      var matches = ENTRIES.filter(function (e) {
+        return e.section === name && score(e, q) !== -1;
+      }).sort(function (a, b) { return score(a, q) - score(b, q); });
+      if (!matches.length) return;
+      var label = document.createElement('div');
+      label.className = 'cmdk-section';
+      label.textContent = name.toUpperCase();
+      list.appendChild(label);
+      matches.forEach(function (e) {
+        var idx = visible.length;
+        var row = document.createElement('div');
+        row.className = 'cmdk-row';
+        row.setAttribute('role', 'option');
+        row.setAttribute('aria-selected', 'false');
+        row.id = 'cmdk-opt-' + idx;
+        var title = document.createElement('span');
+        title.className = 'cmdk-row-title';
+        title.textContent = e.title;
+        var hint = document.createElement('span');
+        hint.className = 'cmdk-row-hint';
+        hint.textContent = e.section;
+        row.appendChild(title);
+        row.appendChild(hint);
+        row.addEventListener('mouseenter', function () { select(idx); });
+        row.addEventListener('click', function () { go(idx); });
+        list.appendChild(row);
+        visible.push(e);
+      });
+    });
+    if (!visible.length) {
+      var empty = document.createElement('div');
+      empty.className = 'cmdk-empty';
+      empty.textContent = 'No results for “' + query.trim() + '”';
+      list.appendChild(empty);
+    }
+    select(0);
+  }
+
+  function select(idx) {
+    selected = idx;
+    var rows = list.querySelectorAll('.cmdk-row');
+    for (var i = 0; i < rows.length; i++) {
+      var on = i === idx;
+      rows[i].classList.toggle('selected', on);
+      rows[i].setAttribute('aria-selected', on ? 'true' : 'false');
+    }
+    if (rows[idx]) {
+      rows[idx].scrollIntoView({ block: 'nearest' });
+      input.setAttribute('aria-activedescendant', rows[idx].id);
+    } else {
+      input.removeAttribute('aria-activedescendant');
+    }
+  }
+
+  function go(idx) {
+    var e = visible[idx];
+    if (!e) return;
+    close();
+    window.location.href = PREFIX + e.href;
+  }
+
+  function build() {
+    overlay = document.createElement('div');
+    overlay.className = 'cmdk';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.innerHTML =
+      '<div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Site search">' +
+        '<input class="cmdk-input" type="text" placeholder="Search pages, projects, writing…" ' +
+          'aria-label="Search site" role="combobox" aria-expanded="true" aria-controls="cmdkList" ' +
+          'autocomplete="off" autocapitalize="off" spellcheck="false" />' +
+        '<div class="cmdk-list" role="listbox" id="cmdkList"></div>' +
+        '<div class="cmdk-footer" aria-hidden="true">' +
+          '<span>↑↓ navigate</span><span>↵ open</span><span>esc close</span>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    panel = overlay.querySelector('.cmdk-panel');
+    input = overlay.querySelector('.cmdk-input');
+    list = overlay.querySelector('.cmdk-list');
+    overlay.addEventListener('mousedown', function (e) {
+      if (!panel.contains(e.target)) close();
+    });
+    input.addEventListener('input', function () { render(input.value); });
+    input.addEventListener('keydown', onInputKey);
+  }
+
+  function isOpen() {
+    return overlay !== null && overlay.classList.contains('open');
+  }
+
+  function open() {
+    if (!overlay) build();
+    lastFocus = document.activeElement;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    input.value = '';
+    render('');
+    input.focus();
+  }
+
+  function close() {
+    if (!isOpen()) return;
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  function onInputKey(e) {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (visible.length) select((selected + 1) % visible.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (visible.length) select((selected - 1 + visible.length) % visible.length);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      go(selected);
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
+      close();
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+    }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      if (isOpen()) { close(); } else { open(); }
+      return;
+    }
+    if (e.key === '/' && !isOpen()) {
+      var t = e.target;
+      var tag = t && t.tagName ? t.tagName.toLowerCase() : '';
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+      if (t && t.isContentEditable) return;
+      e.preventDefault();
+      open();
+    }
+  });
+
+  var triggers = document.querySelectorAll('.nav-search');
+  for (var i = 0; i < triggers.length; i++) {
+    triggers[i].addEventListener('click', function () { open(); });
+  }
+
+  if (!/Mac|iPhone|iPad|iPod/.test(navigator.platform)) {
+    var kbds = document.querySelectorAll('.nav-search-kbd');
+    for (var j = 0; j < kbds.length; j++) kbds[j].textContent = 'Ctrl K';
+  }
+})();
