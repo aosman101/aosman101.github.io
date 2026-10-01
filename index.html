@@ -49,7 +49,7 @@
     ],
     "knowsAbout": [
       "Data Engineering", "Analytics Engineering", "Machine Learning",
-      "Apache Airflow", "dbt", "Apache Spark",
+      "Apache Airflow", "dbt", "Great Expectations",
       "Python", "SQL", "DuckDB", "BigQuery", "ClickHouse",
       "Debezium", "Change Data Capture"
     ]
@@ -421,7 +421,7 @@
         </span>
         <span class="hero-meta-item">
           <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 10l3-3 2.5 2.5L10 4.5l2 2"/></svg>
-          Python · SQL · dbt · Airflow · Spark
+          Python · SQL · dbt · Airflow · BigQuery
         </span>
       </div>
     </div>
@@ -446,7 +446,7 @@
       </div>
       <div class="metric reveal d2">
         <div class="metric-num">87%</div>
-        <div class="metric-label">Pipeline SLA Improvement</div>
+        <div class="metric-label">Faster Data Freshness</div>
       </div>
       <div class="metric reveal d3">
         <div class="metric-num">2+</div>
@@ -489,6 +489,42 @@
   </div>
 </section>
 
+<!-- EXPERIENCE STRIP -->
+<section aria-labelledby="exp-strip-heading">
+  <div class="wrap">
+    <div class="section-head" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="section-label" aria-hidden="true">Experience</div>
+        <h2 class="section-title reveal" id="exp-strip-heading">Where I've <em>worked</em>.</h2>
+      </div>
+      <a href="about.html#exp-heading" class="btn-link reveal" style="padding-bottom:0.25rem">
+        Full experience
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <ol class="exp-strip" role="list">
+      <li class="exp-card reveal">
+        <div class="exp-period">Jan 2026 — Sep 2026</div>
+        <h3 class="exp-role">Data Engineer &amp; Analytics Engineer</h3>
+        <div class="exp-org">Freelance · Remote</div>
+        <p class="exp-win"><span class="exp-num">10+</span> client data platforms delivered, with ~40% lower BigQuery query costs from incremental dbt models.</p>
+      </li>
+      <li class="exp-card reveal d1">
+        <div class="exp-period">Apr 2024 — Jul 2025</div>
+        <h3 class="exp-role">Junior Data Engineer &amp; Peer Mentor</h3>
+        <div class="exp-org">Somalis in Tech · London</div>
+        <p class="exp-win"><span class="exp-num">6h → 45m</span> data freshness with Python, dbt, and Airflow pipelines; 99% on-time weekly delivery.</p>
+      </li>
+      <li class="exp-card reveal d2">
+        <div class="exp-period">Jun 2023 — Feb 2024</div>
+        <h3 class="exp-role">Junior Data Analyst</h3>
+        <div class="exp-org">HQ Analytics · Remote</div>
+        <p class="exp-win"><span class="exp-num">3 days → same day</span> stakeholder turnaround from automated extraction and daily refresh pipelines.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
 <!-- FEATURED PROJECTS -->
 <section aria-labelledby="featured-heading">
   <div class="wrap">
@@ -513,8 +549,22 @@
         </div>
         <h3 class="pcard-title">TfL Real-Time Lakehouse</h3>
         <p class="pcard-desc">Real-time London transport data on your laptop. Airflow ingests TfL arrivals and stores them in Parquet. dbt and DuckDB transform the data, Great Expectations validates it, and OpenLineage tracks data lineage &mdash; a fully observable, production-pattern lakehouse without cloud dependency.</p>
+        <div class="project-architecture" aria-label="TfL lakehouse architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">TfL API</div>
+            <div class="arch-node">Airflow DAGs</div>
+            <div class="arch-node">Parquet Lake</div>
+            <div class="arch-node">dbt + DuckDB</div>
+            <div class="arch-node">Quality + Lineage</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Parquet</span><span class="badge">Great Expectations</span><span class="badge">OpenLineage</span>
+        </div>
+        <div class="case-links">
+          <a href="projects.html#tfl-lakehouse" class="btn-link">Project details <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="https://github.com/aosman101/tfl-realtime-lakehouse" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -527,8 +577,21 @@
         </div>
         <h3 class="pcard-title">StreamShop CDC Analytics Stack</h3>
         <p class="pcard-desc">Production-style Change Data Capture pipeline: Postgres &rarr; Debezium &rarr; Redpanda (Kafka API) &rarr; ClickHouse. Includes a synthetic e-commerce data generator, Python CDC sink, and dbt models with tests.</p>
+        <div class="project-architecture" aria-label="StreamShop CDC architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">Postgres</div>
+            <div class="arch-node">Debezium</div>
+            <div class="arch-node">Redpanda</div>
+            <div class="arch-node">ClickHouse + dbt</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Debezium</span><span class="badge">Redpanda</span><span class="badge">ClickHouse</span><span class="badge">dbt</span><span class="badge">PostgreSQL</span>
+        </div>
+        <div class="case-links">
+          <a href="projects.html#streamshop-cdc" class="btn-link">Project details <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="https://github.com/aosman101/streamshop-cdc-analytics" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -541,8 +604,21 @@
         </div>
         <h3 class="pcard-title">Deep Stock Insights</h3>
         <p class="pcard-desc">Full-stack ML platform predicting prices across 53 assets using N-HiTS, LightGBM, XGBoost, and Monte Carlo simulations. Live WebSocket streaming, React dashboard, and walk-forward backtesting.</p>
+        <div class="project-architecture" aria-label="Deep Stock Insights architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">Market Data</div>
+            <div class="arch-node">Models</div>
+            <div class="arch-node">FastAPI</div>
+            <div class="arch-node">React</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">FastAPI</span><span class="badge">React</span><span class="badge">TensorFlow</span><span class="badge">LightGBM</span>
+        </div>
+        <div class="case-links">
+          <a href="projects.html#deep-stock-insights" class="btn-link">Project details <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="https://github.com/aosman101/deep-stocks-insights" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -600,7 +676,7 @@
           <span class="stack-pill" role="listitem">SQL</span>
           <span class="stack-pill" role="listitem">dbt Core</span>
           <span class="stack-pill" role="listitem">Apache Airflow</span>
-          <span class="stack-pill" role="listitem">Apache Spark</span>
+          <span class="stack-pill" role="listitem">Docker</span>
           <span class="stack-pill" role="listitem">DuckDB</span>
           <span class="stack-pill" role="listitem">PostgreSQL</span>
           <span class="stack-pill" role="listitem">BigQuery</span>
@@ -617,7 +693,7 @@
           <span class="stack-pill">SQL</span>
           <span class="stack-pill">dbt Core</span>
           <span class="stack-pill">Apache Airflow</span>
-          <span class="stack-pill">Apache Spark</span>
+          <span class="stack-pill">Docker</span>
           <span class="stack-pill">DuckDB</span>
           <span class="stack-pill">PostgreSQL</span>
           <span class="stack-pill">BigQuery</span>
