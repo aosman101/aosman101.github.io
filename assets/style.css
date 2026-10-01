@@ -458,6 +458,8 @@ footer {
   color: var(--text-tertiary);
   text-transform: uppercase;
 }
+.foot-built a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+.foot-built a:hover, .foot-built a:focus-visible { color: var(--accent); }
 
 /* ── Metrics bar ── */
 .metrics-bar {
