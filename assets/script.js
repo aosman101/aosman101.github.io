@@ -314,7 +314,7 @@ if (filterBtns.length && pcards.length) {
     { title: 'Mini Lake — dbt + DuckDB', section: 'Projects', href: 'projects.html#mini-lake', keywords: 'dbt duckdb analytics engineering' },
     { title: 'Deep Stock Insights', section: 'Projects', href: 'projects.html#deep-stock-insights', keywords: 'financial prediction platform machine learning stocks' },
     { title: 'AI Trading Agent', section: 'Projects', href: 'projects.html#ai-trading-agent', keywords: 'machine learning trading llm agent' },
-    { title: 'Stock Market Prediction with LSTM', section: 'Projects', href: 'projects.html#lstm-prediction', keywords: 'machine learning neural network time series' },
+    { title: 'LSTM Stock Forecasting — Dissertation', section: 'Projects', href: 'projects.html#lstm-prediction', keywords: 'machine learning neural network time series dissertation tesla arima' },
     { title: 'Missing Data — Imputation Techniques', section: 'Projects', href: 'projects.html#missing-data', keywords: 'data science statistics imputation pandas' },
     { title: 'Chebyshev, LLN & CLT', section: 'Projects', href: 'projects.html#probability-fundamentals', keywords: 'probability statistics central limit theorem' },
     { title: 'Linear Regression from Scratch', section: 'Projects', href: 'projects.html#linear-regression', keywords: 'data science statistics numpy gradient' },

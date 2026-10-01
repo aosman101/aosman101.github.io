@@ -322,25 +322,28 @@
         <div class="pcard-gallery" role="list" aria-label="F1 RaceOps sample outputs">
           <a href="assets/projects/f1-raceops/driver-scorecard.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size driver scorecard">
             <figure>
-              <img src="assets/projects/f1-raceops/driver-scorecard.png" alt="F1 driver scorecard — per-driver KPIs including points, podiums, wins, and average finishing position." loading="lazy" decoding="async" />
+              <img src="assets/projects/f1-raceops/driver-scorecard-thumb.jpg" width="720" height="670" alt="F1 driver scorecard — per-driver KPIs including points, podiums, wins, and average finishing position." loading="lazy" decoding="async" />
               <figcaption>Driver Scorecard</figcaption>
             </figure>
           </a>
           <a href="assets/projects/f1-raceops/constructor-points-trend.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size constructor points trend">
             <figure>
-              <img src="assets/projects/f1-raceops/constructor-points-trend.png" alt="F1 constructor points trend — seasonal points accumulation by constructor." loading="lazy" decoding="async" />
+              <img src="assets/projects/f1-raceops/constructor-points-trend-thumb.jpg" width="720" height="576" alt="F1 constructor points trend — seasonal points accumulation by constructor." loading="lazy" decoding="async" />
               <figcaption>Constructor Points Trend</figcaption>
             </figure>
           </a>
           <a href="assets/projects/f1-raceops/pit-speed.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size pit stop speed analysis">
             <figure>
-              <img src="assets/projects/f1-raceops/pit-speed.png" alt="F1 pit stop speed — distribution and rankings of pit stop durations." loading="lazy" decoding="async" />
+              <img src="assets/projects/f1-raceops/pit-speed-thumb.jpg" width="720" height="428" alt="F1 pit stop speed — distribution and rankings of pit stop durations." loading="lazy" decoding="async" />
               <figcaption>Pit Stop Speed</figcaption>
             </figure>
           </a>
         </div>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">dbt</span><span class="badge">SQL</span><span class="badge">GitHub Actions</span><span class="badge">Ergast API</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/f1-raceops-analytics-warehouse" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
@@ -357,24 +360,12 @@
         <div class="pcard-stack">
           <span class="badge">dbt</span><span class="badge">BigQuery</span><span class="badge">GitHub Actions</span><span class="badge">SQL</span><span class="badge">Python</span>
         </div>
-      </article>
-
-      <!-- 6. Mini Lake dbt DuckDB -->
-      <article class="pcard reveal d1" data-cats="de analytics" id="mini-lake">
-        <div class="pcard-top">
-          <span class="pcard-tag">Data Engineering · Lakehouse</span>
-          <a href="https://github.com/aosman101/mini-lake-dbt-duckdb" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
-            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-        <h3 class="pcard-title">Mini Lake — dbt + DuckDB</h3>
-        <p class="pcard-desc">Local-first, portable lakehouse demo using dbt and DuckDB. Features versioned seeds, staging-to-marts models, schema tests, auto-generated documentation, and a GitHub Actions CI example — ideal for learning and prototyping analytics engineering patterns.</p>
-        <div class="pcard-stack">
-          <span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Python</span><span class="badge">GitHub Actions</span><span class="badge">SQL</span>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/premier-league-analytics-warehouse" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
-      <!-- 7. Deep Stock Insights — ML Platform -->
+      <!-- 6. Deep Stock Insights — ML Platform -->
       <article class="pcard wide reveal" data-cats="ml de" id="deep-stock-insights">
         <div class="pcard-top">
           <span class="pcard-tag">Machine Learning · Full-Stack · Finance</span>
@@ -395,7 +386,7 @@
           </div>
           <div class="case-item">
             <div class="case-label">Result</div>
-            <div class="case-text">A production-style dissertation system showing modelling, serving, evaluation, and user-facing delivery together.</div>
+            <div class="case-text">A follow-on to my dissertation that takes forecasting out of the notebook — modelling, serving, evaluation, and a user-facing app in one system.</div>
           </div>
         </div>
         <div class="project-architecture" aria-label="Deep Stock Insights architecture">
@@ -416,8 +407,46 @@
         </div>
       </article>
 
+      <!-- 7. LSTM Stock Forecasting — Dissertation -->
+      <article class="pcard reveal d1" data-cats="ml ds" id="lstm-prediction">
+        <div class="pcard-top">
+          <span class="pcard-tag">Machine Learning · Dissertation</span>
+          <a href="https://github.com/aosman101/Stock-Market-Prediction" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+            <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <h3 class="pcard-title">LSTM Stock Forecasting — Dissertation</h3>
+        <p class="pcard-desc">My final-year dissertation: a two-layer LSTM forecasting next-day Tesla closing prices, benchmarked against ARIMA and KNN baselines. Covers preprocessing, scaling, early stopping, evaluation, and 5-day rolling forecasts. The LSTM reached an <strong style="color:var(--text-primary)">R² of 0.96</strong> on the held-out test set, well ahead of the ARIMA baseline.</p>
+        <div class="pcard-gallery" role="list" aria-label="LSTM stock prediction sample outputs">
+          <a href="assets/projects/stock-prediction/actual-vs-predicted.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size actual vs predicted prices chart">
+            <figure>
+              <img src="assets/projects/stock-prediction/actual-vs-predicted-thumb.jpg" width="720" height="383" alt="LSTM model output — actual vs. predicted stock prices tracking closely across the test window." loading="lazy" decoding="async" />
+              <figcaption>Actual vs Predicted</figcaption>
+            </figure>
+          </a>
+          <a href="assets/projects/stock-prediction/training-validation-loss.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size training and validation loss curves">
+            <figure>
+              <img src="assets/projects/stock-prediction/training-validation-loss-thumb.jpg" width="720" height="366" alt="Training vs. validation MSE loss over epochs showing stable convergence." loading="lazy" decoding="async" />
+              <figcaption>Training vs Validation Loss</figcaption>
+            </figure>
+          </a>
+          <a href="assets/projects/stock-prediction/monthly-avg-closing.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size monthly average closing price chart">
+            <figure>
+              <img src="assets/projects/stock-prediction/monthly-avg-closing-thumb.jpg" width="720" height="379" alt="Exploratory analysis — monthly average closing price showing seasonality across the year." loading="lazy" decoding="async" />
+              <figcaption>Monthly Avg Closing Price</figcaption>
+            </figure>
+          </a>
+        </div>
+        <div class="pcard-stack">
+          <span class="badge">Python</span><span class="badge">TensorFlow / Keras</span><span class="badge">LSTM</span><span class="badge">Pandas</span><span class="badge">NumPy</span><span class="badge">Scikit-learn</span><span class="badge">Matplotlib</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/Stock-Market-Prediction" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
       <!-- 8. AI Trading Agent — RL -->
-      <article class="pcard reveal d1" data-cats="ml de" id="ai-trading-agent">
+      <article class="pcard reveal d2" data-cats="ml de" id="ai-trading-agent">
         <div class="pcard-top">
           <span class="pcard-tag">Machine Learning · Reinforcement Learning</span>
           <a href="https://github.com/aosman101/ai-trading-agent" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -429,45 +458,31 @@
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">PyTorch</span><span class="badge">FastAPI</span><span class="badge">LightGBM</span><span class="badge">FinBERT</span><span class="badge">Docker</span><span class="badge">Supabase</span><span class="badge">Alpaca API</span>
         </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/ai-trading-agent" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
       </article>
 
-      <!-- 9. Stock Market Prediction — ML -->
-      <article class="pcard wide reveal" data-cats="ml" id="lstm-prediction">
+      <!-- 9. Mini Lake dbt DuckDB -->
+      <article class="pcard reveal d1" data-cats="de analytics" id="mini-lake">
         <div class="pcard-top">
-          <span class="pcard-tag">Machine Learning · Finance</span>
-          <a href="https://github.com/aosman101/Stock-Market-Prediction" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
+          <span class="pcard-tag">Data Engineering · Lakehouse</span>
+          <a href="https://github.com/aosman101/mini-lake-dbt-duckdb" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
             <svg class="pcard-arrow" viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-        <h3 class="pcard-title">Stock Market Prediction with LSTM Networks</h3>
-        <p class="pcard-desc">End-to-end ML pipeline for financial time-series forecasting using LSTM deep learning. Achieves an <strong style="color:var(--text-primary)">R² of 0.95</strong>, mean absolute error of <strong style="color:var(--text-primary)">$2.4</strong>, and <strong style="color:var(--text-primary)">87% directional accuracy</strong>. Covers data ingestion, feature engineering (technical indicators, rolling stats, lag features), LSTM architecture design, hyperparameter tuning, and rigorous backtesting methodology.</p>
-        <div class="pcard-gallery" role="list" aria-label="LSTM stock prediction sample outputs">
-          <a href="assets/projects/stock-prediction/actual-vs-predicted.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size actual vs predicted prices chart">
-            <figure>
-              <img src="assets/projects/stock-prediction/actual-vs-predicted.png" alt="LSTM model output — actual vs. predicted stock prices tracking closely across the test window." loading="lazy" decoding="async" />
-              <figcaption>Actual vs Predicted</figcaption>
-            </figure>
-          </a>
-          <a href="assets/projects/stock-prediction/training-validation-loss.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size training and validation loss curves">
-            <figure>
-              <img src="assets/projects/stock-prediction/training-validation-loss.png" alt="Training vs. validation MSE loss over epochs showing stable convergence." loading="lazy" decoding="async" />
-              <figcaption>Training vs Validation Loss</figcaption>
-            </figure>
-          </a>
-          <a href="assets/projects/stock-prediction/monthly-avg-closing.png" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size monthly average closing price chart">
-            <figure>
-              <img src="assets/projects/stock-prediction/monthly-avg-closing.png" alt="Exploratory analysis — monthly average closing price showing seasonality across the year." loading="lazy" decoding="async" />
-              <figcaption>Monthly Avg Closing Price</figcaption>
-            </figure>
-          </a>
-        </div>
+        <h3 class="pcard-title">Mini Lake — dbt + DuckDB</h3>
+        <p class="pcard-desc">Local-first, portable lakehouse demo using dbt and DuckDB. Features versioned seeds, staging-to-marts models, schema tests, auto-generated documentation, and a GitHub Actions CI example — ideal for learning and prototyping analytics engineering patterns.</p>
         <div class="pcard-stack">
-          <span class="badge">Python</span><span class="badge">TensorFlow / Keras</span><span class="badge">LSTM</span><span class="badge">Pandas</span><span class="badge">NumPy</span><span class="badge">Scikit-learn</span><span class="badge">Matplotlib</span>
+          <span class="badge">dbt</span><span class="badge">DuckDB</span><span class="badge">Python</span><span class="badge">GitHub Actions</span><span class="badge">SQL</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/mini-lake-dbt-duckdb" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
-      <!-- 8. Missing Data — DS -->
-      <article class="pcard reveal d1" data-cats="ds" id="missing-data">
+      <!-- 10. Missing Data — DS -->
+      <article class="pcard reveal d2" data-cats="ds" id="missing-data">
         <div class="pcard-top">
           <span class="pcard-tag">Data Science · ML</span>
           <a href="https://github.com/aosman101/missing-data" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -479,10 +494,13 @@
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">Scikit-learn</span><span class="badge">NumPy</span><span class="badge">Jupyter</span>
         </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/missing-data" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
       </article>
 
-      <!-- 9. Probability / CLT — DS -->
-      <article class="pcard reveal d2" data-cats="ds" id="probability-fundamentals">
+      <!-- 11. Probability / CLT — DS -->
+      <article class="pcard reveal d1" data-cats="ds" id="probability-fundamentals">
         <div class="pcard-top">
           <span class="pcard-tag">Data Science · Statistics</span>
           <a href="https://github.com/aosman101/chebyshev-lln-clt" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -494,10 +512,13 @@
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">NumPy</span><span class="badge">Matplotlib</span><span class="badge">Jupyter</span>
         </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/chebyshev-lln-clt" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
       </article>
 
-      <!-- 10. Reggie Linear Regression — DS -->
-      <article class="pcard reveal d1" data-cats="ds" id="linear-regression">
+      <!-- 12. Reggie Linear Regression — DS -->
+      <article class="pcard reveal d2" data-cats="ds" id="linear-regression">
         <div class="pcard-top">
           <span class="pcard-tag">Data Science · Statistics</span>
           <a href="https://github.com/aosman101/reggie-linear-regression" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
@@ -508,6 +529,9 @@
         <p class="pcard-desc">Implements OLS linear regression from the ground up — slope/intercept derivation, loss function, gradient descent, and model evaluation with visualisation. Demonstrates core ML foundations without library abstractions.</p>
         <div class="pcard-stack">
           <span class="badge">Python</span><span class="badge">NumPy</span><span class="badge">Matplotlib</span><span class="badge">Jupyter</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/aosman101/reggie-linear-regression" target="_blank" rel="noopener noreferrer" class="btn-link">Source code <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
 
