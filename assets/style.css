@@ -4,7 +4,8 @@
    ================================================================ */
 
 /* ── Design tokens ── */
-:root {
+/* Dark is the default; .force-dark keeps a component dark in light mode */
+:root, .force-dark {
   --bg:           #0A0F1A;
   --bg-surface:   #0F1725;
   --bg-elevated:  #161F30;
@@ -46,6 +47,71 @@
   --max-width: 1120px;
   --nav-h: 68px;
 }
+
+/* ── Light theme ──
+   Follows the device setting unless the visitor picks one with the
+   nav toggle (stored as data-theme on <html>). */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:           #F6F3EC;
+    --bg-surface:   #FFFFFF;
+    --bg-elevated:  #EFEAE0;
+    --bg-deep:      #ECE6DA;
+    --bg-rgb:       246, 243, 236;
+    --accent-rgb:   125, 94, 37;
+    --accent-cool-rgb: 36, 96, 127;
+    --border:       #DCD3C2;
+    --border-hover: #B9AB91;
+
+    --text-primary:   #111827;
+    --text-secondary: #364152;
+    --text-tertiary:  #4F5A6B;
+    --text-muted:     #5D6878;
+
+    --accent:      #7D5E25;
+    --accent-dim:  rgba(125,94,37,0.08);
+    --accent-mid:  rgba(125,94,37,0.30);
+    --accent-soft: #6F531F;
+    --accent-cool: #24607F;
+    --accent-cool-dim: rgba(36,96,127,0.08);
+    --accent-cool-mid: rgba(36,96,127,0.26);
+
+    --error:     #B42318;
+    --error-dim: rgba(180,35,24,0.08);
+    --error-mid: rgba(180,35,24,0.30);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg:           #F6F3EC;
+  --bg-surface:   #FFFFFF;
+  --bg-elevated:  #EFEAE0;
+  --bg-deep:      #ECE6DA;
+  --bg-rgb:       246, 243, 236;
+  --accent-rgb:   125, 94, 37;
+  --accent-cool-rgb: 36, 96, 127;
+  --border:       #DCD3C2;
+  --border-hover: #B9AB91;
+
+  --text-primary:   #111827;
+  --text-secondary: #364152;
+  --text-tertiary:  #4F5A6B;
+  --text-muted:     #5D6878;
+
+  --accent:      #7D5E25;
+  --accent-dim:  rgba(125,94,37,0.08);
+  --accent-mid:  rgba(125,94,37,0.30);
+  --accent-soft: #6F531F;
+  --accent-cool: #24607F;
+  --accent-cool-dim: rgba(36,96,127,0.08);
+  --accent-cool-mid: rgba(36,96,127,0.26);
+
+  --error:     #B42318;
+  --error-dim: rgba(180,35,24,0.08);
+  --error-mid: rgba(180,35,24,0.30);
+  color-scheme: light;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1084,7 +1150,33 @@ footer {
   color: var(--text-tertiary);
 }
 @media (hover: none) { .nav-search-kbd { display: none; } }
-@media (max-width: 768px) { .nav-search { margin-left: auto; margin-right: 0.85rem; } }
+@media (max-width: 768px) { .nav-search { margin-left: auto; margin-right: 0; } }
+
+/* ── Theme toggle ── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-left: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-tertiary);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.3s var(--ease-out);
+  flex-shrink: 0;
+}
+.theme-toggle:hover, .theme-toggle:focus-visible { color: var(--accent); border-color: var(--accent-mid); }
+.theme-toggle:active { transform: rotate(-20deg) scale(0.95); }
+.theme-toggle svg { width: 15px; height: 15px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme-active="light"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme-active="light"] .theme-toggle .icon-moon { display: none; }
+@media (max-width: 768px) { .theme-toggle { margin-right: 0.85rem; } }
+html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease !important;
+}
 
 .pcard[id], .mini-card[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
 

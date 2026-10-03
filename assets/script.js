@@ -497,6 +497,51 @@ if (filterBtns.length && pcards.length) {
   }
 })();
 
+/* ── Theme toggle ──
+   The <head> snippet on each page applies a saved choice before paint;
+   without one, the CSS follows the device's light/dark setting. */
+(function initThemeToggle() {
+  var root = document.documentElement;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+  var meta = document.querySelector('meta[name="theme-color"]');
+  var anchor = document.querySelector('.nav-search') || document.getElementById('hamburger');
+  if (!anchor) return;
+
+  function active() { return root.getAttribute('data-theme') || (mq && mq.matches ? 'light' : 'dark'); }
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'theme-toggle';
+  btn.innerHTML =
+    '<svg class="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 107 7z"/></svg>' +
+    '<svg class="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.05 3.05l1.06 1.06M11.89 11.89l1.06 1.06M3.05 12.95l1.06-1.06M11.89 4.11l1.06-1.06"/></svg>';
+  anchor.parentNode.insertBefore(btn, anchor.nextSibling);
+
+  function apply() {
+    var a = active();
+    root.setAttribute('data-theme-active', a);
+    if (meta) meta.setAttribute('content', a === 'light' ? '#F6F3EC' : '#0A0F1A');
+    var next = a === 'light' ? 'dark' : 'light';
+    btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+    btn.title = 'Switch to ' + next + ' theme';
+  }
+
+  btn.addEventListener('click', function () {
+    var next = active() === 'light' ? 'dark' : 'light';
+    root.classList.add('theme-anim');
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('ao_theme', next); } catch (e) {}
+    apply();
+    setTimeout(function () { root.classList.remove('theme-anim'); }, 400);
+  });
+
+  if (mq) {
+    var onChange = function () { if (!root.getAttribute('data-theme')) apply(); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
+  }
+  apply();
+})();
+
 /* ── Visitor counter ──
    Cookie-free counts via the Abacus counter API. Only the live site
    writes to the real namespace; local copies count into a dev one.
