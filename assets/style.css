@@ -1153,6 +1153,8 @@ footer {
 @media (max-width: 768px) { .nav-search { margin-left: auto; margin-right: 0; } }
 
 /* ── Theme toggle ── */
+.nav-tools { display: flex; align-items: center; }
+@media (max-width: 768px) { .nav-tools { margin-left: auto; } }
 .theme-toggle {
   display: inline-flex;
   align-items: center;

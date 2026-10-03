@@ -515,7 +515,16 @@ if (filterBtns.length && pcards.length) {
   btn.innerHTML =
     '<svg class="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 107 7z"/></svg>' +
     '<svg class="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.05 3.05l1.06 1.06M11.89 11.89l1.06 1.06M3.05 12.95l1.06-1.06M11.89 4.11l1.06-1.06"/></svg>';
-  anchor.parentNode.insertBefore(btn, anchor.nextSibling);
+  if (anchor.classList.contains('nav-search')) {
+    // Group search + toggle so the nav's space-between keeps them together
+    var tools = document.createElement('div');
+    tools.className = 'nav-tools';
+    anchor.parentNode.insertBefore(tools, anchor);
+    tools.appendChild(anchor);
+    tools.appendChild(btn);
+  } else {
+    anchor.parentNode.insertBefore(btn, anchor);
+  }
 
   function apply() {
     var a = active();

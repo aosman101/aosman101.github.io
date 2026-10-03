@@ -11,12 +11,13 @@ This repository hosts the live source for [aosman101.github.io](https://aosman10
 
 ## What the Site Covers
 
-- `Home`: positioning, featured work, stack highlights, and current availability.
+- `Home`: positioning, featured work, experience highlights, and stack overview.
 - `Work`: filterable project catalogue across data engineering, analytics engineering, machine learning, and data science.
 - `About`: professional background, experience timeline, education, and academic highlights.
 - `Stack`: grouped breakdown of tools across pipelines, CDC, warehousing, BI, quality, cloud, and ML.
 - `Writing`: published technical notes plus a reusable post template.
-- `Contact`: email, LinkedIn, GitHub, and the roles this portfolio is aimed at.
+- `Contact`: email, LinkedIn, GitHub, and a contact form.
+- `Stats`: live, cookie-free visitor counts at `/stats.html`.
 
 ## Built With
 
@@ -31,6 +32,9 @@ This repository hosts the live source for [aosman101.github.io](https://aosman10
 - Responsive multi-page portfolio with mobile navigation.
 - Client-side filtering for project cards and writing categories.
 - Scroll reveal effects powered by `IntersectionObserver`
+- Light and dark themes that follow the device setting, with a toggle in the nav.
+- Cookie-free visitor counter (Abacus API) shown in the footer, with a dashboard at `stats.html`.
+- RSS feed for the Writing section at `feed.xml`.
 - SEO basics in place: page descriptions, Open Graph metadata for posts, `robots.txt`, and `sitemap.xml`
 - Content-first structure that is easy to maintain without a build pipeline.
 
@@ -44,6 +48,8 @@ aosman101.github.io/
 ├── skills.html
 ├── writing.html
 ├── contact.html
+├── stats.html
+├── feed.xml
 ├── posts/
 │   ├── building-a-tfl-realtime-lakehouse.html
 │   └── post-template.html
