@@ -523,14 +523,42 @@ if (filterBtns.length && pcards.length) {
     return 'p_' + (p || 'index').replace(/\//g, '_').slice(0, 60);
   }
 
+  // Resolves to the count, 0 for a key that doesn't exist yet, or null on failure
   function call(action, key) {
     return fetch(API + '/' + action + '/' + NS + '/' + key, { keepalive: action === 'hit' })
-      .then(function (r) { return r.ok ? r.json() : { value: 0 }; })
+      .then(function (r) {
+        if (r.status === 404) return { value: 0 };
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
       .then(function (d) { return typeof d.value === 'number' && d.value > 0 ? d.value : 0; })
       .catch(function () { return null; });
   }
 
-  window.AO_STATS = { get: function (k) { return call('get', k); }, pageKey: pageKey, today: today, store: store, live: LIVE };
+  // The API allows ~30 requests per 10s, so the stats page reads through a
+  // small queue and retries anything that was throttled.
+  var queue = [], active = 0;
+  function pump() {
+    while (active < 4 && queue.length) {
+      var job = queue.shift();
+      active++;
+      call('get', job.key).then(function (job, v) {
+        if (v === null && job.tries < 4) {
+          job.tries++;
+          setTimeout(function () { queue.push(job); pump(); }, 2500 * job.tries);
+        } else {
+          job.resolve(v);
+        }
+        active--;
+        pump();
+      }.bind(null, job));
+    }
+  }
+  function queuedGet(key) {
+    return new Promise(function (resolve) { queue.push({ key: key, tries: 0, resolve: resolve }); pump(); });
+  }
+
+  window.AO_STATS = { get: queuedGet, pageKey: pageKey, today: today, store: store, live: LIVE };
 
   if (document.documentElement.hasAttribute('data-no-count') || !window.fetch) return;
 

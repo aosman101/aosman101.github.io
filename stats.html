@@ -27,7 +27,7 @@
     .st-panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
     .st-panel-title { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); }
     .st-panel-note { font-size: 0.8rem; color: var(--text-muted); }
-    .st-chart { position: relative; height: 200px; display: flex; align-items: flex-end; gap: 2px; border-bottom: 1px solid var(--border); }
+    .st-chart { position: relative; height: 200px; display: flex; align-items: flex-end; gap: 6px; border-bottom: 1px solid var(--border); }
     .st-bar { flex: 1; height: 100%; display: flex; align-items: flex-end; cursor: default; position: relative; }
     .st-bar span { display: block; width: 100%; min-height: 1px; background: var(--accent); border-radius: 4px 4px 0 0; opacity: 0.85; transition: opacity 0.15s ease; }
     .st-bar.is-zero span { background: var(--border); }
@@ -52,7 +52,7 @@
     .st-error { color: var(--error); font-size: 0.9rem; margin-top: 1rem; }
     @media (max-width: 760px) {
       .st-tiles { grid-template-columns: repeat(2, 1fr); }
-      .st-chart { height: 150px; gap: 1px; }
+      .st-chart { height: 150px; gap: 3px; }
       .st-pages .st-meter { display: none; }
     }
   </style>
@@ -96,10 +96,10 @@
 
     <div class="st-panel">
       <div class="st-panel-head">
-        <h2 class="st-panel-title">Page views &middot; last 30 days</h2>
+        <h2 class="st-panel-title">Page views &middot; last 14 days</h2>
         <span class="st-panel-note" id="stRangeTotal"></span>
       </div>
-      <div class="st-chart" id="stChart" role="img" aria-label="Daily page views for the last 30 days"></div>
+      <div class="st-chart" id="stChart" role="img" aria-label="Daily page views for the last 14 days"></div>
       <div class="st-axis"><span id="stAxisStart"></span><span>Today</span></div>
     </div>
 
@@ -141,10 +141,10 @@
   function fmt(n) { return (n || 0).toLocaleString('en-GB'); }
   function setStat(name, n) { document.querySelector('[data-stat="' + name + '"]').textContent = n === null ? '\u2013' : fmt(n); }
 
-  // Last 30 days as YYYY-MM-DD, London time, oldest first
+  // Last 14 days as YYYY-MM-DD, London time, oldest first
   var days = [];
   var base = new Date(S.today() + 'T12:00:00Z');
-  for (var i = 29; i >= 0; i--) {
+  for (var i = 13; i >= 0; i--) {
     var d = new Date(base); d.setUTCDate(base.getUTCDate() - i);
     days.push(d.toISOString().slice(0, 10));
   }
@@ -154,7 +154,7 @@
   var failed = false;
   function get(k) { return S.get(k).then(function (v) { if (v === null) failed = true; return v || 0; }); }
 
-  Promise.all([get('views'), get('visitors'), get('d_' + days[29]), get('u_' + days[29])]).then(function (r) {
+  Promise.all([get('views'), get('visitors'), get('d_' + days[13]), get('u_' + days[13])]).then(function (r) {
     setStat('views', r[0]); setStat('visitors', r[1]); setStat('today', r[2]); setStat('todayVisitors', r[3]);
     if (failed) document.getElementById('stError').hidden = false;
   });
@@ -164,7 +164,7 @@
     var max = Math.max.apply(null, counts.concat([1]));
     var total = counts.reduce(function (a, b) { return a + b; }, 0);
     document.getElementById('stRangeTotal').textContent = fmt(total) + ' views';
-    chart.setAttribute('aria-label', 'Daily page views for the last 30 days, ' + fmt(total) + ' in total, peak ' + fmt(max) + ' in a day');
+    chart.setAttribute('aria-label', 'Daily page views for the last 14 days, ' + fmt(total) + ' in total, peak ' + fmt(max) + ' in a day');
     var tip = document.createElement('div'); tip.className = 'st-tip'; chart.appendChild(tip);
     counts.forEach(function (n, i) {
       var bar = document.createElement('div');
