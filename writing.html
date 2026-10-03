@@ -232,6 +232,8 @@
       .cover-meta { gap: 0.6rem; }
       .cover-read { margin-left: 0; width: 100%; margin-top: 0.5rem; }
     }
+      .writing-cta-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .writing-cta-actions .btn-ghost { gap: 0.5rem; }
   </style>
 </head>
 <body>
@@ -297,10 +299,16 @@
         <h3>Want to <em>collaborate</em>?</h3>
         <p>If you're building pipelines, working on data quality, or teaching data engineering — let's connect.</p>
       </div>
-      <a href="contact.html" class="btn-primary">
-        Get in Touch
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="writing-cta-actions">
+        <a href="feed.xml" class="btn-ghost">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 5.5a4.5 4.5 0 014.5 4.5M2 2a8 8 0 018 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="2.5" cy="9.5" r="1" fill="currentColor"/></svg>
+          RSS Feed
+        </a>
+        <a href="contact.html" class="btn-primary">
+          Get in Touch
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
 
   </div>
