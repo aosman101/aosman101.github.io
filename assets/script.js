@@ -496,3 +496,67 @@ if (filterBtns.length && pcards.length) {
     for (var j = 0; j < kbds.length; j++) kbds[j].textContent = 'Ctrl K';
   }
 })();
+
+/* ── Visitor counter ──
+   Cookie-free counts via the Abacus counter API. Only the live site
+   writes to the real namespace; local copies count into a dev one.
+   Visit /stats.html to see the numbers or exclude your own browser. */
+(function initVisitorCounter() {
+  var API = 'https://abacus.jasoncameron.dev';
+  var LIVE = location.hostname === 'aosman101.github.io';
+  var NS = LIVE ? 'aosman101-github-io' : 'aosman101-dev';
+
+  function store(key, val) {
+    try {
+      if (val === undefined) return localStorage.getItem(key);
+      localStorage.setItem(key, val);
+    } catch (e) { return null; }
+  }
+
+  function today() {
+    try { return new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/London' }); }
+    catch (e) { return new Date().toISOString().slice(0, 10); }
+  }
+
+  function pageKey(path) {
+    var p = (path || location.pathname).replace(/^\/+|\/+$/g, '').replace(/\.html$/, '');
+    return 'p_' + (p || 'index').replace(/\//g, '_').slice(0, 60);
+  }
+
+  function call(action, key) {
+    return fetch(API + '/' + action + '/' + NS + '/' + key, { keepalive: action === 'hit' })
+      .then(function (r) { return r.ok ? r.json() : { value: 0 }; })
+      .then(function (d) { return typeof d.value === 'number' && d.value > 0 ? d.value : 0; })
+      .catch(function () { return null; });
+  }
+
+  window.AO_STATS = { get: function (k) { return call('get', k); }, pageKey: pageKey, today: today, store: store, live: LIVE };
+
+  if (document.documentElement.hasAttribute('data-no-count') || !window.fetch) return;
+
+  var skip = store('ao_notrack') === '1' || navigator.webdriver;
+  var day = today();
+  var views;
+
+  if (skip) {
+    views = call('get', 'views');
+  } else {
+    views = call('hit', 'views');
+    call('hit', pageKey());
+    call('hit', 'd_' + day);
+    if (!store('ao_seen')) { call('hit', 'visitors'); store('ao_seen', '1'); }
+    if (store('ao_seen_day') !== day) { call('hit', 'u_' + day); store('ao_seen_day', day); }
+  }
+
+  var slot = document.querySelector('.foot-bottom');
+  if (!slot) return;
+  views.then(function (n) {
+    if (!n) return;
+    var el = document.createElement('a');
+    el.className = 'foot-views';
+    el.href = (location.pathname.indexOf('/posts/') !== -1 ? '../' : '') + 'stats.html';
+    el.setAttribute('aria-label', n.toLocaleString('en-GB') + ' page views. Open site stats');
+    el.innerHTML = '<span class="foot-views-dot" aria-hidden="true"></span>' + n.toLocaleString('en-GB') + ' views';
+    slot.insertBefore(el, slot.lastElementChild);
+  });
+})();
