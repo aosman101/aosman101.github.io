@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-no-count>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0F1A" />
+  <title>Site Stats — Adil Osman</title>
+  <meta name="description" content="Visitor statistics for aosman101.github.io." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/assets/style.css?v=20261003" />
+  <style>
+    .st-wrap { padding: calc(var(--nav-h) + 4rem) 0 5rem; }
+    .st-label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .st-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.25rem, 5vw, 3.5rem); letter-spacing: -0.02em; color: var(--text-primary); line-height: 1.05; }
+    .st-title em { font-style: italic; color: var(--accent); }
+    .st-sub { color: var(--text-secondary); max-width: 560px; line-height: 1.75; margin-top: 1rem; }
+    .st-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 3rem 0 1.5rem; }
+    .st-tile { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.4rem 1.5rem; }
+    .st-tile-num { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+    .st-tile-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); margin-top: 0.75rem; }
+    .st-panel { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .st-panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .st-panel-title { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); }
+    .st-panel-note { font-size: 0.8rem; color: var(--text-muted); }
+    .st-chart { position: relative; height: 200px; display: flex; align-items: flex-end; gap: 2px; border-bottom: 1px solid var(--border); }
+    .st-bar { flex: 1; height: 100%; display: flex; align-items: flex-end; cursor: default; position: relative; }
+    .st-bar span { display: block; width: 100%; min-height: 1px; background: var(--accent); border-radius: 4px 4px 0 0; opacity: 0.85; transition: opacity 0.15s ease; }
+    .st-bar.is-zero span { background: var(--border); }
+    .st-bar:hover span, .st-bar:focus-visible span { opacity: 1; }
+    .st-bar:focus-visible { outline: none; }
+    .st-axis { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--text-muted); margin-top: 0.5rem; }
+    .st-tip { position: absolute; pointer-events: none; background: var(--bg-elevated); border: 1px solid var(--border-hover); border-radius: var(--radius-sm); padding: 0.45rem 0.65rem; font-size: 0.78rem; color: var(--text-primary); white-space: nowrap; transform: translate(-50%, -100%); margin-top: -8px; opacity: 0; transition: opacity 0.12s ease; z-index: 2; }
+    .st-tip small { display: block; font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-tertiary); letter-spacing: 0.06em; }
+    .st-pages { width: 100%; border-collapse: collapse; }
+    .st-pages td { padding: 0.65rem 0; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--text-secondary); vertical-align: middle; }
+    .st-pages tr:first-child td { border-top: 0; }
+    .st-pages a { color: var(--text-primary); text-decoration: none; }
+    .st-pages a:hover { color: var(--accent); }
+    .st-pages .st-meter { width: 40%; padding-left: 1rem; }
+    .st-meter-track { height: 6px; border-radius: 3px; background: var(--bg-elevated); overflow: hidden; }
+    .st-meter-fill { height: 100%; background: var(--accent-cool); border-radius: 3px; }
+    .st-pages .st-num { width: 4.5rem; text-align: right; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+    .st-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-tertiary); margin-top: 2rem; }
+    .st-foot button { font: inherit; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: 0.55rem 1rem; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease; }
+    .st-foot button:hover, .st-foot button:focus-visible { border-color: var(--accent-mid); color: var(--text-primary); }
+    .st-foot button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+    .st-error { color: var(--error); font-size: 0.9rem; margin-top: 1rem; }
+    @media (max-width: 760px) {
+      .st-tiles { grid-template-columns: repeat(2, 1fr); }
+      .st-chart { height: 150px; gap: 1px; }
+      .st-pages .st-meter { display: none; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="/projects.html">Work</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/skills.html">Stack</a></li>
+      <li><a href="/writing.html">Writing</a></li>
+      <li><a href="/contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-search" aria-label="Search site (Ctrl+K or Cmd+K)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+      <span class="nav-search-kbd">⌘K</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main id="main">
+<section class="st-wrap" aria-labelledby="st-heading">
+  <div class="wrap">
+    <div class="st-label">Site stats</div>
+    <h1 class="st-title" id="st-heading">Who's been <em>reading</em>.</h1>
+    <p class="st-sub">Live, cookie-free view counts for this site. No personal data is collected &mdash; each page load adds one to a counter, and a browser is counted as a visitor once.</p>
+
+    <div class="st-tiles" aria-live="polite">
+      <div class="st-tile"><div class="st-tile-num" data-stat="views">&ndash;</div><div class="st-tile-label">Total page views</div></div>
+      <div class="st-tile"><div class="st-tile-num" data-stat="visitors">&ndash;</div><div class="st-tile-label">Unique visitors</div></div>
+      <div class="st-tile"><div class="st-tile-num" data-stat="today">&ndash;</div><div class="st-tile-label">Views today</div></div>
+      <div class="st-tile"><div class="st-tile-num" data-stat="todayVisitors">&ndash;</div><div class="st-tile-label">Visitors today</div></div>
+    </div>
+
+    <div class="st-panel">
+      <div class="st-panel-head">
+        <h2 class="st-panel-title">Page views &middot; last 30 days</h2>
+        <span class="st-panel-note" id="stRangeTotal"></span>
+      </div>
+      <div class="st-chart" id="stChart" role="img" aria-label="Daily page views for the last 30 days"></div>
+      <div class="st-axis"><span id="stAxisStart"></span><span>Today</span></div>
+    </div>
+
+    <div class="st-panel">
+      <div class="st-panel-head">
+        <h2 class="st-panel-title">Views by page</h2>
+        <span class="st-panel-note">All time</span>
+      </div>
+      <table class="st-pages"><tbody id="stPages"></tbody></table>
+    </div>
+
+    <p class="st-error" id="stError" hidden>Couldn't reach the counter service right now. Try again in a minute.</p>
+
+    <div class="st-foot">
+      <span>Counting started 3 October 2026.</span>
+      <button type="button" id="stNoTrack" aria-pressed="false">Don't count my visits</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="/assets/script.js?v=20261003"></script>
+<script>
+(function () {
+  var S = window.AO_STATS;
+  if (!S) return;
+
+  var PAGES = [
+    ['Home', '/', 'index'],
+    ['Work', '/projects.html', 'projects'],
+    ['About', '/about.html', 'about'],
+    ['Stack', '/skills.html', 'skills'],
+    ['Writing', '/writing.html', 'writing'],
+    ['Contact', '/contact.html', 'contact'],
+    ['Post: TfL Travel App with Somalis in Tech', '/posts/building-the-tfl-travel-app-with-somalis-in-tech.html', 'posts/building-the-tfl-travel-app-with-somalis-in-tech'],
+    ['Post: Real-Time TfL Lakehouse', '/posts/building-a-tfl-realtime-lakehouse.html', 'posts/building-a-tfl-realtime-lakehouse']
+  ];
+
+  function fmt(n) { return (n || 0).toLocaleString('en-GB'); }
+  function setStat(name, n) { document.querySelector('[data-stat="' + name + '"]').textContent = n === null ? '\u2013' : fmt(n); }
+
+  // Last 30 days as YYYY-MM-DD, London time, oldest first
+  var days = [];
+  var base = new Date(S.today() + 'T12:00:00Z');
+  for (var i = 29; i >= 0; i--) {
+    var d = new Date(base); d.setUTCDate(base.getUTCDate() - i);
+    days.push(d.toISOString().slice(0, 10));
+  }
+  var label = function (iso, opts) { return new Date(iso + 'T12:00:00Z').toLocaleDateString('en-GB', Object.assign({ timeZone: 'UTC' }, opts)); };
+  document.getElementById('stAxisStart').textContent = label(days[0], { day: 'numeric', month: 'short' });
+
+  var failed = false;
+  function get(k) { return S.get(k).then(function (v) { if (v === null) failed = true; return v || 0; }); }
+
+  Promise.all([get('views'), get('visitors'), get('d_' + days[29]), get('u_' + days[29])]).then(function (r) {
+    setStat('views', r[0]); setStat('visitors', r[1]); setStat('today', r[2]); setStat('todayVisitors', r[3]);
+    if (failed) document.getElementById('stError').hidden = false;
+  });
+
+  Promise.all(days.map(function (d) { return get('d_' + d); })).then(function (counts) {
+    var chart = document.getElementById('stChart');
+    var max = Math.max.apply(null, counts.concat([1]));
+    var total = counts.reduce(function (a, b) { return a + b; }, 0);
+    document.getElementById('stRangeTotal').textContent = fmt(total) + ' views';
+    chart.setAttribute('aria-label', 'Daily page views for the last 30 days, ' + fmt(total) + ' in total, peak ' + fmt(max) + ' in a day');
+    var tip = document.createElement('div'); tip.className = 'st-tip'; chart.appendChild(tip);
+    counts.forEach(function (n, i) {
+      var bar = document.createElement('div');
+      bar.className = 'st-bar' + (n ? '' : ' is-zero');
+      bar.tabIndex = 0;
+      bar.setAttribute('aria-label', label(days[i], { weekday: 'short', day: 'numeric', month: 'short' }) + ': ' + fmt(n) + ' views');
+      bar.innerHTML = '<span style="height:' + (n ? Math.max(2, n / max * 100) : 0.5) + '%"></span>';
+      function show() {
+        tip.innerHTML = fmt(n) + ' view' + (n === 1 ? '' : 's') + '<small>' + label(days[i], { weekday: 'short', day: 'numeric', month: 'short' }) + '</small>';
+        var x = bar.offsetLeft + bar.offsetWidth / 2;
+        tip.style.left = Math.min(Math.max(x, 50), chart.offsetWidth - 50) + 'px';
+        tip.style.top = (chart.offsetHeight - bar.firstChild.offsetHeight) + 'px';
+        tip.style.opacity = 1;
+      }
+      function hide() { tip.style.opacity = 0; }
+      bar.addEventListener('mouseenter', show); bar.addEventListener('focus', show);
+      bar.addEventListener('mouseleave', hide); bar.addEventListener('blur', hide);
+      chart.appendChild(bar);
+    });
+  });
+
+  Promise.all(PAGES.map(function (p) { return get(S.pageKey('/' + p[2])); })).then(function (counts) {
+    var rows = PAGES.map(function (p, i) { return { name: p[0], href: p[1], n: counts[i] }; })
+      .sort(function (a, b) { return b.n - a.n; });
+    var max = Math.max(rows[0].n, 1);
+    document.getElementById('stPages').innerHTML = rows.map(function (r) {
+      return '<tr><td><a href="' + r.href + '">' + r.name + '</a></td>' +
+        '<td class="st-meter"><div class="st-meter-track"><div class="st-meter-fill" style="width:' + (r.n / max * 100) + '%"></div></div></td>' +
+        '<td class="st-num">' + fmt(r.n) + '</td></tr>';
+    }).join('');
+  });
+
+  var btn = document.getElementById('stNoTrack');
+  function sync() {
+    var on = S.store('ao_notrack') === '1';
+    btn.setAttribute('aria-pressed', String(on));
+    btn.textContent = on ? 'Your visits are excluded' : "Don't count my visits";
+  }
+  btn.addEventListener('click', function () { S.store('ao_notrack', S.store('ao_notrack') === '1' ? '0' : '1'); sync(); });
+  sync();
+})();
+</script>
+</body>
+</html>
