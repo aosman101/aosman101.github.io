@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0F1A" />
+  <script>try{var t=localStorage.getItem('ao_theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+  <title>CV — Adil Osman</title>
+  <meta name="description" content="CV of Adil Osman, London-based Data Engineer. Nearly three years building ETL/ELT pipelines, CDC and streaming systems, and dbt models on BigQuery. Read online or download the PDF." />
+  <meta property="og:title" content="CV — Adil Osman" />
+  <meta property="og:description" content="Data Engineer with nearly three years of experience in pipelines, CDC and streaming, and analytics models. Read online or download the PDF." />
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://aosman101.github.io/cv.html" />
+  <meta property="og:image" content="https://aosman101.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CV — Adil Osman" />
+  <meta name="twitter:description" content="Data Engineer with nearly three years of experience in pipelines, CDC and streaming, and analytics models." />
+  <meta name="twitter:image" content="https://aosman101.github.io/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="Adil Osman portfolio social preview" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="canonical" href="https://aosman101.github.io/cv.html" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="assets/style.css?v=20261027" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "url": "https://aosman101.github.io/cv.html",
+    "name": "CV — Adil Osman",
+    "dateModified": "2026-10-27",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aosman101.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "CV", "item": "https://aosman101.github.io/cv.html" }
+      ]
+    },
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Adil Osman",
+      "url": "https://aosman101.github.io/",
+      "jobTitle": "Data Engineer",
+      "email": "aosman10020@gmail.com",
+      "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Birkbeck, University of London" },
+      "sameAs": [
+        "https://github.com/aosman101",
+        "https://www.linkedin.com/in/adil-osman-303185297/"
+      ]
+    }
+  }
+  </script>
+  <style>
+    /* ── Hero actions ── */
+    .cv-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.25rem; position: relative; }
+    .cv-file-meta {
+      font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+      margin-top: 1.25rem; position: relative;
+    }
+
+    /* ── Layout ── */
+    .cv-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 4.5rem; align-items: start; }
+    .cv-block + .cv-block { margin-top: 4.5rem; }
+    .cv-block > .section-label { margin-bottom: 1.75rem; }
+    .cv-summary { font-size: 1.125rem; font-weight: 300; line-height: 1.85; color: var(--text-secondary); }
+    .cv-summary strong { color: var(--text-primary); font-weight: 500; }
+
+    /* ── Roles ── */
+    .cv-role { padding-bottom: 2.25rem; margin-bottom: 2.25rem; border-bottom: 1px solid var(--border); }
+    .cv-role:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .cv-role-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem 1.5rem; flex-wrap: wrap; }
+    .cv-role-title { font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; line-height: 1.25; color: var(--text-primary); }
+    .cv-role-period {
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap;
+    }
+    .cv-role-org { font-size: 0.9rem; color: var(--accent); margin: 0.3rem 0 1.1rem; }
+    .cv-points { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .cv-points li {
+      position: relative; padding-left: 1.35rem;
+      font-size: 0.9625rem; line-height: 1.75; color: var(--text-secondary);
+    }
+    .cv-points li::before {
+      content: ''; position: absolute; left: 0; top: 0.78em;
+      width: 0.55rem; height: 1px; background: var(--accent);
+    }
+    .cv-points strong { color: var(--text-primary); font-weight: 500; }
+
+    /* ── Projects ── */
+    .cv-projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .cv-project {
+      display: flex; flex-direction: column;
+      background: var(--bg-surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 1.4rem 1.5rem;
+      transition: border-color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+    .cv-project:hover { border-color: var(--accent-mid); transform: translateY(-3px); }
+    .cv-project h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; line-height: 1.3; color: var(--text-primary); margin-bottom: 0.55rem; }
+    .cv-project h3 a { background-image: linear-gradient(var(--accent-mid), var(--accent-mid)); background-size: 0 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.3s var(--ease-out); }
+    .cv-project h3 a:hover, .cv-project h3 a:focus-visible { background-size: 100% 1px; }
+    .cv-project p { font-size: 0.875rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.1rem; }
+    .cv-project .pcard-stack { margin-top: auto; }
+
+    /* ── Education ── */
+    .cv-edu {
+      background: var(--bg-surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem;
+    }
+    .cv-edu .cv-role-org { margin-bottom: 1.25rem; }
+    .cv-modules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.1rem; }
+    .cv-module { border-top: 1px solid var(--border); padding-top: 0.75rem; }
+    .cv-module-mark { font-family: var(--font-mono); font-size: 1.35rem; font-weight: 500; color: var(--accent); line-height: 1; letter-spacing: -0.02em; }
+    .cv-module-mark sup { font-size: 0.65rem; opacity: 0.7; }
+    .cv-module-name { font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary); margin-top: 0.4rem; }
+    .cv-edu-note { font-size: 0.875rem; color: var(--text-tertiary); }
+    .cv-edu-note strong { color: var(--text-secondary); font-weight: 500; }
+
+    /* ── Skills ── */
+    .cv-skills { display: grid; gap: 1.5rem; }
+    .cv-skill { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .cv-skill:first-child { padding-top: 0; border-top: none; }
+    .cv-skill dt { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); padding-top: 0.2rem; }
+    .cv-skill dd { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .cv-skill .badge.is-familiar { border-style: dashed; color: var(--text-muted); }
+
+    /* ── Sidebar ── */
+    .cv-aside { position: sticky; top: calc(var(--nav-h) + 1.5rem); display: flex; flex-direction: column; gap: 1rem; }
+    .cv-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .cv-card-title { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1.1rem; }
+    .cv-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem; }
+    .cv-stat-num { font-family: var(--font-display); font-size: 1.9rem; line-height: 1; color: var(--accent-soft); letter-spacing: -0.01em; }
+    .cv-stat-label { font-size: 0.75rem; line-height: 1.45; color: var(--text-tertiary); margin-top: 0.4rem; }
+    .cv-card .btn-primary { width: 100%; justify-content: center; }
+    .cv-card .btn-ghost { width: 100%; justify-content: center; margin-top: 0.6rem; }
+    .cv-contact { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .cv-contact a { display: flex; align-items: center; gap: 0.65rem; font-size: 0.85rem; color: var(--text-secondary); transition: color 0.2s ease; word-break: break-word; }
+    .cv-contact a:hover, .cv-contact a:focus-visible { color: var(--accent); }
+    .cv-contact svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--text-tertiary); }
+    .cv-contact li.cv-contact-plain { display: flex; align-items: center; gap: 0.65rem; font-size: 0.85rem; color: var(--text-secondary); }
+
+    @media (max-width: 1020px) {
+      .cv-layout { grid-template-columns: 1fr; gap: 3.5rem; }
+      .cv-aside { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); order: -1; }
+      .cv-aside .cv-card:last-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 760px) {
+      .cv-projects { grid-template-columns: 1fr; }
+      .cv-modules { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.1rem; }
+      .cv-skill { grid-template-columns: 1fr; gap: 0.75rem; }
+      .cv-aside { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .cv-actions .btn-primary, .cv-actions .btn-ghost { flex: 1 1 100%; justify-content: center; }
+      .cv-edu { padding: 1.25rem; }
+      .cv-summary { font-size: 1.0625rem; }
+    }
+
+    /* ── Print: a clean paper copy of the page ── */
+    @media print {
+      @page { margin: 14mm 14mm 16mm; }
+      :root, .force-dark {
+        --bg: #fff; --bg-surface: #fff; --bg-elevated: #fff;
+        --text-primary: #111; --text-secondary: #222; --text-tertiary: #444; --text-muted: #555;
+        --accent: #1d3a5f; --accent-soft: #1d3a5f; --accent-mid: #9aa9bb; --border: #d5d9df;
+      }
+      body { background: #fff; font-size: 10.5pt; }
+      body::after, #nav, footer, .skip-link, .scroll-progress, .back-to-top, .cv-aside, .cv-actions, .cv-file-meta, .no-print { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .page-hero { padding: 0 0 1rem; border: none; background: none !important; }
+      .page-hero::before { display: none; }
+      .page-hero-title { font-size: 26pt; }
+      .print-only { display: block !important; }
+      section { padding: 1rem 0 0; }
+      .wrap { padding: 0; max-width: none; }
+      .cv-layout { display: block; }
+      .cv-block + .cv-block { margin-top: 1.5rem; }
+      .section-label::after { display: none; }
+      .cv-role, .cv-project, .cv-edu, .cv-skill { break-inside: avoid; }
+      .cv-role { padding-bottom: 0.9rem; margin-bottom: 0.9rem; }
+      .cv-projects { gap: 0.6rem; }
+      .cv-project { padding: 0.8rem 1rem; }
+      .cv-project:hover { transform: none; }
+      a { color: inherit !important; }
+    }
+    .print-only { display: none; }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">AO<em>.</em></a>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Stack</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-search" aria-label="Search site (Ctrl+K or Cmd+K)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+      <span class="nav-search-kbd">⌘K</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main id="main">
+<div class="page-hero" style="background:var(--bg-surface);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="page-hero-label">Curriculum Vitae</div>
+    <h1 class="page-hero-title">Adil Osman<span class="no-print">,<br>on <em>paper</em>.</span></h1>
+    <p class="page-hero-sub">Data Engineer in London. Read the full CV below, or download the PDF.</p>
+    <p class="print-only" style="margin-top:0.5rem;font-size:10pt">Data Engineer · London, UK · aosman10020@gmail.com · aosman101.github.io · github.com/aosman101 · linkedin.com/in/adil-osman-303185297</p>
+    <div class="cv-actions">
+      <a href="assets/docs/adil-osman-cv.pdf" download="Adil-Osman-CV.pdf" class="btn-primary">
+        Download PDF
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1v8.5M2.5 6l4 4 4-4M1.5 12h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="assets/docs/adil-osman-cv.pdf" target="_blank" rel="noopener" class="btn-ghost">Open in new tab<span class="visually-hidden"> (PDF)</span></a>
+    </div>
+    <p class="cv-file-meta">PDF · 2 pages · 94 KB · Updated October 2026</p>
+  </div>
+</div>
+
+<section aria-label="Curriculum vitae">
+  <div class="wrap">
+    <div class="cv-layout">
+
+      <!-- CV DOCUMENT -->
+      <article class="cv-doc">
+
+        <div class="cv-block reveal">
+          <h2 class="section-label" id="cv-summary">Profile</h2>
+          <p class="cv-summary">Data Engineer with nearly three years of experience building <strong>production-grade ETL/ELT pipelines, real-time streaming and CDC systems, and analytics models</strong> with Python, SQL, dbt, Apache Airflow, and BigQuery. Most recently delivered 10+ end-to-end data platforms as a freelance consultant, cutting cloud warehouse query costs by ~40% and raising automated data quality test coverage to 95%+. Earlier roles delivered 99% SLA adherence, an 8x improvement in data freshness, and a 38% reduction in analysis cycle time. Hands-on with Kafka-compatible streaming (Redpanda), CDC (Debezium), and OLAP (ClickHouse), with exposure to Databricks/PySpark, Delta Lake, and AWS. Known for observable, well-documented data systems that technical and non-technical stakeholders can rely on.</p>
+        </div>
+
+        <div class="cv-block">
+          <h2 class="section-label reveal" id="cv-experience">Experience</h2>
+
+          <div class="cv-role reveal">
+            <div class="cv-role-head">
+              <h3 class="cv-role-title">Data Engineer &amp; Analytics Engineer</h3>
+              <span class="cv-role-period">Jan 2026 – Sep 2026</span>
+            </div>
+            <div class="cv-role-org">Freelance (Self-Employed) · Remote</div>
+            <ul class="cv-points">
+              <li>Delivered <strong>10+ end-to-end data platforms</strong> as an independent consultant, turning fragmented multi-source client data into reliable, analytics-ready pipelines with measurable SLAs and full lineage.</li>
+              <li>Reduced cloud warehouse query costs by <strong>~40%</strong> by re-engineering transformations into incremental dbt models with partitioning on BigQuery.</li>
+              <li>Increased automated data quality test coverage to <strong>95%+</strong> with dbt tests and Great Expectations, catching schema and freshness issues before they reached stakeholders.</li>
+              <li>Cut data preparation defects by <strong>~30%</strong> by enforcing deduplication, schema contracts, and validation at ingestion.</li>
+              <li>Engineered near real-time CDC analytics (Postgres → Debezium → Redpanda/Kafka → ClickHouse) and Airflow lakehouses on partitioned Parquet (dbt + DuckDB), with OpenLineage lineage and GitHub Actions CI/CD.</li>
+            </ul>
+          </div>
+
+          <div class="cv-role reveal">
+            <div class="cv-role-head">
+              <h3 class="cv-role-title">Data Engineer</h3>
+              <span class="cv-role-period">Apr 2024 – Jul 2025</span>
+            </div>
+            <div class="cv-role-org">Somalis in Tech</div>
+            <ul class="cv-points">
+              <li>Developed Python ingestion scripts and scheduled ETL jobs, improving data freshness from <strong>~6 hours to ~45 minutes</strong> and automating ~65% of manual reporting.</li>
+              <li>Built and optimised SQL transformations to produce analytics-ready tables for recurring KPI reporting, with consistent naming conventions and clear definitions.</li>
+              <li>Optimised pipeline logic to meet weekly reporting SLAs, achieving <strong>99% on-time delivery</strong> with P95 end-to-end job latency under 60 minutes.</li>
+              <li>Introduced monitoring and triage routines (run logging, documented checks, escalation steps) to reduce time-to-diagnosis for failed jobs and speed up recovery.</li>
+              <li>Partnered with programme leads to define engagement KPIs and delivered Tableau/ThoughtSpot dashboards, supporting a <strong>22% uplift</strong> in attendance for priority programmes.</li>
+              <li>Mentored peers on data engineering best practices, SQL patterns, and pipeline design, fostering a culture of documentation and reproducibility within the team.</li>
+            </ul>
+          </div>
+
+          <div class="cv-role reveal">
+            <div class="cv-role-head">
+              <h3 class="cv-role-title">Data Analyst</h3>
+              <span class="cv-role-period">Jun 2023 – Feb 2024</span>
+            </div>
+            <div class="cv-role-org">HQ Analytics</div>
+            <ul class="cv-points">
+              <li>Engineered repeatable data preparation workflows in Python and SQL to clean, validate, and transform large datasets, reducing analysis cycle time for recurring workflows by <strong>38%</strong>.</li>
+              <li>Automated data extraction pipelines with scheduled jobs and reusable scripts, saving <strong>~6 hours</strong> of manual effort per week and improving consistency.</li>
+              <li>Collaborated on SQL data models for analytics-ready tables, improving typical query performance by <strong>~48%</strong> through partitioning and clustering strategies.</li>
+              <li>Performed data profiling and source-system analysis (null checks, duplicates, distribution checks) and documented assumptions to support correct interpretation downstream.</li>
+              <li>Worked with analysts to clarify reporting requirements and ensure warehouse schemas supported dashboards and ad-hoc analysis.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <h2 class="section-label reveal" id="cv-projects">Selected Projects</h2>
+          <div class="cv-projects">
+            <div class="cv-project reveal">
+              <h3><a href="projects.html#streamshop-cdc">StreamShop CDC Analytics Stack</a></h3>
+              <p>Production-style CDC pipeline: Postgres changes stream through Debezium into Redpanda and land in ClickHouse via a Python sink. Analytics marts and an SCD Type 2 snapshot in dbt, with schema registry and CI validating models and contracts.</p>
+              <div class="pcard-stack"><span class="badge">Postgres</span><span class="badge">Debezium</span><span class="badge">Redpanda</span><span class="badge">ClickHouse</span><span class="badge">dbt</span><span class="badge">GitHub Actions</span></div>
+            </div>
+            <div class="cv-project reveal d1">
+              <h3><a href="projects.html#air-quality-lakehouse">London Air Quality &amp; Weather Lakehouse</a></h3>
+              <p>Containerised lakehouse pulling hourly OpenAQ and Open-Meteo data via Airflow, landing raw JSON in MinIO, upserting into Postgres, modelling incrementally in dbt, validating with Great Expectations, and serving Metabase dashboards.</p>
+              <div class="pcard-stack"><span class="badge">Airflow</span><span class="badge">MinIO</span><span class="badge">Postgres</span><span class="badge">dbt</span><span class="badge">Great Expectations</span><span class="badge">Metabase</span></div>
+            </div>
+            <div class="cv-project reveal">
+              <h3><a href="projects.html#tfl-lakehouse">TfL Real-Time Lakehouse</a></h3>
+              <p>Real-time lakehouse on live TfL arrivals using Airflow (Celery): date-partitioned Parquet snapshots, dbt and DuckDB marts, inline Great Expectations validations, and OpenLineage metadata for end-to-end lineage in Marquez.</p>
+              <div class="pcard-stack"><span class="badge">Airflow</span><span class="badge">Parquet</span><span class="badge">DuckDB</span><span class="badge">dbt</span><span class="badge">OpenLineage</span><span class="badge">Docker</span></div>
+            </div>
+            <div class="cv-project reveal d1">
+              <h3><a href="projects.html#premier-league-warehouse">Premier League Analytics Warehouse</a></h3>
+              <p>End-to-end warehouse on BigQuery: Python extracts openfootball JSON into NDJSON, loads raw data, and dbt builds staging models and dimensional marts (teams, match results, season stats) with schema tests and CI.</p>
+              <div class="pcard-stack"><span class="badge">Python</span><span class="badge">BigQuery</span><span class="badge">dbt Core</span><span class="badge">SQL</span><span class="badge">GitHub Actions</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <h2 class="section-label reveal" id="cv-education">Education</h2>
+          <div class="cv-edu reveal">
+            <div class="cv-role-head">
+              <h3 class="cv-role-title">BSc Data Science &amp; Computing — First Class Honours</h3>
+              <span class="cv-role-period">Graduated Dec 2025</span>
+            </div>
+            <div class="cv-role-org">Birkbeck, University of London</div>
+            <div class="cv-modules" role="list" aria-label="Key module grades">
+              <div class="cv-module" role="listitem"><div class="cv-module-mark">90<sup>%</sup></div><div class="cv-module-name">Database Management</div></div>
+              <div class="cv-module" role="listitem"><div class="cv-module-mark">84<sup>%</sup></div><div class="cv-module-name">AI &amp; Machine Learning</div></div>
+              <div class="cv-module" role="listitem"><div class="cv-module-mark">84<sup>%</sup></div><div class="cv-module-name">Software &amp; Programming II</div></div>
+              <div class="cv-module" role="listitem"><div class="cv-module-mark">84<sup>%</sup></div><div class="cv-module-name">Data Structures &amp; Algorithms</div></div>
+            </div>
+            <p class="cv-edu-note"><strong>Languages:</strong> Python, SQL, R, Java, JavaScript, HTML/CSS, PowerShell, Linux/Bash.</p>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <h2 class="section-label reveal" id="cv-skills">Technical Skills</h2>
+          <dl class="cv-skills reveal">
+            <div class="cv-skill">
+              <dt>Data Engineering</dt>
+              <dd><span class="badge">ETL / ELT pipelines</span><span class="badge">API &amp; file ingestion</span><span class="badge">Incremental loading</span><span class="badge">CDC (Debezium)</span><span class="badge">Redpanda / Kafka</span><span class="badge">Apache Airflow</span><span class="badge">dbt</span><span class="badge">Dimensional modelling</span><span class="badge">SQL optimisation</span></dd>
+            </div>
+            <div class="cv-skill">
+              <dt>Platforms &amp; Tooling</dt>
+              <dd><span class="badge">BigQuery</span><span class="badge">ClickHouse</span><span class="badge">DuckDB</span><span class="badge">PostgreSQL</span><span class="badge">AWS (S3, IAM, EC2, RDS)</span><span class="badge">Git / GitHub</span><span class="badge">GitHub Actions CI/CD</span><span class="badge is-familiar">Snowflake <span class="visually-hidden">(</span>· exposure<span class="visually-hidden">)</span></span><span class="badge is-familiar">Databricks / PySpark <span class="visually-hidden">(</span>· exposure<span class="visually-hidden">)</span></span><span class="badge is-familiar">Terraform <span class="visually-hidden">(</span>· exposure<span class="visually-hidden">)</span></span></dd>
+            </div>
+            <div class="cv-skill">
+              <dt>Quality, Observability &amp; BI</dt>
+              <dd><span class="badge">dbt tests</span><span class="badge">Great Expectations</span><span class="badge">OpenLineage / Marquez</span><span class="badge">Tableau</span><span class="badge">Power BI</span><span class="badge">ThoughtSpot</span><span class="badge">Plotly</span><span class="badge">Matplotlib</span></dd>
+            </div>
+          </dl>
+          <a href="skills.html" class="btn-link reveal no-print" style="margin-top:1.75rem">
+            Full stack breakdown
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="cv-aside" aria-label="CV summary">
+        <div class="cv-card">
+          <div class="cv-card-title">At a glance</div>
+          <div class="cv-stats">
+            <div><div class="cv-stat-num">10+</div><div class="cv-stat-label">client data platforms delivered</div></div>
+            <div><div class="cv-stat-num">~40%</div><div class="cv-stat-label">lower warehouse query costs</div></div>
+            <div><div class="cv-stat-num">95%+</div><div class="cv-stat-label">automated test coverage</div></div>
+            <div><div class="cv-stat-num">99%</div><div class="cv-stat-label">on-time SLA delivery</div></div>
+          </div>
+        </div>
+        <div class="cv-card">
+          <div class="cv-card-title">Contact</div>
+          <ul class="cv-contact" role="list">
+            <li><a href="mailto:aosman10020@gmail.com"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="1" y="3" width="13" height="9" rx="1.5"/><path d="M1 5l6.5 4.5L14 5"/></svg>aosman10020@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="1" y="1" width="13" height="13" rx="2"/><path d="M4.5 6.5v4M4.5 4v.5"/><path d="M7.5 10.5v-2A1.5 1.5 0 0110.5 10v.5" stroke-linejoin="round"/></svg>LinkedIn</a></li>
+            <li><a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 11c0 .9.4 1.4.9 1.9.4-.5.9-.9.9-1.9"/><path d="M7.5 1.5a5.5 5.5 0 00-1.92 10.65c.27.04.36-.12.36-.26v-1.1c-1.5.33-1.82-.72-1.82-.72a1.43 1.43 0 00-.6-.79c-.49-.33.04-.32.04-.32a1.14 1.14 0 01.83.56 1.16 1.16 0 001.58.45 1.15 1.15 0 01.34-.72C4.7 10.2 3.3 9.7 3.3 7.3a2.13 2.13 0 01.57-1.48 2 2 0 01.05-1.46s.46-.15 1.52.56a5.2 5.2 0 012.76 0c1.05-.71 1.51-.56 1.51-.56a2 2 0 01.06 1.46 2.13 2.13 0 01.57 1.48c0 2.4-1.46 2.92-2.85 3.07a1.3 1.3 0 01.37 1v1.49c0 .14.08.3.37.26A5.5 5.5 0 007.5 1.5z"/></svg>github.com/aosman101</a></li>
+            <li class="cv-contact-plain"><svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" style="width:14px;height:14px;color:var(--text-tertiary)"><path d="M6.5 1C4.57 1 3 2.57 3 4.5c0 2.7 3.5 7 3.5 7S10 7.2 10 4.5C10 2.57 8.43 1 6.5 1z"/><circle cx="6.5" cy="4.5" r="1.3"/></svg>London, UK · Right to work</li>
+          </ul>
+        </div>
+        <div class="cv-card">
+          <div class="cv-card-title">Take a copy</div>
+          <a href="assets/docs/adil-osman-cv.pdf" download="Adil-Osman-CV.pdf" class="btn-primary">
+            Download PDF
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1v8.5M2.5 6l4 4 4-4M1.5 12h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="contact.html" class="btn-ghost">Get in Touch</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="foot-logo">AO<em>.</em></a>
+        <p class="foot-tagline">Data Engineer &amp; Analytics Engineer building reliable pipelines and analytics-ready data systems in London.</p>
+        <div class="foot-social">
+          <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 11c0 .9.4 1.4.9 1.9.4-.5.9-.9.9-1.9"/><path d="M7.5 1.5a5.5 5.5 0 00-1.92 10.65c.27.04.36-.12.36-.26v-1.1c-1.5.33-1.82-.72-1.82-.72a1.43 1.43 0 00-.6-.79c-.49-.33.04-.32.04-.32a1.14 1.14 0 01.83.56 1.16 1.16 0 001.58.45 1.15 1.15 0 01.34-.72C4.7 10.2 3.3 9.7 3.3 7.3a2.13 2.13 0 01.57-1.48 2 2 0 01.05-1.46s.46-.15 1.52.56a5.2 5.2 0 012.76 0c1.05-.71 1.51-.56 1.51-.56a2 2 0 01.06 1.46 2.13 2.13 0 01.57 1.48c0 2.4-1.46 2.92-2.85 3.07a1.3 1.3 0 01.37 1v1.49c0 .14.08.3.37.26A5.5 5.5 0 007.5 1.5z"/></svg></a>
+          <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="1" y="1" width="13" height="13" rx="2"/><path d="M4.5 6.5v4M4.5 4v.5"/><path d="M7.5 10.5v-2A1.5 1.5 0 0110.5 10v.5" stroke-linejoin="round"/></svg></a>
+          <a href="mailto:aosman10020@gmail.com" aria-label="Email"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="1" y="3" width="13" height="9" rx="1.5"/><path d="M1 5l6.5 4.5L14 5"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-nav-col">
+        <div class="foot-col-title">Navigation</div>
+        <a href="projects.html">Work</a><a href="about.html">About</a><a href="skills.html">Stack</a><a href="writing.html">Writing</a><a href="cv.html">CV</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="foot-nav-col">
+        <div class="foot-col-title">Connect</div>
+        <a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/adil-osman-303185297/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:aosman10020@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">&copy; 2026 <span>Adil Osman</span> &nbsp;·&nbsp; London, UK</p>
+      <p class="foot-built"><a href="https://github.com/aosman101/aosman101.github.io" target="_blank" rel="noopener noreferrer">View site source</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js?v=20261027"></script>
+</body>
+</html>
