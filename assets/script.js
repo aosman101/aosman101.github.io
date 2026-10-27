@@ -305,6 +305,7 @@ if (filterBtns.length && pcards.length) {
     { title: 'About', section: 'Pages', href: 'about.html', keywords: 'bio experience education timeline' },
     { title: 'Stack', section: 'Pages', href: 'skills.html', keywords: 'skills tools technologies' },
     { title: 'Writing', section: 'Pages', href: 'writing.html', keywords: 'articles blog posts' },
+    { title: 'CV', section: 'Pages', href: 'cv.html', keywords: 'resume curriculum vitae pdf download experience' },
     { title: 'Contact', section: 'Pages', href: 'contact.html', keywords: 'email get in touch hire' },
     { title: 'TfL Real-Time Lakehouse', section: 'Projects', href: 'projects.html#tfl-lakehouse', keywords: 'streaming airflow duckdb dbt data engineering real-time' },
     { title: 'StreamShop CDC Analytics Stack', section: 'Projects', href: 'projects.html#streamshop-cdc', keywords: 'debezium kafka change data capture streaming' },
