@@ -430,6 +430,7 @@ section { padding: 8rem 0; }
 @media (max-width: 1020px) { .nav-links { gap: 1.6rem; } }
 @media (max-width: 820px) {
   .nav-inner { padding: 0 1.5rem; }
+  .nav-logo { margin-right: 1.5rem; }
   .nav-links { gap: 1.1rem; }
   .nav-links a { font-size: 0.82rem; }
   .nav-cta { padding: 0.4rem 0.8rem; }
