@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0A0F1A" />
   <script>try{var t=localStorage.getItem('ao_theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <title>Data Engineering Projects — Adil Osman</title>
-  <meta name="description" content="All projects by Adil Osman — data engineering, analytics engineering, ML, and data science." />
+  <meta name="description" content="Projects by Adil Osman: real-time lakehouses, CDC pipelines, dbt warehouses, and machine learning, with architecture notes and source code." />
   <meta property="og:title" content="Projects — Adil Osman" />
   <meta property="og:description" content="Data engineering, analytics engineering, ML, and data science projects by Adil Osman." />
   <meta property="og:type" content="website" />
@@ -25,7 +25,7 @@
   <link rel="canonical" href="https://aosman101.github.io/projects.html" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="assets/style.css?v=20261108b" />
+  <link rel="stylesheet" href="assets/style.css?v=20261108c" />
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
   <script type="application/ld+json">
   {
@@ -361,6 +361,15 @@
         </div>
         <h3 class="pcard-title">Premier League Analytics Warehouse</h3>
         <p class="pcard-desc">End-to-end football analytics warehouse on BigQuery, built with dbt and GitHub Actions CI. Covers Premier League seasons 2014–15 to 2024–25 from openfootball JSON, modelled into analytics-ready dimensional tables.</p>
+        <div class="project-architecture" aria-label="Premier League warehouse architecture">
+          <div class="arch-title">Architecture</div>
+          <div class="arch-row">
+            <div class="arch-node">openfootball JSON</div>
+            <div class="arch-node">Python to NDJSON</div>
+            <div class="arch-node">BigQuery Raw</div>
+            <div class="arch-node">dbt Marts + Tests</div>
+          </div>
+        </div>
         <div class="pcard-stack">
           <span class="badge">dbt</span><span class="badge">BigQuery</span><span class="badge">GitHub Actions</span><span class="badge">SQL</span><span class="badge">Python</span>
         </div>
@@ -657,6 +666,6 @@
   </div>
 </footer>
 
-<script src="assets/script.js?v=20261108b"></script>
+<script src="assets/script.js?v=20261108c"></script>
 </body>
 </html>

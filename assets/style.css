@@ -1001,6 +1001,27 @@ a.post-back { padding-block: 3px; }
   transition: border-color 0.3s var(--ease-out);
 }
 .exp-card:hover { border-color: var(--border-hover); }
+.exp-now {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.75rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.exp-now-label {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
 .exp-period {
   font-family: var(--font-mono);
   font-size: 0.68rem;
