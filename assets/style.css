@@ -281,6 +281,9 @@ section { padding: 8rem 0; }
   transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+@media (scripting: none) {
+  .reveal { opacity: 1; transform: none; }
+}
 .d1 { transition-delay: 0.1s; }
 .d2 { transition-delay: 0.2s; }
 .d3 { transition-delay: 0.3s; }
@@ -387,6 +390,7 @@ section { padding: 8rem 0; }
   color: var(--accent);
   letter-spacing: -0.02em;
 }
+.nav-logo { min-width: 24px; }
 .nav-logo em { font-style: italic; color: var(--text-primary); }
 .nav-links {
   display: flex;
@@ -443,7 +447,8 @@ section { padding: 8rem 0; }
   gap: 5px;
   background: none;
   border: none;
-  padding: 4px;
+  padding: 14px 10px;
+  margin: -10px -6px;
 }
 .hamburger span {
   display: block;
@@ -638,6 +643,8 @@ footer {
 .pcard:hover .badge { border-color: var(--border-hover); color: var(--text-secondary); }
 .pcard.wide { grid-column: span 2; }
 .pcard-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
+.pcard-top > a { display: inline-flex; padding: 6px; margin: -6px; }
+a.post-back { padding-block: 3px; }
 .pcard-tag {
   display: inline-flex;
   flex-wrap: wrap;
