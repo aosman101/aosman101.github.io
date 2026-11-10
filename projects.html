@@ -431,11 +431,11 @@
           </a>
         </div>
         <h3 class="pcard-title">LSTM Stock Forecasting — Dissertation</h3>
-        <p class="pcard-desc">My final-year dissertation: a two-layer LSTM forecasting next-day Tesla closing prices, benchmarked against ARIMA and KNN baselines. Covers preprocessing, scaling, early stopping, evaluation, and 5-day rolling forecasts. The LSTM reached an <strong style="color:var(--text-primary)">R² of 0.96</strong> on the held-out test set, well ahead of the ARIMA baseline.</p>
+        <p class="pcard-desc">My final-year dissertation: a two-layer LSTM forecasting next-day Tesla closing prices, benchmarked against ARIMA and KNN baselines. Covers preprocessing, scaling, early stopping, evaluation, and 5-day rolling forecasts. The LSTM reached an <strong style="color:var(--text-primary)">R² of 0.96</strong> on the held-out test set (727 trading days, Mar 2022 – Feb 2025), but a naive “tomorrow = today” forecast scored <strong style="color:var(--text-primary)">0.98</strong> on the same days, with an average error of $6.68 against the LSTM’s $10.37. The lesson I took from it: on price levels, R² mostly rewards persistence, so a forecasting model has to be judged on returns and direction against that naive baseline.</p>
         <div class="pcard-gallery" role="list" aria-label="LSTM stock prediction sample outputs">
           <a href="assets/projects/stock-prediction/actual-vs-predicted.webp" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open full-size actual vs predicted prices chart">
             <figure>
-              <img src="assets/projects/stock-prediction/actual-vs-predicted-thumb.jpg" width="720" height="383" alt="LSTM model output — actual vs. predicted stock prices tracking closely across the test window." loading="lazy" decoding="async" />
+              <img src="assets/projects/stock-prediction/actual-vs-predicted-thumb.jpg" width="720" height="383" alt="LSTM model output — actual vs. predicted Tesla closing prices across the test window." loading="lazy" decoding="async" />
               <figcaption>Actual vs Predicted</figcaption>
             </figure>
           </a>
