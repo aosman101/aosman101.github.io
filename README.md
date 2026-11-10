@@ -16,7 +16,7 @@ This repository hosts the live source for [aosman101.github.io](https://aosman10
 - `About`: professional background, experience timeline, education, and academic highlights.
 - `Stack`: grouped breakdown of tools across pipelines, CDC, warehousing, BI, quality, cloud, and ML.
 - `Writing`: published technical notes plus a reusable post template.
-- `CV`: the full CV as a responsive, print-friendly page, with the PDF at `assets/docs/adil-osman-cv.pdf`.
+- `CV`: the full CV as a responsive, print-friendly page.
 - `Contact`: email, LinkedIn, GitHub, and a contact form.
 - `Stats`: live, cookie-free visitor counts at `/stats.html`.
 
@@ -56,7 +56,7 @@ aosman101.github.io/
 │   ├── building-a-tfl-realtime-lakehouse.html
 │   └── post-template.html
 ├── assets/
-│   ├── docs/            # CV PDF and dissertation
+│   ├── docs/            # Dissertation
 │   ├── profile.jpeg
 │   ├── script.js
 │   └── style.css
@@ -76,7 +76,7 @@ Because this is a pure static site, edits can be made directly in the HTML, CSS,
 ## Updating Content
 
 - Add or revise project cards in `projects.html`, and surface selected work on `index.html`
-- Update the CV by replacing `assets/docs/adil-osman-cv.pdf` and the matching text in `cv.html`
+- Update the CV by editing `cv.html`
 - Publish a new article by copying `posts/post-template.html` and adding its card to `writing.html`
 - Adjust shared styling in `assets/style.css` and shared interactions in `assets/script.js`
 

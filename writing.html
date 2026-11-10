@@ -26,7 +26,7 @@
   <link rel="alternate" type="application/rss+xml" title="Adil Osman — Writing" href="/feed.xml" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="assets/style.css?v=20261108c" />
+  <link rel="stylesheet" href="assets/style.css?v=20261110" />
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
   <script type="application/ld+json">
   {
@@ -268,7 +268,7 @@
     <div class="page-hero-label">Writing</div>
     <h1 class="page-hero-title">Notes from <em>the work</em>.</h1>
     <p class="page-hero-sub">Honest writing on data engineering, analytics, pipeline design, and lessons from building real systems.</p>
-    <p class="post-count" id="postCount"></p>
+    <p class="post-count" id="postCount"><span>02</span> stories published</p>
   </div>
 </div>
 
@@ -287,10 +287,24 @@
     </div>
 
     <!-- Cover story (newest post) — populated dynamically -->
-    <div id="coverStory" class="reveal"></div>
+    <div id="coverStory" class="reveal">
+      <a href="posts/building-the-tfl-travel-app-with-somalis-in-tech.html" class="cover-story" data-tags="community">
+        <div class="cover-eyebrow"><span class="cover-num">№ 01</span><span aria-hidden="true">·</span><span>Cover Story</span><span aria-hidden="true">·</span><span class="cover-tag">Community</span></div>
+        <h3 class="cover-title">Building the TfL Travel App with <em>Somalis in Tech</em></h3>
+        <p class="cover-excerpt">How a community data engineering project became a real tool for London students and commuters — and what it taught me about building software that actually helps people.</p>
+        <div class="cover-meta"><span>9 Apr 2026</span><span class="cover-meta-dot" aria-hidden="true"></span><span>12 min read</span><span class="cover-meta-dot" aria-hidden="true"></span><span>Community</span><span class="cover-read">Read story <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+    </div>
 
     <!-- Remaining articles grid -->
-    <div class="articles-grid" id="articlesGrid"></div>
+    <div class="articles-grid" id="articlesGrid">
+      <a href="posts/building-a-tfl-realtime-lakehouse.html" class="article-card reveal" data-tags="data-engineering">
+        <div class="article-meta"><span class="article-num">№ 02</span><span class="article-tag">Data Engineering</span><span class="article-date">24 Mar 2026</span><span class="article-readtime">&middot; 8 min read</span></div>
+        <h3 class="article-title">Building a Real-Time TfL Lakehouse from Scratch</h3>
+        <p class="article-excerpt">How I designed and built a production-style streaming data lakehouse using the TfL Unified API — covering Airflow orchestration, DuckDB, dbt transformations, Great Expectations validation, and OpenLineage lineage tracking. Built as a teaching tool for Somalis in Tech, helping students and users understand real-world pipeline design.</p>
+        <div class="article-footer"><span class="article-read-link">Read post <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+    </div>
 
     <div class="empty-state" id="emptyState" aria-live="polite">
       No posts in this category yet — check back soon.
@@ -354,7 +368,7 @@
   </div>
 </footer>
 
-<script src="assets/script.js?v=20261108c"></script>
+<script src="assets/script.js?v=20261110"></script>
 <script>
   (function () {
   // ─────────────────────────────────────────────────────────────
@@ -372,7 +386,9 @@
   //       readTime  → estimated minutes to read (number)
   //       tag       → display label e.g. "Data Engineering"
   //       filterTag → slug form used by the filter buttons above
-  //  4. Keep posts/posts.json in sync so search engines see it too.
+  //  4. Keep posts/posts.json in sync.
+  //  5. Copy the post into the #coverStory / #articlesGrid HTML above, so
+  //     search engines and visitors without JavaScript can find it.
   // ─────────────────────────────────────────────────────────────
   const POSTS = [
     {

@@ -8,7 +8,7 @@
   <title>CV — Adil Osman</title>
   <meta name="description" content="CV of Adil Osman, London-based Data Engineer. Nearly three years building ETL/ELT pipelines, CDC and streaming systems, and dbt models on BigQuery." />
   <meta property="og:title" content="CV — Adil Osman" />
-  <meta property="og:description" content="Data Engineer with nearly three years of experience in pipelines, CDC and streaming, and analytics models. Read online or download the PDF." />
+  <meta property="og:description" content="Data Engineer with nearly three years of experience in pipelines, CDC and streaming, and analytics models." />
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://aosman101.github.io/cv.html" />
   <meta property="og:image" content="https://aosman101.github.io/assets/og-image.png" />
@@ -25,7 +25,7 @@
   <link rel="canonical" href="https://aosman101.github.io/cv.html" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="assets/style.css?v=20261108c" />
+  <link rel="stylesheet" href="assets/style.css?v=20261110" />
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
   <script type="application/ld+json">
   {
@@ -33,7 +33,7 @@
     "@type": "ProfilePage",
     "url": "https://aosman101.github.io/cv.html",
     "name": "CV — Adil Osman",
-    "dateModified": "2026-11-08",
+    "dateModified": "2026-11-10",
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -59,11 +59,6 @@
   <style>
     /* ── Hero actions ── */
     .cv-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.25rem; position: relative; }
-    .cv-file-meta {
-      font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
-      margin-top: 1.25rem; position: relative;
-    }
 
     /* ── Layout ── */
     .cv-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 4.5rem; align-items: start; }
@@ -149,8 +144,6 @@
     @media (max-width: 1020px) {
       .cv-layout { grid-template-columns: 1fr; gap: 3.5rem; }
       .cv-aside { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); order: -1; }
-      /* The hero already carries the download buttons on narrow layouts */
-      .cv-aside .cv-card-copy { display: none; }
     }
     @media (max-width: 760px) {
       .cv-projects { grid-template-columns: 1fr; }
@@ -173,7 +166,7 @@
         --accent: #1d3a5f; --accent-soft: #1d3a5f; --accent-mid: #9aa9bb; --border: #d5d9df;
       }
       body { background: #fff; font-size: 10.5pt; }
-      body::after, #nav, footer, .skip-link, .scroll-progress, .back-to-top, .cv-aside, .cv-actions, .cv-file-meta, .no-print { display: none !important; }
+      body::after, #nav, footer, .skip-link, .scroll-progress, .back-to-top, .cv-aside, .cv-actions, .no-print { display: none !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
       .page-hero { padding: 0 0 1rem; border: none; background: none !important; }
       .page-hero::before { display: none; }
@@ -223,16 +216,14 @@
   <div class="wrap">
     <div class="page-hero-label">Curriculum Vitae</div>
     <h1 class="page-hero-title">Adil Osman<span class="no-print">,<br>on <em>paper</em>.</span></h1>
-    <p class="page-hero-sub">Data Engineer in London. Read the full CV below, or download the PDF.</p>
+    <p class="page-hero-sub">Data Engineer in London. Experience, projects, education, and skills on one page.</p>
     <p class="print-only" style="margin-top:0.5rem;font-size:10pt">Data Engineer · London, UK · aosman10020@gmail.com · aosman101.github.io · github.com/aosman101 · linkedin.com/in/adil-osman-303185297</p>
     <div class="cv-actions">
-      <a href="assets/docs/adil-osman-cv.pdf" download="Adil-Osman-CV.pdf" class="btn-primary">
-        Download PDF
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1v8.5M2.5 6l4 4 4-4M1.5 12h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href="contact.html" class="btn-primary">
+        Get in Touch
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="assets/docs/adil-osman-cv.pdf" target="_blank" rel="noopener" class="btn-ghost">Open in new tab<span class="visually-hidden"> (PDF)</span></a>
     </div>
-    <p class="cv-file-meta">PDF · 2 pages · 94 KB · Updated October 2026</p>
   </div>
 </div>
 
@@ -245,7 +236,7 @@
 
         <div class="cv-block reveal">
           <h2 class="section-label" id="cv-summary">Profile</h2>
-          <p class="cv-summary">Data Engineer with nearly three years of experience building <strong>production-grade ETL/ELT pipelines, real-time streaming and CDC systems, and analytics models</strong> with Python, SQL, dbt, Apache Airflow, and BigQuery. Most recently delivered 10+ end-to-end data platforms as a freelance consultant, cutting cloud warehouse query costs by ~40% and raising automated data quality test coverage to 95%+. Earlier roles delivered 99% SLA adherence, an 8x improvement in data freshness, and a 38% reduction in analysis cycle time. Hands-on with Kafka-compatible streaming (Redpanda), CDC (Debezium), and OLAP (ClickHouse), with exposure to Databricks/PySpark, Delta Lake, and AWS. Known for observable, well-documented data systems that technical and non-technical stakeholders can rely on.</p>
+          <p class="cv-summary">Data Engineer with nearly three years of experience building <strong>production-grade ETL/ELT pipelines, real-time streaming and CDC systems, and analytics models</strong> with Python, SQL, dbt, Apache Airflow, and BigQuery. Most recently delivered 10+ end-to-end data platforms as a freelance consultant, cutting cloud warehouse query costs by ~40% and raising automated data quality test coverage to 95%+. Earlier roles delivered 99% SLA adherence, an 8x improvement in data freshness, and a 38% reduction in analysis cycle time. Hands-on with Kafka-compatible streaming (Redpanda), CDC (Debezium), and OLAP (ClickHouse), AWS, Snowflake, and Terraform, with exposure to Databricks/PySpark and Delta Lake. Known for observable, well-documented data systems that technical and non-technical stakeholders can rely on.</p>
         </div>
 
         <div class="cv-block">
@@ -362,7 +353,7 @@
             </div>
             <div class="cv-skill">
               <dt>Platforms &amp; Tooling</dt>
-              <dd><span class="badge">BigQuery</span><span class="badge">ClickHouse</span><span class="badge">DuckDB</span><span class="badge">PostgreSQL</span><span class="badge">AWS (S3, IAM, EC2, RDS)</span><span class="badge">Git / GitHub</span><span class="badge">GitHub Actions CI/CD</span><span class="badge is-familiar">Snowflake <span class="visually-hidden">(</span>· exposure<span class="visually-hidden">)</span></span><span class="badge is-familiar">Databricks / PySpark <span class="visually-hidden">(</span>· exposure<span class="visually-hidden">)</span></span><span class="badge is-familiar">Terraform <span class="visually-hidden">(</span>· exposure<span class="visually-hidden">)</span></span></dd>
+              <dd><span class="badge">BigQuery</span><span class="badge">ClickHouse</span><span class="badge">DuckDB</span><span class="badge">PostgreSQL</span><span class="badge">AWS (S3, IAM, EC2, RDS)</span><span class="badge">Snowflake</span><span class="badge">Terraform</span><span class="badge">Git / GitHub</span><span class="badge">GitHub Actions CI/CD</span><span class="badge is-familiar">Databricks / PySpark <span class="visually-hidden">(</span>· exposure<span class="visually-hidden">)</span></span></dd>
             </div>
             <div class="cv-skill">
               <dt>Quality, Observability &amp; BI</dt>
@@ -396,14 +387,6 @@
             <li><a href="https://github.com/aosman101" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 11c0 .9.4 1.4.9 1.9.4-.5.9-.9.9-1.9"/><path d="M7.5 1.5a5.5 5.5 0 00-1.92 10.65c.27.04.36-.12.36-.26v-1.1c-1.5.33-1.82-.72-1.82-.72a1.43 1.43 0 00-.6-.79c-.49-.33.04-.32.04-.32a1.14 1.14 0 01.83.56 1.16 1.16 0 001.58.45 1.15 1.15 0 01.34-.72C4.7 10.2 3.3 9.7 3.3 7.3a2.13 2.13 0 01.57-1.48 2 2 0 01.05-1.46s.46-.15 1.52.56a5.2 5.2 0 012.76 0c1.05-.71 1.51-.56 1.51-.56a2 2 0 01.06 1.46 2.13 2.13 0 01.57 1.48c0 2.4-1.46 2.92-2.85 3.07a1.3 1.3 0 01.37 1v1.49c0 .14.08.3.37.26A5.5 5.5 0 007.5 1.5z"/></svg>github.com/aosman101</a></li>
             <li class="cv-contact-plain"><svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" style="width:14px;height:14px;color:var(--text-tertiary)"><path d="M6.5 1C4.57 1 3 2.57 3 4.5c0 2.7 3.5 7 3.5 7S10 7.2 10 4.5C10 2.57 8.43 1 6.5 1z"/><circle cx="6.5" cy="4.5" r="1.3"/></svg>London, UK · Right to work</li>
           </ul>
-        </div>
-        <div class="cv-card cv-card-copy">
-          <div class="cv-card-title">Take a copy</div>
-          <a href="assets/docs/adil-osman-cv.pdf" download="Adil-Osman-CV.pdf" class="btn-primary">
-            Download PDF
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1v8.5M2.5 6l4 4 4-4M1.5 12h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="contact.html" class="btn-ghost">Get in Touch</a>
         </div>
       </aside>
 
@@ -443,6 +426,6 @@
   </div>
 </footer>
 
-<script src="assets/script.js?v=20261108c"></script>
+<script src="assets/script.js?v=20261110"></script>
 </body>
 </html>

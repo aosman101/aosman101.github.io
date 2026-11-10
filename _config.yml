@@ -1,0 +1,5 @@
+# Keep internal notes and repository docs off the live site.
+exclude:
+  - AGENTS.md
+  - README.md
+  - docs/
