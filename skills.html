@@ -52,11 +52,28 @@
     .skills-intro strong { color: var(--text-primary); font-weight: 500; }
     .stack-philosophy {
       background: var(--bg-elevated); border: 1px solid var(--border);
-      border-left: 3px solid var(--accent); border-radius: var(--radius-md);
-      padding: 1.5rem 1.75rem; margin-top: 3rem;
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2.25rem 2rem; margin-top: 3.5rem;
     }
-    .stack-philosophy p { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; }
-    .stack-philosophy p strong { color: var(--text-primary); font-weight: 500; font-style: normal; }
+    .sp-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.15; letter-spacing: -0.01em; color: var(--text-primary); }
+    .sp-lead { max-width: 620px; margin-top: 0.75rem; font-size: 1.0125rem; line-height: 1.7; color: var(--text-secondary); }
+    .sp-list { margin-top: 1.75rem; }
+    .sp-row {
+      display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 0.75rem 2.5rem;
+      padding: 1.35rem 0; border-top: 1px solid var(--border);
+    }
+    .sp-row dt { font-family: var(--font-display); font-size: 1.25rem; line-height: 1.3; color: var(--text-primary); }
+    .sp-row dd { font-size: 0.9375rem; line-height: 1.7; color: var(--text-secondary); }
+    .sp-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem; }
+    .sp-tools .badge { background: var(--bg-surface); color: var(--text-secondary); }
+    .sp-close {
+      border-top: 1px solid var(--border); padding-top: 1.5rem;
+      font-family: var(--font-display); font-style: italic; font-size: 1.35rem; line-height: 1.35; color: var(--accent);
+    }
+    @media (max-width: 760px) {
+      .stack-philosophy { padding: 1.5rem 1.25rem; }
+      .sp-row { grid-template-columns: 1fr; }
+    }
 
     /* Tool badge strip */
     .tool-strip {
@@ -322,10 +339,44 @@
 
     </div>
 
-    <div class="stack-philosophy reveal" style="margin-top:3rem">
-      <p>
-        I pick tools that fit the problem. <strong>Airflow</strong> for orchestration with retries, dependencies, and monitoring. <strong>dbt</strong> because SQL-first transformations with tests and lineage built in are the right model for analytics engineering. <strong>BigQuery</strong> when a warehouse needs to scale without operations work, and <strong>DuckDB</strong> when it doesn't. <strong>Debezium + Redpanda</strong> when every database change needs capturing in near real time, landing in <strong>ClickHouse</strong> for fast analytical queries. <strong>Great Expectations and OpenLineage</strong> so data is checked and traceable before anyone relies on it. The stack follows the problem, not the other way around.
-      </p>
+    <div class="stack-philosophy reveal">
+      <h2 class="sp-title">How I choose</h2>
+      <p class="sp-lead">I start with the problem and work back to the tool. Everything on this page earned its place by solving something specific.</p>
+      <dl class="sp-list">
+        <div class="sp-row">
+          <dt>Jobs have to run on time and recover on their own.</dt>
+          <dd><div class="sp-tools"><span class="badge">Apache Airflow</span></div>Retries, dependencies and monitoring come built in, so a failed task at 3am fixes itself or tells me exactly where it stopped.</dd>
+        </div>
+        <div class="sp-row">
+          <dt>Transformations should be reviewed like code.</dt>
+          <dd><div class="sp-tools"><span class="badge">dbt</span></div>SQL-first models with tests and lineage built in. Incremental models are also how I cut BigQuery query costs by around 40% on client work.</dd>
+        </div>
+        <div class="sp-row">
+          <dt>The warehouse has to scale without anyone running it.</dt>
+          <dd><div class="sp-tools"><span class="badge">BigQuery</span><span class="badge">Snowflake</span></div>Managed warehouses when the data and the team are growing, so nobody spends their week on operations.</dd>
+        </div>
+        <div class="sp-row">
+          <dt>The data fits on a laptop.</dt>
+          <dd><div class="sp-tools"><span class="badge">DuckDB</span><span class="badge">Parquet</span></div>Then it should stay there. Fast local analytics with nothing to provision and nothing to pay for.</dd>
+        </div>
+        <div class="sp-row">
+          <dt>Every database change matters within seconds.</dt>
+          <dd><div class="sp-tools"><span class="badge">Debezium</span><span class="badge">Redpanda</span><span class="badge">ClickHouse</span></div>Debezium captures each change, Redpanda keeps them in order, and ClickHouse makes them queryable almost as soon as they happen.</dd>
+        </div>
+        <div class="sp-row">
+          <dt>Nobody should rely on data that hasn't been checked.</dt>
+          <dd><div class="sp-tools"><span class="badge">Great Expectations</span><span class="badge">OpenLineage</span></div>Every batch is validated before it is trusted, and every table can be traced back to the run that produced it.</dd>
+        </div>
+        <div class="sp-row">
+          <dt>Infrastructure should be rebuildable from scratch.</dt>
+          <dd><div class="sp-tools"><span class="badge">AWS</span><span class="badge">Terraform</span></div>Cloud resources defined as code, so a client platform is reviewed, versioned and repeatable rather than clicked together.</dd>
+        </div>
+        <div class="sp-row">
+          <dt>A change shouldn't merge until it's proven.</dt>
+          <dd><div class="sp-tools"><span class="badge">GitHub Actions</span></div>CI runs the dbt build and tests on every push, so problems surface in a pull request and not in a dashboard.</dd>
+        </div>
+      </dl>
+      <p class="sp-close">The stack follows the problem, not the other way around.</p>
     </div>
   </div>
 </section>
