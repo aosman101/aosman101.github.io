@@ -25,7 +25,7 @@
   <link rel="canonical" href="https://aosman101.github.io/skills.html" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="assets/style.css?v=20261112b" />
+  <link rel="stylesheet" href="assets/style.css?v=20261113" />
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
   <script type="application/ld+json">
   {
@@ -75,6 +75,21 @@
       .sp-row { grid-template-columns: 1fr; }
     }
 
+    /* Skill groups: fewer tools, each with where it was used */
+    .sk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .sk-group { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.9rem 1.9rem 1.4rem; transition: border-color 0.3s var(--ease-out); }
+    .sk-group:hover { border-color: var(--border-hover); }
+    .sk-title { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.2; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 0.6rem; }
+    .sk-item { padding: 0.95rem 0; border-top: 1px solid var(--border); }
+    .sk-item dt { display: flex; align-items: center; gap: 0.7rem; font-size: 0.975rem; font-weight: 500; color: var(--text-primary); }
+    .sk-item dt .tool-logo { width: 18px; height: 18px; }
+    .sk-item dt .dot { width: 6px; height: 6px; margin: 0 6px; border-radius: 50%; background: var(--accent); flex: none; }
+    .sk-item dd { margin: 0.3rem 0 0 calc(18px + 0.7rem); font-size: 0.875rem; line-height: 1.6; color: var(--text-tertiary); }
+    .sk-item:hover .tool-logo { transform: scale(1.2) rotate(-6deg); }
+    .sk-also { margin-top: 1.5rem; padding: 1.1rem 1.5rem; border: 1px dashed var(--border); border-radius: var(--radius-lg); font-size: 0.9rem; line-height: 1.65; color: var(--text-tertiary); }
+    .sk-also strong { color: var(--text-secondary); font-weight: 500; }
+    @media (max-width: 860px) { .sk-grid { grid-template-columns: 1fr; } .sk-group { padding: 1.4rem 1.25rem 1rem; } }
+
     /* Tool badge strip */
     .tool-strip {
       display: flex; flex-wrap: wrap; gap: 0.5rem;
@@ -121,14 +136,14 @@
   <div class="wrap">
     <div class="page-hero-label">Technical Stack</div>
     <h1 class="page-hero-title">What I work <em>with</em>.</h1>
-    <p class="page-hero-sub">Tools I use in real work and public projects, kept separate from the ones I only know at a working level.</p>
+    <p class="page-hero-sub">The tools I use in real work and public projects, and what each one did there.</p>
   </div>
 </div>
 
 <section aria-label="Skills by category">
   <div class="wrap">
     <div class="skills-intro reveal">
-      My stack covers the full data lifecycle, from ingestion and CDC to modelling, quality, BI, and ML. Tools marked with a solid dot are ones I have <strong>used in paid work or in the projects on this site</strong>. A hollow dot means I know the tool and have experimented with it, but haven't shipped with it yet.
+      Six areas, and for each tool, where I've used it. Everything in these cards has <strong>shipped in paid work or in a project on this site</strong>. Tools I only know at a working level are listed separately underneath.
     </div>
 
     <!-- Quick-scan tool badge strip -->
@@ -143,7 +158,6 @@
       <span class="tool-badge"><span class="dot"></span>PostgreSQL</span>
       <span class="tool-badge"><span class="dot"></span>Debezium</span>
       <span class="tool-badge"><span class="dot"></span>Redpanda</span>
-      <span class="tool-badge"><span class="dot"></span>Kafka</span>
       <span class="tool-badge"><span class="dot"></span>AWS</span>
       <span class="tool-badge"><span class="dot"></span>Snowflake</span>
       <span class="tool-badge"><span class="dot"></span>Terraform</span>
@@ -157,187 +171,73 @@
       <span class="tool-badge"><span class="dot"></span>GitHub Actions</span>
     </div>
 
-    <div class="sg-legend reveal" aria-hidden="true">
-      <span><span class="sg-dot"></span>Used in work or projects</span>
-      <span class="is-familiar"><span class="sg-dot"></span>Familiar / exploring</span>
+    <div class="sk-grid">
+      <article class="sk-group reveal">
+        <h2 class="sk-title">Languages</h2>
+        <dl class="sk-list">
+          <div class="sk-item"><dt data-logo="python"><span class="dot"></span>Python</dt><dd>Ingestion jobs, CDC sinks, APIs and models. It runs through almost every project here.</dd></div>
+          <div class="sk-item"><dt data-logo="sql"><span class="dot"></span>SQL</dt><dd>Modelling, testing and tuning queries across BigQuery, Snowflake, ClickHouse, DuckDB and Postgres.</dd></div>
+          <div class="sk-item"><dt data-logo="pandas"><span class="dot"></span>Pandas and NumPy</dt><dd>Analysis and feature engineering, from the dissertation to the statistics notebooks.</dd></div>
+          <div class="sk-item"><dt data-logo="gnubash"><span class="dot"></span>Bash</dt><dd>Scripting and automation around pipelines.</dd></div>
+          <div class="sk-item"><dt><span class="dot"></span>Java, R and JavaScript</dt><dd>Coursework and smaller builds, including the Java and front-end projects on the Work page.</dd></div>
+        </dl>
+      </article>
+      <article class="sk-group reveal d1">
+        <h2 class="sk-title">Pipelines and streaming</h2>
+        <dl class="sk-list">
+          <div class="sk-item"><dt data-logo="apacheairflow"><span class="dot"></span>Apache Airflow</dt><dd>Schedules ingestion for the TfL and London air quality lakehouses, and ran production pipelines at Somalis in Tech.</dd></div>
+          <div class="sk-item"><dt data-logo="dbt"><span class="dot"></span>dbt Core</dt><dd>Staging-to-mart models with tests and docs in six projects. Incremental models cut client BigQuery costs by about 40%.</dd></div>
+          <div class="sk-item"><dt data-logo="debezium"><span class="dot"></span>Debezium</dt><dd>Captures row-level changes from Postgres in StreamShop.</dd></div>
+          <div class="sk-item"><dt data-logo="redpanda"><span class="dot"></span>Redpanda (Kafka API)</dt><dd>Keeps those change events in order on their way to ClickHouse.</dd></div>
+          <div class="sk-item"><dt data-logo="docker"><span class="dot"></span>Docker and Compose</dt><dd>Packages multi-service stacks, such as the air quality lakehouse and the trading agent, so they run the same anywhere.</dd></div>
+          <div class="sk-item"><dt data-logo="terraform"><span class="dot"></span>Terraform</dt><dd>Infrastructure defined as code on freelance client platforms.</dd></div>
+        </dl>
+      </article>
+      <article class="sk-group reveal">
+        <h2 class="sk-title">Warehouses, storage and cloud</h2>
+        <dl class="sk-list">
+          <div class="sk-item"><dt data-logo="googlebigquery"><span class="dot"></span>BigQuery</dt><dd>The Premier League warehouse, plus client platforms where partitioned incremental models cut query costs.</dd></div>
+          <div class="sk-item"><dt data-logo="snowflake"><span class="dot"></span>Snowflake</dt><dd>Cloud warehouse on freelance client platforms.</dd></div>
+          <div class="sk-item"><dt data-logo="clickhouse"><span class="dot"></span>ClickHouse</dt><dd>Query-ready facts from streamed changes in StreamShop.</dd></div>
+          <div class="sk-item"><dt data-logo="duckdb"><span class="dot"></span>DuckDB and Parquet</dt><dd>Local analytics over date-partitioned Parquet in the TfL lakehouse and Mini Lake.</dd></div>
+          <div class="sk-item"><dt data-logo="postgresql"><span class="dot"></span>PostgreSQL and MySQL</dt><dd>Source and serving databases, in projects and at Somalis in Tech and HQ Analytics.</dd></div>
+          <div class="sk-item"><dt data-logo="amazonwebservices"><span class="dot"></span>AWS</dt><dd>S3, IAM, EC2 and RDS on freelance and Somalis in Tech work. Solutions Architect – Associate in progress.</dd></div>
+          <div class="sk-item"><dt data-logo="minio"><span class="dot"></span>MinIO</dt><dd>S3-compatible raw storage in the air quality lakehouse.</dd></div>
+        </dl>
+      </article>
+      <article class="sk-group reveal d1">
+        <h2 class="sk-title">Quality, lineage and CI</h2>
+        <dl class="sk-list">
+          <div class="sk-item"><dt data-logo="greatexpectations"><span class="dot"></span>Great Expectations</dt><dd>Validates every batch in the TfL and air quality lakehouses.</dd></div>
+          <div class="sk-item"><dt data-logo="openlineage"><span class="dot"></span>OpenLineage and Marquez</dt><dd>Run-level lineage, so each TfL table traces back to the run that built it.</dd></div>
+          <div class="sk-item"><dt data-logo="dbt"><span class="dot"></span>dbt tests</dt><dd>Schema tests on the staging and mart models in each warehouse.</dd></div>
+          <div class="sk-item"><dt data-logo="githubactions"><span class="dot"></span>GitHub Actions</dt><dd>Runs dbt builds and tests on every push for the F1, Premier League and Mini Lake projects.</dd></div>
+        </dl>
+      </article>
+      <article class="sk-group reveal">
+        <h2 class="sk-title">Modelling and BI</h2>
+        <dl class="sk-list">
+          <div class="sk-item"><dt><span class="dot"></span>Dimensional modelling</dt><dd>Facts and dimensions for the F1 and Premier League warehouses.</dd></div>
+          <div class="sk-item"><dt data-logo="powerbi"><span class="dot"></span>Power BI</dt><dd>KPI dashboards at HQ Analytics that saved 16 hours of manual reporting a month and reached 25+ users.</dd></div>
+          <div class="sk-item"><dt data-logo="tableau"><span class="dot"></span>Tableau and ThoughtSpot</dt><dd>Engagement dashboards at Somalis in Tech, supporting a 22% uplift in attendance for priority programmes.</dd></div>
+          <div class="sk-item"><dt data-logo="metabase"><span class="dot"></span>Metabase</dt><dd>Dashboards served from the air quality lakehouse.</dd></div>
+          <div class="sk-item"><dt data-logo="plotly"><span class="dot"></span>Matplotlib and Plotly</dt><dd>Charts for the analysis and statistics notebooks.</dd></div>
+        </dl>
+      </article>
+      <article class="sk-group reveal d1">
+        <h2 class="sk-title">Machine learning</h2>
+        <dl class="sk-list">
+          <div class="sk-item"><dt data-logo="tensorflow"><span class="dot"></span>TensorFlow and Keras</dt><dd>LSTM forecasting for my dissertation, and models in Deep Stock Insights.</dd></div>
+          <div class="sk-item"><dt data-logo="pytorch"><span class="dot"></span>PyTorch</dt><dd>Forecasting and reinforcement learning in the AI Trading Agent.</dd></div>
+          <div class="sk-item"><dt data-logo="scikitlearn"><span class="dot"></span>Scikit-learn</dt><dd>Imputation, preprocessing and model evaluation.</dd></div>
+          <div class="sk-item"><dt><span class="dot"></span>LightGBM and XGBoost</dt><dd>Gradient-boosted forecasts in Deep Stock Insights.</dd></div>
+          <div class="sk-item"><dt data-logo="huggingface"><span class="dot"></span>FinBERT</dt><dd>Sentiment scoring in the AI Trading Agent, via Hugging Face.</dd></div>
+          <div class="sk-item"><dt data-logo="fastapi"><span class="dot"></span>FastAPI</dt><dd>Serves predictions in Deep Stock Insights and the trading agent.</dd></div>
+        </dl>
+      </article>
     </div>
 
-    <div class="skills-grid">
-
-      <!-- 01 -->
-      <div class="skill-group reveal">
-        <div class="sg-num">01 / Programming Languages</div>
-        <h2 class="sg-title">Languages</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Python</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>SQL</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Java</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>R</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Bash / Shell</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>JavaScript</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Jinja (dbt templating)</div>
-        </div>
-      </div>
-
-      <!-- 02 -->
-      <div class="skill-group reveal d1">
-        <div class="sg-num">02 / Data Engineering</div>
-        <h2 class="sg-title">Pipelines &amp; Orchestration</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Apache Airflow</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt Core</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Docker</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>ELT / ETL design</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Incremental loading</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Schema enforcement</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Terraform (IaC)</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Apache Spark / PySpark<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>dbt Cloud<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Databricks<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Airbyte / Fivetran (EL)<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 03 -->
-      <div class="skill-group reveal d2">
-        <div class="sg-num">03 / Streaming &amp; CDC</div>
-        <h2 class="sg-title">Real-time &amp; Event-driven</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Debezium (CDC)</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Redpanda (Kafka API)</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Apache Kafka</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Event streaming patterns</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Change data capture design</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Apache Flink<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 04 -->
-      <div class="skill-group reveal d1">
-        <div class="sg-num">04 / Cloud Platforms</div>
-        <h2 class="sg-title">Cloud &amp; Infrastructure</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>AWS (S3, IAM, EC2, RDS)</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Google Cloud Platform (GCP)</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Google BigQuery</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Snowflake</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Microsoft Azure<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Azure Data Factory<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Azure Synapse Analytics<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>AWS Glue / Lambda<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 04b -->
-      <div class="skill-group reveal d2">
-        <div class="sg-num">05 / Databases &amp; Storage</div>
-        <h2 class="sg-title">Data Stores</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>ClickHouse</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>DuckDB</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>PostgreSQL</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>MySQL</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>MinIO (S3-compatible)</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Parquet / columnar</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Delta Lake<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 05 -->
-      <div class="skill-group reveal d2">
-        <div class="sg-num">06 / Analytics Engineering</div>
-        <h2 class="sg-title">Warehousing &amp; Modelling</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt (models, tests, docs)</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Dimensional modelling</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Lakehouse architecture</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt data contracts &amp; tests</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Slowly changing dimensions</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Staging → marts modelling</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Looker / LookML<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 06 -->
-      <div class="skill-group reveal d3">
-        <div class="sg-num">07 / BI &amp; Visualisation</div>
-        <h2 class="sg-title">Dashboards &amp; Reporting</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Power BI</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Tableau</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>ThoughtSpot</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Metabase</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Plotly</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>KPI dashboard design</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Apache Superset<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Streamlit<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 07 -->
-      <div class="skill-group reveal d1">
-        <div class="sg-num">08 / Data Quality &amp; Observability</div>
-        <h2 class="sg-title">Quality &amp; Lineage</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Great Expectations</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>OpenLineage / Marquez</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>dbt schema tests</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Row-level validation</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>SLA monitoring</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Pipeline observability</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Soda Core<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 08 -->
-      <div class="skill-group reveal d2">
-        <div class="sg-num">09 / Machine Learning &amp; AI</div>
-        <h2 class="sg-title">Modelling &amp; ML Ops</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Scikit-learn</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>TensorFlow / Keras</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>PyTorch</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Hugging Face (FinBERT)</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>LSTM / RNN architectures</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Feature engineering</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Time-series modelling</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Backtesting &amp; evaluation</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>MLflow (experiment tracking)<span class="visually-hidden"> (familiar)</span></div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Weights &amp; Biases<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-      <!-- 09 -->
-      <div class="skill-group reveal d3">
-        <div class="sg-num">10 / Python Data Stack</div>
-        <h2 class="sg-title">Libraries &amp; Analysis</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Pandas</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>NumPy / SciPy</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Matplotlib / Seaborn</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Plotly</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>SQLAlchemy</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Jupyter Notebooks</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>FastAPI</div>
-        </div>
-      </div>
-
-      <!-- 10 -->
-      <div class="skill-group reveal d1">
-        <div class="sg-num">11 / CI/CD &amp; DevOps</div>
-        <h2 class="sg-title">Workflow &amp; Tooling</h2>
-        <div class="sg-items">
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>GitHub Actions</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Git / GitHub</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Docker &amp; Docker Compose</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>CI/CD pipeline design</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Reproducible environments</div>
-          <div class="sg-item"><span class="sg-dot" aria-hidden="true"></span>Terraform</div>
-          <div class="sg-item is-familiar"><span class="sg-dot" aria-hidden="true"></span>Kubernetes<span class="visually-hidden"> (familiar)</span></div>
-        </div>
-      </div>
-
-    </div>
+    <p class="sk-also reveal"><strong>Know, but haven't shipped with yet:</strong> Apache Spark and PySpark, Databricks, dbt Cloud, Apache Flink, Airbyte and Fivetran, Azure (Data Factory, Synapse), Apache Superset and MLflow.</p>
 
     <div class="stack-philosophy reveal">
       <h2 class="sp-title">How I choose</h2>
@@ -420,6 +320,6 @@
   </div>
 </footer>
 
-<script src="assets/script.js?v=20261112b"></script>
+<script src="assets/script.js?v=20261113"></script>
 </body>
 </html>

@@ -252,17 +252,18 @@ if (filterBtns.length && pcards.length) {
   const nums = document.querySelectorAll('.metric-num');
   if (!nums.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const animate = (el) => {
-    const match = el.textContent.trim().match(/^(\d+)(.*)$/);
+    const match = el.textContent.trim().match(/^(\D?)(\d+)(.*)$/);
     if (!match) return;
-    const target = parseInt(match[1], 10);
+    const prefix = match[1];
+    const target = parseInt(match[2], 10);
     if (target < 2) return;
-    const suffix = match[2];
+    const suffix = match[3];
     const duration = 1200;
     const start = performance.now();
     const step = (now) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      el.textContent = prefix + Math.round(target * eased) + suffix;
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -651,7 +652,7 @@ if (filterBtns.length && pcards.length) {
    assets/logos/. window.AO_LOGOS is reused by home.js. */
 (function initToolLogos() {
   var self = document.querySelector('script[src*="script.js"]');
-  var SPRITE = (self ? self.getAttribute('src').split('script.js')[0] : 'assets/') + 'logos.svg?v=20261112b';
+  var SPRITE = (self ? self.getAttribute('src').split('script.js')[0] : 'assets/') + 'logos.svg?v=20261113';
   var IMG_BASE = SPRITE.split('logos.svg')[0] + 'logos/';
   // slug: [colour on dark, colour on light (optional)]; a string is an image file in assets/logos/
   var BRAND = {
@@ -664,6 +665,7 @@ if (filterBtns.length && pcards.length) {
     supabase: ['#3FCF8E', '#23A36B'], tailwindcss: ['#06B6D4'], minio: ['#E0455F', '#C72E49'], git: ['#F03C2E'],
     apacheparquet: ['#50ABF1', '#2D8BD6'], transportforlondon: ['#7C9BFF', '#113B92'], sql: ['#7AB2D3', '#24607F'],
     amazonwebservices: ['#FF9900', '#E07F00'], powerbi: ['#F2C811', '#C79A00'],
+    gnubash: ['#6CC644', '#3E8E1F'], huggingface: ['#FFD21E', '#C99700'],
     debezium: 'debezium.png', redpanda: 'redpanda.png', greatexpectations: 'greatexpectations.png',
     openlineage: 'openlineage.png', thoughtspot: 'thoughtspot.png'
   };
@@ -711,6 +713,13 @@ if (filterBtns.length && pcards.length) {
   }
 
   window.AO_LOGOS = { make: make, slugFor: function (name) { return NAMES[String(name).trim().toLowerCase()] || null; } };
+
+  document.querySelectorAll('[data-logo]').forEach(function (el) {
+    var logo = make(el.getAttribute('data-logo'));
+    if (!logo) return;
+    var dot = el.querySelector('.dot');
+    if (dot) dot.replaceWith(logo); else el.insertBefore(logo, el.firstChild);
+  });
 
   document.querySelectorAll('.badge, .stack-pill, .tool-badge').forEach(function (el) {
     var slug = NAMES[el.textContent.trim().toLowerCase()];
