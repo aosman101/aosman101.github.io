@@ -60,7 +60,8 @@ aosman101.github.io/
 │   ├── docs/            # Dissertation
 │   ├── profile.jpeg
 │   ├── home.js
-│   ├── logos.svg
+│   ├── logos.svg        # Tool logo sprite (Simple Icons)
+│   ├── logos/           # Project avatars for tools not in the sprite
 │   ├── script.js
 │   └── style.css
 ├── robots.txt
