@@ -170,7 +170,7 @@
     tabsEl.appendChild(b);
   });
   runBtn.addEventListener('click', run);
-  badToggle.addEventListener('change', run);
+  badToggle.addEventListener('change', function () { clearTimers(); running = false; run(); });
 
   choose(PIPELINES[0], false);
   root.classList.add('is-ready');
@@ -197,7 +197,7 @@
   };
   var CLIENT = 'Used on freelance client work, so there is no public repo to link.';
   var TOOLS = [
-    { name: 'Python', logo: 'python', role: 'The language behind every ingestion job, sink and model on this site.', uses: ['tfl-lakehouse', 'streamshop-cdc', 'air-quality-lakehouse', 'ai-trading-agent'] },
+    { name: 'Python', logo: 'python', role: 'The language behind every ingestion job, sink and model on this site.', all: true, uses: ['tfl-lakehouse', 'streamshop-cdc', 'air-quality-lakehouse', 'ai-trading-agent'] },
     { name: 'SQL', logo: 'sql', role: 'Modelling, testing and tuning queries in every warehouse I build.', uses: ['f1-raceops', 'premier-league-warehouse', 'mini-lake'] },
     { name: 'dbt', logo: 'dbt', role: 'Staging-to-mart models with tests, so transformations are reviewed like code.', uses: ['tfl-lakehouse', 'streamshop-cdc', 'air-quality-lakehouse', 'f1-raceops', 'premier-league-warehouse', 'mini-lake'] },
     { name: 'Airflow', logo: 'apacheairflow', role: 'Schedules ingestion and keeps each run observable.', uses: ['tfl-lakehouse', 'air-quality-lakehouse'] },
@@ -245,7 +245,7 @@
     panel.appendChild(head);
     panel.appendChild(el('p', 'sx-role', t.role));
     if (t.uses) {
-      panel.appendChild(el('p', 'sx-count', t.uses.length === 1 ? 'Used in' : 'Used in projects including'));
+      panel.appendChild(el('p', 'sx-count', 'Used in'));
       var ul = el('ul', 'sx-uses');
       t.uses.forEach(function (id) {
         var li = el('li');
@@ -254,6 +254,13 @@
         li.appendChild(a);
         ul.appendChild(li);
       });
+      if (t.all) {
+        var more = el('li');
+        var all = el('a', null, 'and most other projects');
+        all.href = 'projects.html';
+        more.appendChild(all);
+        ul.appendChild(more);
+      }
       panel.appendChild(ul);
     } else {
       panel.appendChild(el('p', 'sx-note', t.note));

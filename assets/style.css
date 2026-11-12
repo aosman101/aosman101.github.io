@@ -1285,7 +1285,7 @@ html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *
 .has-logo:hover .tool-logo { color: var(--brand); opacity: 1; }
 :root:not([data-theme-active="light"]) .has-logo:hover .tool-logo.lg-dark,
 :root[data-theme-active="light"] .has-logo:hover .tool-logo.lg-light { color: var(--accent); }
-.force-dark .tool-logo.lg-dark { --brand: #F7F9FC; }
+.force-dark .tool-logo.lg-dark { --brand: #F7F9FC !important; }
 
 /* ── Card spotlight (pointer position set by script.js) ── */
 @media (hover: hover) {

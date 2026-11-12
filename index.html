@@ -26,7 +26,7 @@
   <link rel="alternate" type="application/rss+xml" title="Adil Osman — Writing" href="/feed.xml" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="assets/style.css?v=20261110" />
+  <link rel="stylesheet" href="assets/style.css?v=20261112" />
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
   <script type="application/ld+json">
   {
@@ -148,55 +148,104 @@
     .scroll-hint-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--accent-mid), transparent); animation: scrollDrop 2.5s ease-in-out infinite; }
     @keyframes scrollDrop {0%{transform:scaleY(0);transform-origin:top;opacity:1;}45%{transform:scaleY(1);transform-origin:top;opacity:1;}55%{transform:scaleY(1);transform-origin:bottom;opacity:1;}100%{transform:scaleY(0);transform-origin:bottom;opacity:0;}}
 
-    /* ── Hero pipeline console ── */
-    .hero-console {
+    /* ── Hero pipeline playground ── */
+    .playground {
       background: var(--bg-deep);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(var(--accent-rgb),0.04);
       opacity: 0; animation: fadeUp 1s var(--ease-out) 0.8s forwards;
+      color: var(--text-secondary);
+      --ok: #4ADE80;
     }
-    .console-bar {
-      display: flex; align-items: center; gap: 0.9rem;
-      padding: 0.8rem 1.15rem;
+    .pg-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap;
+      padding: 0.7rem 0.8rem;
       border-bottom: 1px solid var(--border);
       background: var(--bg-surface);
     }
-    .console-dots { display: flex; gap: 0.4rem; }
-    .console-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--border-hover); opacity: 0.7; }
-    .console-title {
-      font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted);
+    .pg-tabs { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .pg-tab {
+      font-family: var(--font-body); font-size: 0.8rem; font-weight: 500;
+      color: var(--text-tertiary); background: transparent;
+      border: 1px solid transparent; border-radius: 100px;
+      padding: 0.35rem 0.8rem; min-height: 32px;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
-    .console-body {
-      padding: 1.35rem 1.4rem 1.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      line-height: 2.1;
-      min-height: 236px;
-      color: var(--text-secondary);
+    .pg-tab:hover { color: var(--text-primary); }
+    .pg-tab[aria-pressed="true"] { color: var(--accent); background: var(--accent-dim); border-color: var(--accent-mid); }
+    .pg-sim { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; color: var(--text-muted); padding-right: 0.35rem; }
+    .pg-stages { list-style: none; padding: 0.9rem 0.8rem 0.5rem; position: relative; }
+    .pg-stages li { position: relative; }
+    /* connector between stage nodes */
+    .pg-stages li:not(:last-child)::after {
+      content: ''; position: absolute; left: calc(0.6rem + 17px); top: 44px; bottom: -8px; width: 1px;
+      background: var(--border); transition: background 0.4s ease;
     }
-    .console-line { display: flex; gap: 0.85rem; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out); }
-    .console-line.on { opacity: 1; transform: translateY(0); }
-    .c-prompt { color: var(--accent); }
-    .c-stage { color: var(--text-muted); min-width: 6.2em; }
-    .c-task { color: var(--text-secondary); flex: 1; overflow: hidden; text-overflow: ellipsis; }
-    .c-ok { color: #4ADE80; }
-    .c-note { color: var(--text-muted); }
-    .console-line.summary { margin-top: 0.4rem; }
-    .console-line.summary .c-task { color: var(--text-primary); }
-    .console-cursor {
-      display: inline-block; width: 0.55em; height: 1.05em;
-      background: var(--accent); vertical-align: text-bottom;
-      margin-left: 0.15rem;
-      animation: blink 1.1s steps(1) infinite;
+    .pg-stages li:has(.is-done):not(:last-child)::after { background: var(--ok); opacity: 0.55; }
+    .pg-stage {
+      display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; gap: 0.85rem;
+      width: 100%; text-align: left;
+      background: transparent; border: 1px solid transparent; border-radius: var(--radius-md);
+      padding: 0.5rem 0.6rem; color: inherit;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
-    @keyframes blink { 50% { opacity: 0; } }
-    @media (prefers-reduced-motion: reduce) {
-      .console-line { opacity: 1; transform: none; transition: none; }
-      .console-cursor { animation: none; }
+    .pg-stage:hover, .pg-stage.is-picked { background: var(--bg-surface); border-color: var(--border); }
+    .pg-node {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      color: var(--text-muted); position: relative; z-index: 1;
+      transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     }
+    .pg-node .tool-logo { width: 17px; height: 17px; opacity: 1; }
+    .pg-mono { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.02em; }
+    .pg-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.35; }
+    .pg-name { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); }
+    .pg-tool { font-size: 0.76rem; color: var(--text-tertiary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pg-status { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); text-align: right; white-space: nowrap; }
+    .pg-stage.is-idle .pg-text, .pg-stage.is-skipped .pg-text { opacity: 0.55; }
+    .pg-stage.is-running .pg-node { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); animation: pgPulse 0.9s ease-in-out infinite; }
+    .pg-stage.is-running .pg-status { color: var(--accent); }
+    .pg-stage.is-done .pg-node { border-color: rgba(74,222,128,0.45); color: var(--text-primary); }
+    .pg-stage.is-done .pg-node .tool-logo { color: var(--brand); }
+    .pg-stage.is-done .pg-status { color: var(--ok); }
+    .pg-stage.is-done .pg-status::before { content: '✓ '; }
+    .pg-stage.is-fail .pg-node { border-color: var(--error); color: var(--error); box-shadow: 0 0 0 4px var(--error-dim); }
+    .pg-stage.is-fail .pg-status { color: var(--error); }
+    .pg-stage.is-fail .pg-status::before { content: '✕ '; }
+    @keyframes pgPulse { 50% { box-shadow: 0 0 0 7px transparent; } }
+    .pg-detail {
+      margin: 0.25rem 0.8rem 0; padding: 0.75rem 0.9rem;
+      min-height: 4.1rem;
+      font-size: 0.84rem; line-height: 1.55; color: var(--text-secondary);
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+      border-left: 2px solid var(--border-hover);
+    }
+    .pg-detail.is-ok { border-left-color: var(--ok); color: var(--text-primary); }
+    .pg-detail.is-fail { border-left-color: var(--error); color: var(--text-primary); }
+    .pg-controls { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem 1rem; flex-wrap: wrap; padding: 0.9rem 0.8rem 0.6rem; }
+    .pg-run {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent); color: var(--bg); border: none; border-radius: var(--radius-sm);
+      font-size: 0.84rem; font-weight: 600; padding: 0.6rem 1.1rem; min-height: 40px;
+      transition: transform 0.2s var(--ease-out), opacity 0.2s ease;
+    }
+    .pg-run:hover:not(:disabled) { transform: translateY(-1px); }
+    .pg-run:disabled { opacity: 0.6; cursor: default; }
+    .pg-run svg { width: 11px; height: 11px; }
+    .pg-bad { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--text-secondary); cursor: pointer; min-height: 40px; }
+    .pg-bad input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .pg-switch { width: 34px; height: 20px; border-radius: 100px; background: var(--bg-elevated); border: 1px solid var(--border-hover); position: relative; flex: none; transition: background 0.2s ease, border-color 0.2s ease; }
+    .pg-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--text-tertiary); transition: transform 0.2s var(--ease-out), background 0.2s ease; }
+    .pg-bad input:checked + .pg-switch { background: var(--error-dim); border-color: var(--error); }
+    .pg-bad input:checked + .pg-switch::after { transform: translateX(14px); background: var(--error); }
+    .pg-bad input:focus-visible + .pg-switch { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .pg-foot { padding: 0 0.8rem 0.9rem; }
+    .pg-link { font-size: 0.78rem; color: var(--text-tertiary); text-decoration: underline; text-decoration-color: var(--border-hover); text-underline-offset: 3px; display: inline-block; padding: 0.35rem 0; }
+    .pg-link:hover { color: var(--accent); }
+    @media (prefers-reduced-motion: reduce) { .pg-stage.is-running .pg-node { animation: none; } }
 
     /* ── About teaser ── */
     .about-teaser-grid { display: grid; grid-template-columns: 240px 1fr; gap: 5rem; align-items: center; }
@@ -233,129 +282,59 @@
     .cta-banner h2 em { font-style: italic; color: var(--accent); }
     .cta-banner p { font-size: 0.9375rem; color: var(--text-secondary); margin-top: 0.5rem; }
 
-    /* ── Pipeline in motion ── */
-    .pipeline-flow {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.75rem;
-      margin-top: 3.25rem;
-      position: relative;
+    /* ── Stack explorer ── */
+    .stack-explorer { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 1.5rem; margin-top: 2.5rem; align-items: start; }
+    .sx-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 0.6rem; }
+    .sx-tile {
+      width: 100%; height: 100%; min-height: 92px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+      padding: 0.9rem 0.4rem; color: var(--text-tertiary);
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s var(--ease-out), background 0.2s ease;
     }
-    .pipeline-flow::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 1rem; right: 1rem;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-mid) 15%, var(--accent-cool-mid) 85%, transparent);
-      z-index: 0;
+    .sx-tile .tool-logo { width: 26px; height: 26px; opacity: 1; }
+    .sx-mono, .sx-tile .sx-mono { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; line-height: 26px; height: 26px; }
+    .sx-label { font-size: 0.74rem; font-weight: 500; line-height: 1.2; text-align: center; }
+    .sx-tile:hover { transform: translateY(-2px); }
+    .sx-tile[aria-pressed="true"] { border-color: var(--accent-mid); background: var(--accent-dim); color: var(--text-primary); }
+    .sx-tile[aria-pressed="true"] .tool-logo, .sx-head .tool-logo { color: var(--brand); }
+    :root:not([data-theme-active="light"]) .stack-explorer .tool-logo.lg-dark,
+    :root[data-theme-active="light"] .stack-explorer .tool-logo.lg-light { color: var(--accent); }
+    .sx-panel {
+      position: sticky; top: calc(var(--nav-h) + 1.5rem);
+      background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 1.6rem; min-height: 300px;
     }
-    .pf-runner {
-      position: absolute;
-      top: calc(50% - 3px);
-      left: 0;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6);
-      z-index: 0;
-      animation: pfTravel 6s linear infinite;
-    }
-    .pf-runner.cool {
-      background: var(--accent-cool);
-      box-shadow: 0 0 10px rgba(var(--accent-cool-rgb), 0.6);
-      animation-delay: 3s;
-    }
-    @keyframes pfTravel {
-      0% { left: 0; opacity: 0; }
-      6% { opacity: 1; }
-      94% { opacity: 1; }
-      100% { left: calc(100% - 6px); opacity: 0; }
-    }
-    .pf-stage {
-      position: relative;
-      z-index: 1;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.5rem 1.1rem;
-      text-align: center;
-      transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
-    }
-    .pf-stage:hover { border-color: var(--accent-mid); transform: translateY(-4px); }
-    .pf-num {
-      font-family: var(--font-mono);
-      font-size: 0.56rem; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
-    .pf-name {
-      font-family: var(--font-display);
-      font-size: 1.15rem; font-weight: 400;
-      color: var(--text-primary);
-      margin-bottom: 0.45rem;
-    }
-    .pf-desc {
-      font-family: var(--font-mono);
-      font-size: 0.58rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-tertiary);
-      line-height: 1.6;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .pf-runner { display: none; }
-    }
-
-    /* ── Stack marquee ── */
-    .stack-marquee {
-      overflow: hidden;
-      margin-top: 2.25rem;
-      mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-    }
-    .stack-track {
-      display: flex;
-      width: max-content;
-      animation: stackScroll 36s linear infinite;
-    }
-    .stack-marquee:hover .stack-track { animation-play-state: paused; }
-    .stack-set {
-      display: flex;
-      gap: 0.625rem;
-      padding-right: 0.625rem;
-      flex-shrink: 0;
-    }
-    @keyframes stackScroll { to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) {
-      .stack-track { animation: none; width: auto; flex-wrap: wrap; gap: 0.625rem; }
-      .stack-set[aria-hidden="true"] { display: none; }
-      .stack-marquee { mask-image: none; -webkit-mask-image: none; }
-    }
+    .sx-head { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.9rem; color: var(--accent); }
+    .sx-head .tool-logo { width: 34px; height: 34px; opacity: 1; }
+    .sx-head .sx-mono { font-size: 1.15rem; height: 34px; line-height: 34px; }
+    .sx-name { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.15; color: var(--text-primary); }
+    .sx-role { font-size: 0.95rem; line-height: 1.65; color: var(--text-secondary); }
+    .sx-count { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-tertiary); }
+    .sx-uses { list-style: none; margin-top: 0.35rem; }
+    .sx-uses a { display: inline-block; padding: 0.3rem 0; font-size: 0.9rem; color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent-mid); text-underline-offset: 3px; }
+    .sx-uses a:hover { text-decoration-color: var(--accent); }
+    .sx-note { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; line-height: 1.6; color: var(--text-tertiary); }
 
     @media (max-width: 1020px) {
       .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-console { max-width: 560px; }
-      .console-body { min-height: 0; }
+      .playground { max-width: 560px; }
     }
     @media (max-width: 900px) {
       .about-teaser-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .projects-grid { grid-template-columns: 1fr; }
       .cta-banner { flex-direction: column; align-items: flex-start; }
-      .pipeline-flow { grid-template-columns: 1fr; gap: 2rem; }
-      .pipeline-flow::before, .pf-runner { display: none; }
-      .pf-stage:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        left: 50%; bottom: -2rem;
-        width: 1px; height: 2rem;
-        background: linear-gradient(to bottom, var(--accent-mid), transparent);
-      }
+      .stack-explorer { grid-template-columns: 1fr; }
+      .sx-panel { position: static; order: -1; min-height: 250px; }
     }
     @media (max-width: 640px) {
       .hero-meta { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
       .scroll-hint { display: none; }
-      .console-body { font-size: 0.64rem; padding: 1.1rem 1rem 1.25rem; }
-      .c-stage { min-width: 5.4em; }
+      .sx-grid { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 0.45rem; }
+      .sx-tile { min-height: 78px; padding: 0.7rem 0.25rem; }
+      .sx-label { font-size: 0.68rem; }
+      .pg-status { font-size: 0.62rem; }
+      .pg-stage { gap: 0.65rem; }
     }
   </style>
 </head>
@@ -408,12 +387,18 @@
             <a href="cv.html" class="btn-link">View CV <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M7 1l5.5 5.5L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
-        <div class="hero-console force-dark" role="img" aria-label="Stylised terminal showing a successful pipeline run: ingest, store, transform, validate and lineage tasks all passing">
-          <div class="console-bar">
-            <div class="console-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="console-title">tfl_realtime_lakehouse &mdash; run log</div>
+        <div class="playground force-dark" id="playground" role="group" aria-label="Pipeline playground: a simulated run of one of my projects">
+          <div class="pg-top">
+            <div class="pg-tabs" role="group" aria-label="Choose a pipeline"></div>
+            <span class="pg-sim">simulated run</span>
           </div>
-          <div class="console-body" id="consoleBody" aria-hidden="true"></div>
+          <ol class="pg-stages" aria-label="Pipeline stages"></ol>
+          <p class="pg-detail" aria-live="polite">A pipeline you can run: ingest, land, transform, validate and trace. Turn on JavaScript to try it.</p>
+          <div class="pg-controls">
+            <button type="button" class="pg-run"><svg viewBox="0 0 11 11" fill="currentColor" aria-hidden="true"><path d="M2 1l8 4.5L2 10z"/></svg><span>Run pipeline</span></button>
+            <label class="pg-bad"><input type="checkbox" /><span class="pg-switch" aria-hidden="true"></span>Send a bad batch</label>
+          </div>
+          <div class="pg-foot"><a class="pg-link" href="projects.html#tfl-lakehouse">Read about TfL Real-Time Lakehouse</a></div>
         </div>
       </div>
       <div class="hero-meta">
@@ -629,85 +614,16 @@
   </div>
 </section>
 
-<!-- PIPELINE IN MOTION -->
-<section class="alt-bg" aria-labelledby="pipeline-heading">
-  <div class="wrap">
-    <div class="section-label" aria-hidden="true">How It Works</div>
-    <h2 class="section-title reveal" id="pipeline-heading">Data in <em>motion</em>.</h2>
-    <p class="section-sub reveal d1">Every system I build follows the same discipline &mdash; from raw events to decisions people can trust.</p>
-    <div class="pipeline-flow reveal d2" aria-label="End-to-end pipeline flow">
-      <div class="pf-runner" aria-hidden="true"></div>
-      <div class="pf-runner cool" aria-hidden="true"></div>
-      <div class="pf-stage">
-        <div class="pf-num">01 / Ingest</div>
-        <div class="pf-name">Sources</div>
-        <div class="pf-desc">APIs &middot; Events &middot; CDC</div>
-      </div>
-      <div class="pf-stage">
-        <div class="pf-num">02 / Orchestrate</div>
-        <div class="pf-name">Pipelines</div>
-        <div class="pf-desc">Airflow &middot; Debezium</div>
-      </div>
-      <div class="pf-stage">
-        <div class="pf-num">03 / Store</div>
-        <div class="pf-name">Lakehouse</div>
-        <div class="pf-desc">Parquet &middot; DuckDB</div>
-      </div>
-      <div class="pf-stage">
-        <div class="pf-num">04 / Transform</div>
-        <div class="pf-name">Modelling</div>
-        <div class="pf-desc">dbt &middot; Tests &middot; Lineage</div>
-      </div>
-      <div class="pf-stage">
-        <div class="pf-num">05 / Serve</div>
-        <div class="pf-name">Insight</div>
-        <div class="pf-desc">Warehouse &middot; Dashboards</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- STACK HIGHLIGHTS -->
 <section aria-label="Core stack">
   <div class="wrap">
     <div class="section-label reveal" aria-hidden="true">Core Stack</div>
-    <h2 class="section-title reveal d1">The tools I <em>trust</em>.</h2>
-    <div class="stack-marquee reveal d2" aria-label="Key technologies">
-      <div class="stack-track">
-        <div class="stack-set" role="list">
-          <span class="stack-pill" role="listitem">Python</span>
-          <span class="stack-pill" role="listitem">SQL</span>
-          <span class="stack-pill" role="listitem">dbt Core</span>
-          <span class="stack-pill" role="listitem">Apache Airflow</span>
-          <span class="stack-pill" role="listitem">Docker</span>
-          <span class="stack-pill" role="listitem">DuckDB</span>
-          <span class="stack-pill" role="listitem">PostgreSQL</span>
-          <span class="stack-pill" role="listitem">BigQuery</span>
-          <span class="stack-pill" role="listitem">ClickHouse</span>
-          <span class="stack-pill" role="listitem">Kafka / Redpanda</span>
-          <span class="stack-pill" role="listitem">Debezium</span>
-          <span class="stack-pill" role="listitem">Great Expectations</span>
-          <span class="stack-pill" role="listitem">FastAPI</span>
-          <span class="stack-pill" role="listitem">PyTorch</span>
-          <span class="stack-pill" role="listitem">GitHub Actions</span>
-        </div>
-        <div class="stack-set" aria-hidden="true">
-          <span class="stack-pill">Python</span>
-          <span class="stack-pill">SQL</span>
-          <span class="stack-pill">dbt Core</span>
-          <span class="stack-pill">Apache Airflow</span>
-          <span class="stack-pill">Docker</span>
-          <span class="stack-pill">DuckDB</span>
-          <span class="stack-pill">PostgreSQL</span>
-          <span class="stack-pill">BigQuery</span>
-          <span class="stack-pill">ClickHouse</span>
-          <span class="stack-pill">Kafka / Redpanda</span>
-          <span class="stack-pill">Debezium</span>
-          <span class="stack-pill">Great Expectations</span>
-          <span class="stack-pill">FastAPI</span>
-          <span class="stack-pill">PyTorch</span>
-          <span class="stack-pill">GitHub Actions</span>
-        </div>
+    <h2 class="section-title reveal">The tools I <em>trust</em>.</h2>
+    <p class="section-sub reveal d1">Pick a tool to see what I use it for and where.</p>
+    <div class="stack-explorer reveal d2" id="stackExplorer">
+      <ul class="sx-grid" aria-label="Tools"></ul>
+      <div class="sx-panel" aria-live="polite">
+        <noscript><p class="sx-role">Python, SQL, dbt, Airflow, DuckDB, PostgreSQL, BigQuery, ClickHouse, Kafka, Debezium, Great Expectations, GitHub Actions, Docker, AWS, Snowflake, Terraform, FastAPI, TensorFlow and PyTorch.</p></noscript>
       </div>
     </div>
     <a href="skills.html" class="btn-link reveal d3" style="margin-top:2.25rem">
@@ -774,54 +690,7 @@
   </div>
 </footer>
 
-<script src="assets/script.js?v=20261110"></script>
-<script>
-(function () {
-  var body = document.getElementById('consoleBody');
-  if (!body) return;
-
-  var LINES = [
-    [['c-prompt', '$'], ['c-task', 'airflow dags trigger tfl_realtime_lakehouse']],
-    [['c-stage', '[ingest]'], ['c-task', 'tfl_arrivals · unified API'], ['c-ok', '✓ 4,182 events']],
-    [['c-stage', '[store]'], ['c-task', 'parquet · landing zone'], ['c-ok', '✓ 12 files']],
-    [['c-stage', '[transform]'], ['c-task', 'dbt run · staging → marts'], ['c-ok', '✓ 9 models']],
-    [['c-stage', '[validate]'], ['c-task', 'great_expectations · suite'], ['c-ok', '✓ 24/24 checks']],
-    [['c-stage', '[lineage]'], ['c-task', 'openlineage · emit'], ['c-ok', '✓ tracked']],
-    [['c-ok', '✔'], ['c-task', 'DAG succeeded · 20.4s'], ['c-note', 'data ready to serve']]
-  ];
-
-  var els = LINES.map(function (parts, i) {
-    var line = document.createElement('div');
-    line.className = 'console-line' + (i === LINES.length - 1 ? ' summary' : '');
-    parts.forEach(function (p) {
-      var s = document.createElement('span');
-      s.className = p[0];
-      s.textContent = p[1];
-      line.appendChild(s);
-    });
-    if (i === LINES.length - 1) {
-      var cur = document.createElement('span');
-      cur.className = 'console-cursor';
-      line.appendChild(cur);
-    }
-    body.appendChild(line);
-    return line;
-  });
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    els.forEach(function (l) { l.classList.add('on'); });
-    return;
-  }
-
-  function run() {
-    els.forEach(function (l) { l.classList.remove('on'); });
-    els.forEach(function (l, i) {
-      setTimeout(function () { l.classList.add('on'); }, 900 + i * 620);
-    });
-    setTimeout(run, 900 + els.length * 620 + 7000);
-  }
-  run();
-})();
-</script>
+<script src="assets/script.js?v=20261112"></script>
+<script src="assets/home.js?v=20261112"></script>
 </body>
 </html>
