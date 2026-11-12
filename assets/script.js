@@ -693,11 +693,11 @@ if (filterBtns.length && pcards.length) {
 
   window.AO_LOGOS = { make: make, slugFor: function (name) { return NAMES[String(name).trim().toLowerCase()] || null; } };
 
-  document.querySelectorAll('.badge, .stack-pill, .tool-badge, .sg-item').forEach(function (el) {
+  document.querySelectorAll('.badge, .stack-pill, .tool-badge').forEach(function (el) {
     var slug = NAMES[el.textContent.trim().toLowerCase()];
     var logo = slug && make(slug);
     if (!logo) return;
-    var dot = el.querySelector('.dot, .sg-dot');
+    var dot = el.querySelector('.dot');
     if (dot) dot.replaceWith(logo); else el.insertBefore(logo, el.firstChild);
     el.classList.add('has-logo');
   });

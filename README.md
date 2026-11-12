@@ -24,7 +24,8 @@ This repository hosts the live source for [aosman101.github.io](https://aosman10
 
 - Plain `HTML`, `CSS`, and vanilla `JavaScript`
 - Shared styling in `assets/style.css`
-- Shared behaviour in `assets/script.js`
+- Shared behaviour in `assets/script.js` (including tool logos on badges, drawn from `assets/logos.svg`)
+- Homepage pipeline playground and stack explorer in `assets/home.js`
 - Static pages served directly from the repository root
 - GitHub Pages hosting at `https://aosman101.github.io/`
 
@@ -58,6 +59,8 @@ aosman101.github.io/
 ├── assets/
 │   ├── docs/            # Dissertation
 │   ├── profile.jpeg
+│   ├── home.js
+│   ├── logos.svg
 │   ├── script.js
 │   └── style.css
 ├── robots.txt

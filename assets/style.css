@@ -1281,7 +1281,6 @@ html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 .badge.has-logo, .stack-pill.has-logo { display: inline-flex; align-items: center; gap: 0.45em; }
-.sg-item .tool-logo { width: 0.95rem; height: 0.95rem; margin-left: -0.3rem; margin-right: -0.2rem; }
 .has-logo:hover .tool-logo { color: var(--brand); opacity: 1; }
 :root:not([data-theme-active="light"]) .has-logo:hover .tool-logo.lg-dark,
 :root[data-theme-active="light"] .has-logo:hover .tool-logo.lg-light { color: var(--accent); }

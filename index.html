@@ -298,8 +298,10 @@
     .sx-tile:hover { transform: translateY(-2px); }
     .sx-tile[aria-pressed="true"] { border-color: var(--accent-mid); background: var(--accent-dim); color: var(--text-primary); }
     .sx-tile[aria-pressed="true"] .tool-logo, .sx-head .tool-logo { color: var(--brand); }
-    :root:not([data-theme-active="light"]) .stack-explorer .tool-logo.lg-dark,
-    :root[data-theme-active="light"] .stack-explorer .tool-logo.lg-light { color: var(--accent); }
+    :root:not([data-theme-active="light"]) .sx-tile[aria-pressed="true"] .tool-logo.lg-dark,
+    :root:not([data-theme-active="light"]) .sx-head .tool-logo.lg-dark,
+    :root[data-theme-active="light"] .sx-tile[aria-pressed="true"] .tool-logo.lg-light,
+    :root[data-theme-active="light"] .sx-head .tool-logo.lg-light { color: var(--accent); }
     .sx-panel {
       position: sticky; top: calc(var(--nav-h) + 1.5rem);
       background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
