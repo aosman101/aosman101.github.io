@@ -646,28 +646,37 @@ if (filterBtns.length && pcards.length) {
 
 /* ── Tool logos ──
    Adds a logo to any badge whose text names a known tool. Logos live
-   in assets/logos.svg (Simple Icons, CC0) and take the brand colour
-   when the badge is hovered. window.AO_LOGOS is reused by home.js. */
+   in assets/logos.svg (Simple Icons, CC0) in each tool's brand colour;
+   a few projects without an icon there use their GitHub avatar from
+   assets/logos/. window.AO_LOGOS is reused by home.js. */
 (function initToolLogos() {
   var self = document.querySelector('script[src*="script.js"]');
-  var SPRITE = (self ? self.getAttribute('src').split('script.js')[0] : 'assets/') + 'logos.svg?v=20261112';
-  // slug: [brand colour, 'd' = too dark for the dark theme, 'l' = too light for the light theme]
+  var SPRITE = (self ? self.getAttribute('src').split('script.js')[0] : 'assets/') + 'logos.svg?v=20261112b';
+  var IMG_BASE = SPRITE.split('logos.svg')[0] + 'logos/';
+  // slug: [colour on dark, colour on light (optional)]; a string is an image file in assets/logos/
   var BRAND = {
-    python: ['#4B8BBE'], dbt: ['#FF694B'], apacheairflow: ['#017CEE'], duckdb: ['#FFF000', 'l'],
-    clickhouse: ['#FFCC01', 'l'], postgresql: ['#5B83EA'], googlebigquery: ['#669DF6'], snowflake: ['#29B5E8'],
-    terraform: ['#9B6CD6'], docker: ['#2496ED'], apachekafka: ['#231F20', 'd'], fastapi: ['#05998B'],
-    pytorch: ['#EE4C2C'], tensorflow: ['#FF6F00'], githubactions: ['#2088FF'], react: ['#61DAFB', 'l'],
-    numpy: ['#4D77CF'], pandas: ['#150458', 'd'], scikitlearn: ['#F7931E'], jupyter: ['#F37626'],
-    mysql: ['#4479A1'], plotly: ['#7A76FF'], tableau: ['#E97627'], metabase: ['#509EE3'],
-    supabase: ['#3FCF8E'], tailwindcss: ['#06B6D4'], minio: ['#C72E49'], git: ['#F03C2E'],
-    apacheparquet: ['#50ABF1'], transportforlondon: ['#113B92', 'd'], sql: ['#7AB2D3']
+    python: ['#4B8BBE', '#3776AB'], dbt: ['#FF694B'], apacheairflow: ['#2E9BFF', '#017CEE'], duckdb: ['#FFF000', '#B59F00'],
+    clickhouse: ['#FFCC01', '#C99700'], postgresql: ['#6B93F5', '#336791'], googlebigquery: ['#669DF6', '#4285F4'], snowflake: ['#29B5E8', '#1A9BD0'],
+    terraform: ['#A67BE0', '#844FBA'], docker: ['#2496ED'], apachekafka: ['#E8ECF2', '#231F20'], fastapi: ['#10B3A3', '#009688'],
+    pytorch: ['#EE4C2C'], tensorflow: ['#FF8F1F', '#E86400'], githubactions: ['#3B9BFF', '#2088FF'], react: ['#61DAFB', '#0A9CC4'],
+    numpy: ['#6C93E0', '#4D77CF'], pandas: ['#E70488'], scikitlearn: ['#F7931E'], jupyter: ['#F37626'],
+    mysql: ['#5E9BC8', '#4479A1'], plotly: ['#8F8BFF', '#5F5BE0'], tableau: ['#E97627'], metabase: ['#509EE3'],
+    supabase: ['#3FCF8E', '#23A36B'], tailwindcss: ['#06B6D4'], minio: ['#E0455F', '#C72E49'], git: ['#F03C2E'],
+    apacheparquet: ['#50ABF1', '#2D8BD6'], transportforlondon: ['#7C9BFF', '#113B92'], sql: ['#7AB2D3', '#24607F'],
+    amazonwebservices: ['#FF9900', '#E07F00'], powerbi: ['#F2C811', '#C79A00'],
+    debezium: 'debezium.png', redpanda: 'redpanda.png', greatexpectations: 'greatexpectations.png',
+    openlineage: 'openlineage.png', thoughtspot: 'thoughtspot.png'
   };
   var NAMES = {
     'python': 'python', 'dbt': 'dbt', 'dbt core': 'dbt', 'dbt tests': 'dbt',
     'apache airflow': 'apacheairflow', 'airflow': 'apacheairflow', 'duckdb': 'duckdb',
     'clickhouse': 'clickhouse', 'postgresql': 'postgresql', 'postgres': 'postgresql',
     'bigquery': 'googlebigquery', 'snowflake': 'snowflake', 'terraform': 'terraform', 'docker': 'docker',
-    'kafka': 'apachekafka', 'kafka / redpanda': 'apachekafka', 'redpanda / kafka': 'apachekafka',
+    'kafka': 'apachekafka', 'kafka / redpanda': 'apachekafka', 'redpanda / kafka': 'redpanda', 'redpanda': 'redpanda',
+    'debezium': 'debezium', 'cdc (debezium)': 'debezium',
+    'great expectations': 'greatexpectations', 'openlineage': 'openlineage', 'openlineage / marquez': 'openlineage',
+    'aws': 'amazonwebservices', 'aws (s3, iam, ec2, rds)': 'amazonwebservices',
+    'power bi': 'powerbi', 'thoughtspot': 'thoughtspot',
     'fastapi': 'fastapi', 'pytorch': 'pytorch', 'tensorflow': 'tensorflow', 'tensorflow / keras': 'tensorflow',
     'github actions': 'githubactions', 'github actions ci/cd': 'githubactions', 'react': 'react',
     'numpy': 'numpy', 'pandas': 'pandas', 'scikit-learn': 'scikitlearn', 'jupyter': 'jupyter',
@@ -680,11 +689,21 @@ if (filterBtns.length && pcards.length) {
   function make(slug) {
     var b = BRAND[slug];
     if (!b) return null;
+    if (typeof b === 'string') {
+      var img = document.createElement('img');
+      img.className = 'tool-logo is-img';
+      img.src = IMG_BASE + b;
+      img.alt = '';
+      img.width = 24; img.height = 24;
+      img.decoding = 'async';
+      return img;
+    }
     var svg = document.createElementNS(NS, 'svg');
-    svg.setAttribute('class', 'tool-logo' + (b[1] === 'd' ? ' lg-dark' : b[1] === 'l' ? ' lg-light' : ''));
+    svg.setAttribute('class', 'tool-logo');
     svg.setAttribute('viewBox', '0 0 24 24');
     svg.setAttribute('aria-hidden', 'true');
     svg.style.setProperty('--brand', b[0]);
+    if (b[1]) svg.style.setProperty('--brand-l', b[1]);
     var use = document.createElementNS(NS, 'use');
     use.setAttribute('href', SPRITE + '#lg-' + slug);
     svg.appendChild(use);

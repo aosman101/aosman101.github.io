@@ -1274,17 +1274,17 @@ html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *
 
 /* ── Tool logos (added by script.js) ── */
 .tool-logo {
-  width: 1.05em; height: 1.05em;
+  width: 1.1em; height: 1.1em;
   flex: none;
   fill: currentColor;
-  opacity: 0.85;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  color: var(--brand);
+  transition: transform 0.25s var(--ease-out);
 }
-.badge.has-logo, .stack-pill.has-logo { display: inline-flex; align-items: center; gap: 0.45em; }
-.has-logo:hover .tool-logo { color: var(--brand); opacity: 1; }
-:root:not([data-theme-active="light"]) .has-logo:hover .tool-logo.lg-dark,
-:root[data-theme-active="light"] .has-logo:hover .tool-logo.lg-light { color: var(--accent); }
-.force-dark .tool-logo.lg-dark { --brand: #F7F9FC !important; }
+img.tool-logo { border-radius: 24%; object-fit: cover; }
+:root[data-theme-active="light"] .tool-logo { color: var(--brand-l, var(--brand)); }
+:root[data-theme-active="light"] .force-dark .tool-logo { color: var(--brand); }
+.badge.has-logo, .stack-pill.has-logo { display: inline-flex; align-items: center; gap: 0.5em; }
+.has-logo:hover .tool-logo { transform: scale(1.2) rotate(-6deg); }
 
 /* ── Card spotlight (pointer position set by script.js) ── */
 @media (hover: hover) {

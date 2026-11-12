@@ -21,8 +21,8 @@
         { stage: 'Ingest', tool: 'TfL Unified API', logo: 'transportforlondon', ok: '{n} arrivals', about: 'Airflow polls the TfL API for live bus and tube arrivals.' },
         { stage: 'Land', tool: 'Parquet lake', logo: 'apacheparquet', ok: '12 files', about: 'Raw arrivals land as Parquet files, so any run can be replayed.' },
         { stage: 'Transform', tool: 'dbt + DuckDB', logo: 'dbt', ok: '9 models', about: 'dbt builds staging and mart models inside DuckDB.' },
-        { stage: 'Validate', tool: 'Great Expectations', mono: 'GE', ok: '24 of 24 checks', fail: '3 of 24 checks failed', about: 'Great Expectations checks every batch before it is trusted.' },
-        { stage: 'Trace', tool: 'OpenLineage', mono: 'OL', ok: 'lineage recorded', about: 'OpenLineage records which run produced which table.' }
+        { stage: 'Validate', tool: 'Great Expectations', logo: 'greatexpectations', ok: '24 of 24 checks', fail: '3 of 24 checks failed', about: 'Great Expectations checks every batch before it is trusted.' },
+        { stage: 'Trace', tool: 'OpenLineage', logo: 'openlineage', ok: 'lineage recorded', about: 'OpenLineage records which run produced which table.' }
       ]
     },
     {
@@ -32,8 +32,8 @@
       failText: 'dbt tests failed. The facts are flagged before they reach a query.',
       stages: [
         { stage: 'Capture', tool: 'Postgres WAL', logo: 'postgresql', ok: '{n} row changes', about: 'Every insert, update and delete in Postgres is written to its log.' },
-        { stage: 'Stream', tool: 'Debezium', mono: 'Dz', ok: '{n} events', about: 'Debezium turns those log entries into change events.' },
-        { stage: 'Buffer', tool: 'Redpanda', mono: 'Rp', ok: 'in order', about: 'Redpanda, a Kafka-compatible broker, holds the events in order.' },
+        { stage: 'Stream', tool: 'Debezium', logo: 'debezium', ok: '{n} events', about: 'Debezium turns those log entries into change events.' },
+        { stage: 'Buffer', tool: 'Redpanda', logo: 'redpanda', ok: 'in order', about: 'Redpanda, a Kafka-compatible broker, holds the events in order.' },
         { stage: 'Load', tool: 'Python sink to ClickHouse', logo: 'clickhouse', ok: '{n} rows', about: 'A Python sink writes each change into ClickHouse.' },
         { stage: 'Model and test', tool: 'dbt', logo: 'dbt', ok: 'tests passed', fail: '2 tests failed', about: 'dbt models the changes into facts and tests them.' }
       ]
@@ -205,12 +205,12 @@
     { name: 'PostgreSQL', logo: 'postgresql', role: 'Source database for change data capture, and a serving layer.', uses: ['streamshop-cdc', 'air-quality-lakehouse'] },
     { name: 'BigQuery', logo: 'googlebigquery', role: 'Cloud warehouse for dimensional marts and incremental models.', uses: ['premier-league-warehouse'] },
     { name: 'ClickHouse', logo: 'clickhouse', role: 'Column store for query-ready facts from streamed changes.', uses: ['streamshop-cdc'] },
-    { name: 'Kafka API', logo: 'apachekafka', role: 'Ordered event streams, run on Redpanda’s Kafka-compatible broker.', uses: ['streamshop-cdc'] },
-    { name: 'Debezium', mono: 'Dz', role: 'Captures row-level changes from Postgres as events.', uses: ['streamshop-cdc'] },
-    { name: 'Great Expectations', mono: 'GE', role: 'Validates every batch before it is trusted.', uses: ['tfl-lakehouse'] },
+    { name: 'Redpanda', logo: 'redpanda', role: 'Kafka-compatible broker that holds change events in order.', uses: ['streamshop-cdc'] },
+    { name: 'Debezium', logo: 'debezium', role: 'Captures row-level changes from Postgres as events.', uses: ['streamshop-cdc'] },
+    { name: 'Great Expectations', logo: 'greatexpectations', role: 'Validates every batch before it is trusted.', uses: ['tfl-lakehouse'] },
     { name: 'GitHub Actions', logo: 'githubactions', role: 'CI that runs dbt builds and tests on every push.', uses: ['f1-raceops', 'premier-league-warehouse', 'mini-lake'] },
     { name: 'Docker', logo: 'docker', role: 'Packages services so a stack runs the same anywhere.', uses: ['ai-trading-agent'] },
-    { name: 'AWS', mono: 'AWS', role: 'S3, IAM, EC2 and RDS on freelance and Somalis in Tech work.', note: 'Used on client and community work, so there is no public repo to link.' },
+    { name: 'AWS', logo: 'amazonwebservices', role: 'S3, IAM, EC2 and RDS on freelance and Somalis in Tech work.', note: 'Used on client and community work, so there is no public repo to link.' },
     { name: 'Snowflake', logo: 'snowflake', role: 'Cloud warehouse on client data platforms.', note: CLIENT },
     { name: 'Terraform', logo: 'terraform', role: 'Infrastructure defined as code for client platforms.', note: CLIENT },
     { name: 'FastAPI', logo: 'fastapi', role: 'APIs that serve model predictions.', uses: ['deep-stock-insights', 'ai-trading-agent'] },
@@ -231,7 +231,6 @@
   function mark(t, big) {
     var logo = t.logo && window.AO_LOGOS && window.AO_LOGOS.make(t.logo);
     var m = logo || el('span', 'sx-mono', t.mono || t.name.slice(0, 2));
-    if (big && logo) logo.classList.add('is-on');
     return m;
   }
 
