@@ -213,6 +213,8 @@
     { name: 'AWS', logo: 'amazonwebservices', role: 'S3, IAM, EC2 and RDS on freelance and Somalis in Tech work.', note: 'Used on client and community work, so there is no public repo to link.' },
     { name: 'Snowflake', logo: 'snowflake', role: 'Cloud warehouse on client data platforms.', note: CLIENT },
     { name: 'Terraform', logo: 'terraform', role: 'Infrastructure defined as code for client platforms.', note: CLIENT },
+    { name: 'Power BI', logo: 'powerbi', role: 'KPI dashboards at HQ Analytics that replaced 16 hours of manual reporting a month.', note: 'Used at work, so there is no public repo to link.' },
+    { name: 'Tableau', logo: 'tableau', role: 'Engagement dashboards at Somalis in Tech, alongside ThoughtSpot.', note: 'Used at work, so there is no public repo to link.' },
     { name: 'FastAPI', logo: 'fastapi', role: 'APIs that serve model predictions.', uses: ['deep-stock-insights', 'ai-trading-agent'] },
     { name: 'TensorFlow', logo: 'tensorflow', role: 'Deep learning models for time-series forecasting.', uses: ['deep-stock-insights', 'lstm-prediction'] },
     { name: 'PyTorch', logo: 'pytorch', role: 'Model training for the trading agent.', uses: ['ai-trading-agent'] }
