@@ -175,7 +175,7 @@
     }
     .pg-tab:hover { color: var(--text-primary); }
     .pg-tab[aria-pressed="true"] { color: var(--accent); background: var(--accent-dim); border-color: var(--accent-mid); }
-    .pg-sim { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; color: var(--text-muted); padding-right: 0.35rem; }
+    .pg-sim { font-size: 0.74rem; color: var(--text-muted); }
     .pg-stages { list-style: none; padding: 0.9rem 0.8rem 0.5rem; position: relative; }
     .pg-stages li { position: relative; }
     /* connector between stage nodes */
@@ -242,7 +242,7 @@
     .pg-bad input:checked + .pg-switch { background: var(--error-dim); border-color: var(--error); }
     .pg-bad input:checked + .pg-switch::after { transform: translateX(14px); background: var(--error); }
     .pg-bad input:focus-visible + .pg-switch { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .pg-foot { padding: 0 0.8rem 0.9rem; }
+    .pg-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap; padding: 0 0.8rem 0.9rem; }
     .pg-link { font-size: 0.78rem; color: var(--text-tertiary); text-decoration: underline; text-decoration-color: var(--border-hover); text-underline-offset: 3px; display: inline-block; padding: 0.35rem 0; }
     .pg-link:hover { color: var(--accent); }
     @media (prefers-reduced-motion: reduce) { .pg-stage.is-running .pg-node { animation: none; } }
@@ -390,7 +390,6 @@
         <div class="playground force-dark" id="playground" role="group" aria-label="Pipeline playground: a simulated run of one of my projects">
           <div class="pg-top">
             <div class="pg-tabs" role="group" aria-label="Choose a pipeline"></div>
-            <span class="pg-sim">simulated run</span>
           </div>
           <ol class="pg-stages" aria-label="Pipeline stages"></ol>
           <p class="pg-detail" aria-live="polite">A pipeline you can run: ingest, land, transform, validate and trace. Turn on JavaScript to try it.</p>
@@ -398,7 +397,7 @@
             <button type="button" class="pg-run"><svg viewBox="0 0 11 11" fill="currentColor" aria-hidden="true"><path d="M2 1l8 4.5L2 10z"/></svg><span>Run pipeline</span></button>
             <label class="pg-bad"><input type="checkbox" /><span class="pg-switch" aria-hidden="true"></span>Send a bad batch</label>
           </div>
-          <div class="pg-foot"><a class="pg-link" href="projects.html#tfl-lakehouse">Read about TfL Real-Time Lakehouse</a></div>
+          <div class="pg-foot"><a class="pg-link" href="projects.html#tfl-lakehouse">Read about TfL Real-Time Lakehouse</a><span class="pg-sim">Simulated run</span></div>
         </div>
       </div>
       <div class="hero-meta">
