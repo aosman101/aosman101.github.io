@@ -643,3 +643,75 @@ if (filterBtns.length && pcards.length) {
     slot.insertBefore(el, slot.lastElementChild);
   });
 })();
+
+/* ── Tool logos ──
+   Adds a logo to any badge whose text names a known tool. Logos live
+   in assets/logos.svg (Simple Icons, CC0) and take the brand colour
+   when the badge is hovered. window.AO_LOGOS is reused by home.js. */
+(function initToolLogos() {
+  var self = document.querySelector('script[src*="script.js"]');
+  var SPRITE = (self ? self.getAttribute('src').split('script.js')[0] : 'assets/') + 'logos.svg?v=20261112';
+  // slug: [brand colour, 'd' = too dark for the dark theme, 'l' = too light for the light theme]
+  var BRAND = {
+    python: ['#4B8BBE'], dbt: ['#FF694B'], apacheairflow: ['#017CEE'], duckdb: ['#FFF000', 'l'],
+    clickhouse: ['#FFCC01', 'l'], postgresql: ['#5B83EA'], googlebigquery: ['#669DF6'], snowflake: ['#29B5E8'],
+    terraform: ['#9B6CD6'], docker: ['#2496ED'], apachekafka: ['#231F20', 'd'], fastapi: ['#05998B'],
+    pytorch: ['#EE4C2C'], tensorflow: ['#FF6F00'], githubactions: ['#2088FF'], react: ['#61DAFB', 'l'],
+    numpy: ['#4D77CF'], pandas: ['#150458', 'd'], scikitlearn: ['#F7931E'], jupyter: ['#F37626'],
+    mysql: ['#4479A1'], plotly: ['#7A76FF'], tableau: ['#E97627'], metabase: ['#509EE3'],
+    supabase: ['#3FCF8E'], tailwindcss: ['#06B6D4'], minio: ['#C72E49'], git: ['#F03C2E'],
+    apacheparquet: ['#50ABF1'], transportforlondon: ['#113B92', 'd'], sql: ['#7AB2D3']
+  };
+  var NAMES = {
+    'python': 'python', 'dbt': 'dbt', 'dbt core': 'dbt', 'dbt tests': 'dbt',
+    'apache airflow': 'apacheairflow', 'airflow': 'apacheairflow', 'duckdb': 'duckdb',
+    'clickhouse': 'clickhouse', 'postgresql': 'postgresql', 'postgres': 'postgresql',
+    'bigquery': 'googlebigquery', 'snowflake': 'snowflake', 'terraform': 'terraform', 'docker': 'docker',
+    'kafka': 'apachekafka', 'kafka / redpanda': 'apachekafka', 'redpanda / kafka': 'apachekafka',
+    'fastapi': 'fastapi', 'pytorch': 'pytorch', 'tensorflow': 'tensorflow', 'tensorflow / keras': 'tensorflow',
+    'github actions': 'githubactions', 'github actions ci/cd': 'githubactions', 'react': 'react',
+    'numpy': 'numpy', 'pandas': 'pandas', 'scikit-learn': 'scikitlearn', 'jupyter': 'jupyter',
+    'mysql': 'mysql', 'plotly': 'plotly', 'tableau': 'tableau', 'metabase': 'metabase',
+    'supabase': 'supabase', 'tailwind css': 'tailwindcss', 'minio': 'minio', 'minio (s3)': 'minio',
+    'git / github': 'git', 'parquet': 'apacheparquet', 'tfl api': 'transportforlondon', 'sql': 'sql'
+  };
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function make(slug) {
+    var b = BRAND[slug];
+    if (!b) return null;
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'tool-logo' + (b[1] === 'd' ? ' lg-dark' : b[1] === 'l' ? ' lg-light' : ''));
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.style.setProperty('--brand', b[0]);
+    var use = document.createElementNS(NS, 'use');
+    use.setAttribute('href', SPRITE + '#lg-' + slug);
+    svg.appendChild(use);
+    return svg;
+  }
+
+  window.AO_LOGOS = { make: make, slugFor: function (name) { return NAMES[String(name).trim().toLowerCase()] || null; } };
+
+  document.querySelectorAll('.badge, .stack-pill, .tool-badge, .sg-item').forEach(function (el) {
+    var slug = NAMES[el.textContent.trim().toLowerCase()];
+    var logo = slug && make(slug);
+    if (!logo) return;
+    var dot = el.querySelector('.dot, .sg-dot');
+    if (dot) dot.replaceWith(logo); else el.insertBefore(logo, el.firstChild);
+    el.classList.add('has-logo');
+  });
+})();
+
+/* ── Card spotlight ──
+   Project cards light up under the pointer. */
+(function initCardSpotlight() {
+  if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.pcard').forEach(function (card) {
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+})();
